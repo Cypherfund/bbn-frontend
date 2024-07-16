@@ -7,21 +7,43 @@ import {UserService} from "./services/user/user.service";
 import {UserApiService} from "./services/user/user-api.service";
 import {LocalStorageService} from "./services/localstorage/local-storage.service";
 import { HomeComponent } from './features/home/home.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardHeader,
+  MatCardImage,
+  MatCardTitle
+} from "@angular/material/card";
+import {MatButton} from "@angular/material/button";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatCardHeader,
+    MatCard,
+    MatCardContent,
+    MatCardActions,
+    MatButton,
+    MatCardImage,
+    MatCardTitle
   ],
   providers: [
     provideClientHydration(),
     UserService,
     UserApiService,
-    LocalStorageService
+    LocalStorageService,
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })

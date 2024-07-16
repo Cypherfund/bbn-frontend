@@ -1,4 +1,3 @@
-import {Plan} from "./qrcode";
 
 export interface APIResponse<T> {
     success: boolean;
@@ -19,11 +18,3 @@ export interface UserResponse {
     strLoginProvider: string;
 }
 
-
-export interface UserPlan {
-    id: number;
-    userId: string;
-    plan: Plan;
-    status: string;
-    dtCreated: string;
-}
