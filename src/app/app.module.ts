@@ -15,7 +15,6 @@ import { EarningsComponent } from './features/home/components/earnings/earnings.
 import { HomeCarouselComponent } from './features/home/components/home-carousel/home-carousel.component';
 import {MatButton, MatButtonModule, MatIconButton} from "@angular/material/button";
 import { TaskCenterComponent } from './features/home/components/task-center/task-center.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavContainer, MatSidenavContent, MatSidenavModule} from "@angular/material/sidenav";
@@ -31,8 +30,7 @@ import {MatListModule} from "@angular/material/list";
     CampaignCardComponent,
     EarningsComponent,
     HomeCarouselComponent,
-    TaskCenterComponent,
-    SidenavComponent
+    TaskCenterComponent
   ],
   imports: [
     BrowserModule,
