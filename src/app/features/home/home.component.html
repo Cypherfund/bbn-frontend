@@ -1,3 +1,21 @@
 <app-header></app-header>
+<main>
+  <br>
+  <app-home-carousel></app-home-carousel>
+  <br/>
+  <div class="campaigns-section">
+    <h2>CAMPAIGNS</h2>
+    <p>Lorem ipsum dolor sit amet consectetur. Et proin porta.</p>
+    <div class="campaigns">
+      <app-campaign-card *ngFor="let i of [1,2,3,4]"></app-campaign-card>
+    </div>
+    <button class="see-more-btn">See more</button>
+  </div>
+  <br/>
+  <app-earnings></app-earnings>
+  <br>
+  <app-task-center></app-task-center>
+  <br>
+</main>
 <app-footer></app-footer>
 

@@ -1,0 +1,86 @@
+/* campaign styles here */
+main {
+  max-width: 400px;
+  margin: auto;
+}
+.campaigns-section {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+}
+
+.campaigns-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.campaigns-section p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.campaigns {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.card {
+  width: 200px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.card-header {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.heart-icon {
+  font-size: 24px;
+  color: #bbb;
+  cursor: pointer;
+}
+
+.card-image {
+  width: 100%;
+  height: auto;
+  margin-top: 20px;
+}
+
+.card-content p {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0 0;
+}
+
+.see-more-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.see-more-btn:hover {
+  background-color: #303f9f;
+}

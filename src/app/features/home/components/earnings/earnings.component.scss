@@ -1,0 +1,89 @@
+
+
+.earning-section {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+}
+
+.earning-section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.earning-section p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  box-sizing: border-box;
+  height: 190px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.task-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.arrow-container {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 5px;
+}
+
+.earnings {
+  color: #00c853;
+  font-weight: bold;
+}
+
+.arrow-icon {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: #2196f3;
+  border-radius: 50px;
+  padding: 2px;
+}
+
+.task-content h3 {
+  font-size: 15px;
+  //margin: 0 0 10px 0;
+  margin-bottom: unset;
+  line-height: 2rem;
+}
+
+.task-content p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.1rem;
+}

@@ -10,33 +10,28 @@ import { HomeComponent } from './features/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {
-  MatCard,
-  MatCardActions,
-  MatCardContent,
-  MatCardHeader,
-  MatCardImage,
-  MatCardTitle
-} from "@angular/material/card";
-import {MatButton} from "@angular/material/button";
+import { CampaignCardComponent } from './features/home/components/campaign-card/campaign-card.component';
+import { EarningsComponent } from './features/home/components/earnings/earnings.component';
+import { HomeCarouselComponent } from './features/home/components/home-carousel/home-carousel.component';
+import {MatButton, MatIconButton} from "@angular/material/button";
+import { TaskCenterComponent } from './features/home/components/task-center/task-center.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CampaignCardComponent,
+    EarningsComponent,
+    HomeCarouselComponent,
+    TaskCenterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatCardHeader,
-    MatCard,
-    MatCardContent,
-    MatCardActions,
     MatButton,
-    MatCardImage,
-    MatCardTitle
+    MatIconButton
   ],
   providers: [
     provideClientHydration(),

@@ -1,0 +1,36 @@
+.carousel-container {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel {
+  position: relative;
+  background-image: url('/assets/carousel-background.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: white;
+  max-height: 200px;
+}
+
+.carousel-content {
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% opacity */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.carousel-content h1 {
+  font-size:18px;
+  margin-bottom: 10px;
+  line-height: 2rem;
+}
+
+.carousel-content p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-style: italic;
+  font-weight: lighter;
+}
