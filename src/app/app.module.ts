@@ -13,8 +13,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { CampaignCardComponent } from './features/home/components/campaign-card/campaign-card.component';
 import { EarningsComponent } from './features/home/components/earnings/earnings.component';
 import { HomeCarouselComponent } from './features/home/components/home-carousel/home-carousel.component';
-import {MatButton, MatIconButton} from "@angular/material/button";
+import {MatButton, MatButtonModule, MatIconButton} from "@angular/material/button";
 import { TaskCenterComponent } from './features/home/components/task-center/task-center.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatSidenavContainer, MatSidenavContent, MatSidenavModule} from "@angular/material/sidenav";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -25,13 +31,21 @@ import { TaskCenterComponent } from './features/home/components/task-center/task
     CampaignCardComponent,
     EarningsComponent,
     HomeCarouselComponent,
-    TaskCenterComponent
+    TaskCenterComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     MatButton,
-    MatIconButton
+    MatIconButton,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatSidenavContent,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule
   ],
   providers: [
     provideClientHydration(),

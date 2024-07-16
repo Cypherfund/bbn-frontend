@@ -17,6 +17,12 @@ export class UserService {
   private currentUser$: BehaviorSubject<UserResponse | null> = new BehaviorSubject<UserResponse | null>(null);
   private loginSubject$ = new BehaviorSubject<number>(0);
   login$: Observable<number>;
+
+  //create a group of observables to manage showing header and footer
+  private showHeader$ = new BehaviorSubject<boolean>(true);
+
+  sidenavOpen: boolean = false;
+
   constructor(private readonly userApiService: UserApiService,
               private readonly router: Router,
               private readonly stoarageService: LocalStorageService) {
@@ -31,6 +37,10 @@ export class UserService {
     this._user = value;
     this.userInitials = value.name.substring(0,2) || value.email.substring(0,2);
     this.loginSubject$.next(1);
+  }
+
+  toggleSidenav() {
+    this.sidenavOpen = !this.sidenavOpen;
   }
 
   recheckToken(): Observable<any> {

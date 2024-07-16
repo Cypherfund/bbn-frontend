@@ -1,2 +1,53 @@
 
-<router-outlet />
+
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [(opened)]="userService.sidenavOpen">
+      <div class="user-info">
+        <mat-icon [color]="'blue'">account_circle</mat-icon>
+        <div class="user-details">
+          <div class="user-name">Elizabeth Ngai</div>
+          <div class="user-id">ID: 0345DG9</div>
+          <div class="balance">Balance: <span>10,000 CFA</span></div>
+        </div>
+      </div>
+      <mat-nav-list>
+        <mat-list-item>
+          <mat-icon matListIcon>home</mat-icon>
+          <span matLine>HOME</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>person</mat-icon>
+          <span matLine>PROFILE</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>account_balance_wallet</mat-icon>
+          <span matLine>ACCOUNT</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>notifications</mat-icon>
+          <span matLine>NOTIFICATIONS</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>campaign</mat-icon>
+          <span matLine>CAMPAIGNS</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>info</mat-icon>
+          <span matLine>ABOUT</span>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon matListIcon>contact_mail</mat-icon>
+          <span matLine>CONTACT US</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+<!--      <app-header (toggleSidenav)="sidenav.toggle()"></app-header>-->
+      <div class="content">
+        <router-outlet />
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
