@@ -24,11 +24,11 @@ jobs:
         docker-username: REGISTRY_USER
         registry: ${DOCKER_REGISTRY}
     - docker/build:
-        image: ${REGISTRY_USER}/bbn
+        image: ${REGISTRY_USER}/bbn-frontend
         tag: bbn_frontend_<< pipeline.number >>_${CIRCLE_SHA1}
         registry: ${DOCKER_REGISTRY}
     - docker/push:
-        image: ${REGISTRY_USER}/bbn
+        image: ${REGISTRY_USER}/bbn-frontend
         tag: bbn_frontend_<< pipeline.number >>_${CIRCLE_SHA1}
         registry: ${DOCKER_REGISTRY}
 
