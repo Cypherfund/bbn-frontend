@@ -1,0 +1,53 @@
+.bet-summary-dialog {
+  width: 100%;
+  max-width: 600px;
+}
+
+.bet-summary {
+  margin: 20px 0;
+}
+
+.bet-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bet-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.bet-details {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.payment-methods {
+  margin: 20px 0;
+}
+
+.payment-methods mat-radio-button {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.payment-methods img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.total-bet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}

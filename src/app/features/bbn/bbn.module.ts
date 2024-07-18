@@ -13,13 +13,17 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatBadgeModule} from "@angular/material/badge";
+import {BetSummaryDialogComponent} from "./bet-summary-dialog/bet-summary-dialog.component";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
   declarations: [
     BbnEventComponent,
     BbnComponent,
-    OutcomeComponent
+    OutcomeComponent,
+    BetSummaryDialogComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +35,9 @@ import {MatBadgeModule} from "@angular/material/badge";
     MatInputModule,
     MatCheckboxModule,
     MatFormFieldModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatRadioModule,
+    MatDialogModule
   ]
 })
 export class BbnModule { }

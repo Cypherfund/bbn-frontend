@@ -3,7 +3,7 @@
   <mat-card-subtitle>Lorem ipsum dolor sit amet consectetur. Et proin porta.</mat-card-subtitle>
   <div class="categories">
     <mat-card class="category-item" *ngFor="let category of categories">
-      <div class="category-content">
+      <div class="category-content" [routerLink]="'' + category">
         <span>{{ category }}</span>
         <mat-icon>chevron_right</mat-icon>
       </div>
