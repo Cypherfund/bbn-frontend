@@ -1,0 +1,29 @@
+<mat-dialog-content class="bet-summary-dialog">
+  <h2>BET SUMMARY - BBN</h2>
+  <div class="bet-summary">
+    <div class="bet-item" *ngFor="let bet of bets">
+      <img src="assets/participant1.jpg" alt="Phyna Phyna">
+      <div class="bet-details">
+        <p>{{ bet.name }}</p>
+        <p>Odds: {{ bet.odds }}</p>
+        <p>Bet Amount: {{ bet.amount }} FCFA</p>
+      </div>
+      <button mat-icon-button color="warn" (click)="removeBet(bet)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>
+  <h3>PAYMENT METHODS</h3>
+  <div class="payment-methods">
+    <mat-radio-group>
+      <mat-radio-button *ngFor="let method of paymentMethods" [value]="method">
+        <img [src]="method.icon" alt="{{ method.name }}">
+        {{ method.name }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div class="total-bet">
+    <p>TOTAL BET: {{ totalBet }} FCFA</p>
+    <button mat-raised-button color="primary" (click)="validateBet()">VALIDATE</button>
+  </div>
+</mat-dialog-content>

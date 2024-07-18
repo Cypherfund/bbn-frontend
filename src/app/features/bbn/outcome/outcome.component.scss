@@ -1,0 +1,145 @@
+.outcomes-container {
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-container {
+  margin: 20px 0;
+  width: 80%;
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.participants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.participant-card {
+  flex: 0 0 calc(33% - 10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.participant-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.participant-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.participant-info p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.mat-icon {
+  font-size: 16px;
+}
+
+.select-checkbox {
+  position: absolute;
+  top: -0.9rem;
+  right: -1rem;
+}
+
+.select-checkbox {
+  //margin-top: 10px;
+}
+
+
+mat-card-title, mat-card-subtitle {
+  color: #5D5D5D;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mdc-text-field {
+  background-color: #F5F5F5;
+}
+
+::ng-deep .mdc-notched-outline__leading,
+::ng-deep .mdc-notched-outline__notch,
+::ng-deep .mdc-notched-outline__trailing {
+  border: unset !important;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  border-radius: 50px !important;
+  background-color: #F5F5F5;
+}
+
+mat-label {
+  color: #5D5D5D;
+}
+
+.mat-mdc-card-content {
+  padding: unset;
+}
+
+
+.fab-container {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+.custom-fab {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  font-size: 36px;
+  background-color: #699BF7;
+  color: white;
+
+}
+
+.custom-fab .mat-icon {
+  font-size: 3rem;
+  text-align: center;
+  position: absolute;
+  bottom: 45%;
+  right: 52%;
+}
+
+::ng-deep   .mat-badge-medium.mat-badge-overlap .mat-badge-content {
+  position: absolute;
+  left: 185%;
+  background: unset;
+  font-weight: 600;
+}
+
+::ng-deep .mat-mdc-checkbox .mdc-checkbox__background {
+  border-radius: 5px;
+}
+
+
+::ng-deep .mdc-checkbox:hover .mdc-checkbox__native-control:checked~.mdc-checkbox__background {
+  background: #5D5D5D ;
+  border-color: #5D5D5D;
+}
+
+.mdc-icon-button mat-icon {
+  font-size: 25px;
+}

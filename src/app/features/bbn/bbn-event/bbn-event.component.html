@@ -1,0 +1,13 @@
+<mat-card class="categories-section">
+  <mat-card-title>CATEGORIES</mat-card-title>
+  <mat-card-subtitle>Lorem ipsum dolor sit amet consectetur. Et proin porta.</mat-card-subtitle>
+  <div class="categories">
+    <mat-card class="category-item" *ngFor="let category of categories">
+      <div class="category-content" [routerLink]="'' + category">
+        <span>{{ category }}</span>
+        <mat-icon>chevron_right</mat-icon>
+      </div>
+    </mat-card>
+  </div>
+  <button mat-raised-button color="primary" class="see-all-btn">See all</button>
+</mat-card>

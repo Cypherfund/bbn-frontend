@@ -6,7 +6,7 @@
     <h2>CAMPAIGNS</h2>
     <p>Lorem ipsum dolor sit amet consectetur. Et proin porta.</p>
     <div class="campaigns">
-      <app-campaign-card *ngFor="let i of [1,2,3,4]"></app-campaign-card>
+      <app-campaign-card *ngFor="let game of games" [game]="game"></app-campaign-card>
     </div>
     <button class="see-more-btn">See more</button>
   </div>
