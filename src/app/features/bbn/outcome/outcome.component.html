@@ -1,0 +1,35 @@
+<mat-card class="outcomes-container">
+  <mat-card-title>WEEKLY EVICTION</mat-card-title>
+  <mat-card-subtitle>Lorem ipsum dolor sit amet consectetur. Et proin porta.</mat-card-subtitle>
+  <div class="search-container">
+    <mat-form-field appearance="outline">
+      <mat-label>Search for participant</mat-label>
+      <input matInput type="text">
+      <button mat-icon-button matSuffix>
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div class="participants">
+    <mat-card class="participant-card" *ngFor="let participant of participants">
+      <img mat-card-image [src]="'assets/housemat-1.jpg'" alt="{{ participant.name }}">
+      <mat-card-content>
+        <div class="participant-info">
+          <p>{{ participant.name }}</p>
+<!--          <mat-icon>bar_chart</mat-icon>-->
+          <svg width="22" height="20" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.3903 11.7319H0.658569" stroke="#5D5D5D" stroke-width="0.804878" stroke-linecap="round"/>
+            <path d="M10.8536 11.7318V7.70738C10.8536 7.49391 10.7688 7.28919 10.6179 7.13824C10.4669 6.9873 10.2622 6.9025 10.0487 6.9025H8.43897C8.2255 6.9025 8.02078 6.9873 7.86984 7.13824C7.71889 7.28919 7.63409 7.49391 7.63409 7.70738V11.7318V2.60982C7.63409 1.85109 7.63409 1.47172 7.398 1.23616C7.16297 1.00006 6.78361 1.00006 6.02434 1.00006C5.26561 1.00006 4.88624 1.00006 4.65068 1.23616C4.41458 1.47118 4.41458 1.85055 4.41458 2.60982V11.7318V5.02445C4.41458 4.81098 4.32978 4.60626 4.17884 4.45532C4.02789 4.30437 3.82317 4.21957 3.6097 4.21957H1.99995C1.78648 4.21957 1.58176 4.30437 1.43081 4.45532C1.27987 4.60626 1.19507 4.81098 1.19507 5.02445V11.7318" stroke="#5D5D5D" stroke-width="0.804878"/>
+          </svg>
+        </div>
+      </mat-card-content>
+      <mat-checkbox class="select-checkbox"></mat-checkbox>
+    </mat-card>
+  </div>
+  <div class="fab-container">
+    <button mat-fab color="primary" aria-label="Add" class="custom-fab">
+      <mat-icon matBadge="(15)">shopping_cart</mat-icon>
+
+    </button>
+  </div>
+</mat-card>

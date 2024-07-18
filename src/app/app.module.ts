@@ -12,46 +12,46 @@ import { FooterComponent } from './components/footer/footer.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { CampaignCardComponent } from './features/home/components/campaign-card/campaign-card.component';
 import { EarningsComponent } from './features/home/components/earnings/earnings.component';
-import { HomeCarouselComponent } from './features/home/components/home-carousel/home-carousel.component';
 import {MatButton, MatButtonModule, MatIconButton} from "@angular/material/button";
 import { TaskCenterComponent } from './features/home/components/task-center/task-center.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
-import {MatSidenavContainer, MatSidenavContent, MatSidenavModule} from "@angular/material/sidenav";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {MatSidenavContent, MatSidenavModule} from "@angular/material/sidenav";
+import {HttpClientModule} from "@angular/common/http";
 import {MatListModule} from "@angular/material/list";
+import {HomeCarouselComponent} from "./features/home/components/home-carousel/home-carousel.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    CampaignCardComponent,
-    EarningsComponent,
-    HomeCarouselComponent,
-    TaskCenterComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatButton,
-    MatIconButton,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatSidenavContent,
-    MatIconModule,
-    MatButtonModule,
-    MatListModule
-  ],
-  providers: [
-    provideClientHydration(),
-    UserService,
-    UserApiService,
-    LocalStorageService,
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        HeaderComponent,
+        FooterComponent,
+        CampaignCardComponent,
+        EarningsComponent,
+        TaskCenterComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        MatButton,
+        MatIconButton,
+        MatToolbarModule,
+        MatSidenavModule,
+        MatSidenavContent,
+        MatIconModule,
+        MatButtonModule,
+        MatListModule,
+        HomeCarouselComponent
+    ],
+    providers: [
+        provideClientHydration(),
+        UserService,
+        UserApiService,
+        LocalStorageService,
+        provideAnimationsAsync()
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

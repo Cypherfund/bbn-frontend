@@ -1,6 +1,6 @@
 
 footer {
-  background-color: #263238;
+  background-color: #02102B;
   color: white;
   text-align: center;
   padding: 20px 0;
@@ -12,19 +12,19 @@ footer {
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
 }
 
 .footer-column {
   display: flex;
-  flex-direction: column;
   flex: 1;
   min-width: 200px;
   margin: 10px;
+  gap: 1rem;
 }
 
 .footer-section {
   margin-bottom: 20px;
+  text-align: left;
 }
 
 .footer-section h3 {
@@ -43,7 +43,7 @@ footer {
 }
 
 .footer-bottom {
-  background-color: #3f51b5;
+  background-color: #699BF7;
   padding: 10px 0;
   color: white;
 }
