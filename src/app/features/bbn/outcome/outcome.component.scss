@@ -133,3 +133,9 @@ mat-label {
 ::ng-deep .mat-mdc-checkbox .mdc-checkbox__background {
   border-radius: 5px;
 }
+
+
+::ng-deep .mdc-checkbox:hover .mdc-checkbox__native-control:checked~.mdc-checkbox__background {
+  background: #5D5D5D ;
+  border-color: #5D5D5D;
+}
