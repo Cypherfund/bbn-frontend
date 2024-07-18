@@ -129,3 +129,7 @@ mat-label {
   background: unset;
   font-weight: 600;
 }
+
+::ng-deep .mat-mdc-checkbox .mdc-checkbox__background {
+  border-radius: 5px;
+}
