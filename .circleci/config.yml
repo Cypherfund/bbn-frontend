@@ -28,7 +28,7 @@ jobs:
         tag: bbn_frontend_<< pipeline.number >>_${CIRCLE_SHA1}
         registry: ${DOCKER_REGISTRY}
     - docker/push:
-        image: ${REGISTRY_USER}/auth
+        image: ${REGISTRY_USER}/bbn
         tag: bbn_frontend_<< pipeline.number >>_${CIRCLE_SHA1}
         registry: ${DOCKER_REGISTRY}
 
