@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import {GamesApiService} from "./games-api.service";
 import {BehaviorSubject, filter, map, Observable, switchMap, tap} from "rxjs";
-import {Tournament} from "../../models/bbn";
+import {BBNEvent, Tournament} from "../../models/bbn";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
   topTournaments$: Observable<Tournament[]>;
-  events$: Observable<Event[]>;
+  events$: Observable<BBNEvent[]>;
   eventSubject$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
 
   selectedTournament = 0;
