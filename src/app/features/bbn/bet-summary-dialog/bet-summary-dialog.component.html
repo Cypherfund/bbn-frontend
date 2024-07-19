@@ -20,9 +20,9 @@
         </div>
       </div>
       <div class="bet-odds">
-        <span class="minus">-</span>
+        <mat-icon class="minus">arrow_drop_up</mat-icon>
         <span class="odds-value">1</span>
-        <span class="plus">+</span>
+        <mat-icon class="plus">arrow_drop_down</mat-icon>
       </div>
       <div class="bet-amount">{{stake}} FCFA</div>
       <div class="remove-icon">
@@ -41,6 +41,7 @@
   </div>
   <div class="total-bet">
     <p>TOTAL BET: {{ stake }} FCFA</p>
+    <p>TOTAL WINNING: {{ totalWinning }} FCFA</p>
     <button mat-raised-button color="primary" (click)="validateBet()">VALIDATE</button>
   </div>
 </mat-dialog-content>
