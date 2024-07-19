@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import { BbnRoutingModule } from './bbn-routing.module';
 import { BbnEventComponent } from './bbn-event/bbn-event.component';
@@ -37,7 +37,8 @@ import {MatDialogModule} from "@angular/material/dialog";
     MatFormFieldModule,
     MatBadgeModule,
     MatRadioModule,
-    MatDialogModule
+    MatDialogModule,
+    NgOptimizedImage
   ]
 })
 export class BbnModule { }

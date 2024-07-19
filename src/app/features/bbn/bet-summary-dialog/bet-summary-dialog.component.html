@@ -1,16 +1,33 @@
 <mat-dialog-content class="bet-summary-dialog">
   <h2>BET SUMMARY - BBN</h2>
   <div class="bet-summary">
-    <div class="bet-item" *ngFor="let bet of bets">
-      <img src="assets/participant1.jpg" alt="Phyna Phyna">
+    <div class="bet-item" *ngFor="let bet of selectedOutcome$ | async">
+<!--      <img [ngSrc]="bet.imgUrl || 'assets/housemat-1.jpg'" width="40" height="40" alt="Phyna Phyna">-->
+<!--      <div class="bet-details">-->
+<!--        <p>{{ bet.description }}</p>-->
+<!--        <p>Odds: {{ bet.odds }}</p>-->
+<!--        <p>Bet Amount: {{ stake }} FCFA</p>-->
+<!--      </div>-->
+<!--      <button mat-icon-button color="warn" (click)="removeBet(bet)">-->
+<!--        <mat-icon>delete</mat-icon>-->
+<!--      </button>-->
+
       <div class="bet-details">
-        <p>{{ bet.name }}</p>
-        <p>Odds: {{ bet.odds }}</p>
-        <p>Bet Amount: {{ bet.amount }} FCFA</p>
+        <img [ngSrc]="bet.imgUrl || 'assets/housemat-1.jpg'"  width="50" height="50" alt="BBN Eviction" class="event-image" />
+        <div class="event-info">
+          <div class="event-title">{{eventDetails.name}}</div>
+          <div class="participant-name">{{ bet.description }}</div>
+        </div>
       </div>
-      <button mat-icon-button color="warn" (click)="removeBet(bet)">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <div class="bet-odds">
+        <span class="minus">-</span>
+        <span class="odds-value">1</span>
+        <span class="plus">+</span>
+      </div>
+      <div class="bet-amount">{{stake}} FCFA</div>
+      <div class="remove-icon">
+        <mat-icon (click)="removeBet(bet)">delete</mat-icon>
+      </div>
     </div>
   </div>
   <h3>PAYMENT METHODS</h3>
@@ -23,7 +40,7 @@
     </mat-radio-group>
   </div>
   <div class="total-bet">
-    <p>TOTAL BET: {{ totalBet }} FCFA</p>
+    <p>TOTAL BET: {{ stake }} FCFA</p>
     <button mat-raised-button color="primary" (click)="validateBet()">VALIDATE</button>
   </div>
 </mat-dialog-content>

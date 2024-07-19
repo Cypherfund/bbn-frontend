@@ -1,9 +1,9 @@
-<div class="card" routerLink="{{game.link || '/bbn'}}">
+<div class="card" (click)="selectGame()">
   <div class="card-header">
     <span class="material-icons heart-icon">favorite_border</span>
   </div>
-  <img [src]="game.imgUrl || 'assets/bbn-image.jpg'" alt="{{game.name}}" class="card-image">
+  <img [src]="tournament.imgUrl || 'assets/bbn-image.jpg'" alt="{{tournament.name}}" class="card-image">
   <div class="card-content">
-    <p>{{game.name}}</p>
+    <p>{{tournament.name}}</p>
   </div>
 </div>

@@ -1,4 +1,5 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Tournament} from "../../../../models/bbn";
 
 @Component({
   selector: 'app-campaign-card',
@@ -6,5 +7,10 @@ import {Component, Input} from '@angular/core';
   styleUrl: './campaign-card.component.scss'
 })
 export class CampaignCardComponent {
-  @Input() game: any;
+  @Input() tournament!: Tournament;
+  @Output() selectedGame: EventEmitter<Tournament> = new EventEmitter();
+
+  selectGame() {
+    this.selectedGame.emit(this.tournament);
+  }
 }

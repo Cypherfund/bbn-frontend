@@ -28,9 +28,6 @@ export class CartService {
 
   addToCart(outcome: Outcome) {
     const currentoutcomes = this.outcomeSelectedSubject.getValue();
-    if (Object.keys(currentoutcomes).length > 0) {
-        // this.messageService.add({severity: 'error', summary: 'Error', detail: 'You can only add one outcome at a time'});
-    }
     if (!currentoutcomes[outcome.id]) {
       const updatedoutcomes = { ...currentoutcomes, [outcome.id]: outcome };
       this.outcomeSelectedSubject.next(updatedoutcomes);

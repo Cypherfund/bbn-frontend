@@ -32,6 +32,7 @@ export interface Tournament {
   endDate: string;
   categoryId: number;
   link?: string;
+  imgUrl?: string;
 }
 
 export interface Category {

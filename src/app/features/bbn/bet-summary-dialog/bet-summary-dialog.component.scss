@@ -1,6 +1,9 @@
 .bet-summary-dialog {
   width: 100%;
   max-width: 600px;
+  h2,h3 {
+    font-size: 1.3rem;
+  }
 }
 
 .bet-summary {
@@ -10,25 +13,71 @@
 .bet-item {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
   padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.bet-item img {
-  width: 50px;
-  height: 50px;
-  border-radius: 5px;
-  margin-right: 10px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
 }
 
 .bet-details {
-  flex-grow: 1;
-  text-align: left;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: 130px;
 }
 
+.event-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.event-info {
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+
+.event-title {
+  font-weight: bold;
+  font-size: 14px;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.participant-name {
+  font-size: 12px;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bet-odds {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.bet-odds span {
+  margin: 0 5px;
+  font-weight: bold;
+}
+
+.minus, .plus {
+  cursor: pointer;
+}
+
+.bet-amount {
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.remove-icon {
+  cursor: pointer;
+  color: #F24E1E;
+}
 .payment-methods {
   margin: 20px 0;
 }

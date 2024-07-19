@@ -6,8 +6,8 @@
     <h2>CAMPAIGNS</h2>
     <p>Lorem ipsum dolor sit amet consectetur. Et proin porta.</p>
     <div class="campaigns">
-      <app-campaign-card *ngFor="let game of topTournaments$ | async" [game]="game"></app-campaign-card>
-      <app-campaign-card *ngFor="let game of otherGames" [game]="game"></app-campaign-card>
+      <app-campaign-card *ngFor="let game of topTournaments$ | async" [tournament]="game" (selectedGame)="selectTournament($event)" ></app-campaign-card>
+      <app-campaign-card *ngFor="let game of otherGames" [tournament]="game" (selectedGame)="selectTournament($event)" ></app-campaign-card>
     </div>
     <button class="see-more-btn">See more</button>
   </div>

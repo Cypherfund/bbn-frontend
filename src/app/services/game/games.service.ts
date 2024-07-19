@@ -1,28 +1,52 @@
 import { Injectable } from '@angular/core';
 import {GamesApiService} from "./games-api.service";
 import {BehaviorSubject, filter, map, Observable, switchMap, tap} from "rxjs";
-import {BBNEvent, Tournament} from "../../models/bbn";
+import {BBNEvent, Outcome, Tournament} from "../../models/bbn";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
   topTournaments$: Observable<Tournament[]>;
+
   events$: Observable<BBNEvent[]>;
   eventSubject$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
 
+  outcomes$: Observable<Outcome[]>;
+  outcomeSubject$: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+
   selectedTournament = 0;
+  eventDetails!: BBNEvent;
   constructor(private gamesApi: GamesApiService) {
     this.topTournaments$ = this.loadTournamentsForFirstActiveGame();
+
     this.events$ = this.eventSubject$.pipe(
       filter(tournamentId => !!tournamentId),
       switchMap(tournamentId => this.gamesApi.getEvents(tournamentId)),
-      tap(events => events.forEach(event => event.link = event.id))
+      tap(events => events.forEach(event => event.link = event.id.toString()))
+    );
+
+    this.outcomes$ = this.outcomeSubject$.pipe(
+      filter(eventId => !!eventId),
+      //perform conditional loading of event details if not already loaded
+      switchMap(eventId => {
+        if (!this.eventDetails || this.eventDetails.id !== eventId) {
+          return this.gamesApi.getEventDetails(eventId).pipe(
+            tap(eventDetails => this.eventDetails = eventDetails),
+            switchMap(() => this.gamesApi.getOutcomes(eventId))
+          );
+        }
+        return this.gamesApi.getOutcomes(eventId);
+      })
     );
   }
 
   loadEvents() {
     this.eventSubject$.next(this.selectedTournament);
+  }
+
+  loadOutcomes(eventId: number) {
+    this.outcomeSubject$.next(eventId);
   }
 
   loadTournamentsForFirstActiveGame(): Observable<Tournament[]> {

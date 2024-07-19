@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {GamesService} from "../../../services/game/games.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {BBNEvent} from "../../../models/bbn";
+import {relative} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-bbn-event',
@@ -19,10 +21,15 @@ export class BbnEventComponent {
   events$ = this.gameService.events$;
 
   constructor(private gameService: GamesService,
+              private activatedRoute: ActivatedRoute,
               private router: Router) {
     if (!this.gameService.selectedTournament) this.router.navigate(['/']);
     this.gameService.loadEvents();
   }
 
+  selectEvent(event: BBNEvent) {
+    this.gameService.eventDetails = event;
+    this.router.navigate([event.id], {relativeTo: this.activatedRoute});
+  }
 
 }

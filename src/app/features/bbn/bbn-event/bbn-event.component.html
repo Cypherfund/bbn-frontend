@@ -1,9 +1,9 @@
 <mat-card class="categories-section">
-  <mat-card-title>CATEGORIES</mat-card-title>
-  <mat-card-subtitle>Lorem ipsum dolor sit amet consectetur. Et proin porta.</mat-card-subtitle>
+  <mat-card-title>HOT EVENTS</mat-card-title>
+  <mat-card-subtitle>Predict on the some of the hottest events this week</mat-card-subtitle>
   <div class="categories">
     <mat-card class="category-item" *ngFor="let event of events$ | async">
-      <div class="category-content" [routerLink]="'' + event.id">
+      <div class="category-content" (click)="selectEvent(event)">
         <span>{{ event.name }}</span>
         <mat-icon>chevron_right</mat-icon>
       </div>

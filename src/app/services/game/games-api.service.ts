@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {BBNEvent, Category, Game, Tournament} from "../../models/bbn";
+import {BBNEvent, Category, Game, Outcome, Tournament} from "../../models/bbn";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,15 @@ export class GamesApiService {
   }
 
   getEvents(tournamentId: number): Observable<BBNEvent[]> {
-    return this.http.get<BBNEvent[]>(`${this.baseUrl}/tournaments/${tournamentId}/events`);
+    return this.http.get<BBNEvent[]>(`${this.baseUrl}/admin/tournaments/${tournamentId}/events`);
+  }
+
+  getEventDetails(eventId: number): Observable<BBNEvent> {
+    return this.http.get<BBNEvent>(`${this.baseUrl}/admin/events/${eventId}`);
+
+  }
+
+  getOutcomes(eventId: number): Observable<Outcome[]> {
+    return this.http.get<Outcome[]>(`${this.baseUrl}/admin/events/${eventId}/outcomes`);
   }
 }
