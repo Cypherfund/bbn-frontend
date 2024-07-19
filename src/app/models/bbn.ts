@@ -31,6 +31,7 @@ export interface Tournament {
   startDate: string;
   endDate: string;
   categoryId: number;
+  link?: string;
 }
 
 export interface Category {
@@ -47,7 +48,7 @@ export interface Game {
   status: string;
 }
 
-export interface Event {
+export interface BBNEvent {
   id: number;
   name: string;
   eventTypeTemplateId: number;
@@ -58,6 +59,7 @@ export interface Event {
   updatedAt: string;
   eventDate: string;
   tournamentId: number;
+  link?: string;
 }
 
 export type EventStatus = "SETTLED" | "PENDING" | "CANCELLED";
