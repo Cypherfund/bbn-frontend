@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {GamesService} from "../../services/game/games.service";
 
 @Component({
   selector: 'app-home',
@@ -6,11 +7,14 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  games = [
-    { name: 'Lottery', image: 'assets/lottery.jpg', link: '/lottery' },
-    { name: 'Reality TV Show', image: 'assets/bbn-image.jpg', link: '/bbn' },
-    { name: 'Micro Tasks', image: 'assets/micro-task.jpg', link: '/task' },
-    { name: 'Blog Writing', image: 'assets/blog.jpg', link: '/blog' },
+  otherGames = [
+    { name: 'Lottery', imgUrl: 'assets/lottery.jpg', link: '/lottery' },
+    { name: 'Micro Tasks', imgUrl: 'assets/micro-task.jpg', link: '/task' },
+    { name: 'Blog Writing', imgUrl: 'assets/blog.jpg', link: '/blog' },
 
   ]
+
+  topTournaments$ = this.gamesService.topTournaments$;
+  constructor(private gamesService: GamesService) {
+  }
 }

@@ -40,6 +40,13 @@ export interface Category {
   gameId: number;
 }
 
+export interface Game {
+  id: number;
+  name: string;
+  imgUrl: string;
+  status: string;
+}
+
 export interface Event {
   id: number;
   name: string;

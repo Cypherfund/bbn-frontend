@@ -1,8 +1,8 @@
-<div class="card" [routerLink]="game.link">
+<div class="card" routerLink="{{game.link || '/bbn'}}">
   <div class="card-header">
     <span class="material-icons heart-icon">favorite_border</span>
   </div>
-  <img [src]="game.image" alt="Lottery" class="card-image">
+  <img [src]="game.imgUrl || 'assets/bbn-image.jpg'" alt="{{game.name}}" class="card-image">
   <div class="card-content">
     <p>{{game.name}}</p>
   </div>

@@ -20,6 +20,8 @@ import {MatSidenavContent, MatSidenavModule} from "@angular/material/sidenav";
 import {HttpClientModule} from "@angular/common/http";
 import {MatListModule} from "@angular/material/list";
 import {HomeCarouselComponent} from "./features/home/components/home-carousel/home-carousel.component";
+import {GamesApiService} from "./services/game/games-api.service";
+import {GamesService} from "./services/game/games.service";
 
 @NgModule({
     declarations: [
@@ -50,6 +52,8 @@ import {HomeCarouselComponent} from "./features/home/components/home-carousel/ho
         UserService,
         UserApiService,
         LocalStorageService,
+        GamesApiService,
+        GamesService,
         provideAnimationsAsync()
     ],
     bootstrap: [AppComponent]
