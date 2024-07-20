@@ -2,16 +2,6 @@
   <h2>BET SUMMARY - BBN</h2>
   <div class="bet-summary">
     <div class="bet-item" *ngFor="let bet of selectedOutcome$ | async">
-<!--      <img [ngSrc]="bet.imgUrl || 'assets/housemat-1.jpg'" width="40" height="40" alt="Phyna Phyna">-->
-<!--      <div class="bet-details">-->
-<!--        <p>{{ bet.description }}</p>-->
-<!--        <p>Odds: {{ bet.odds }}</p>-->
-<!--        <p>Bet Amount: {{ stake }} FCFA</p>-->
-<!--      </div>-->
-<!--      <button mat-icon-button color="warn" (click)="removeBet(bet)">-->
-<!--        <mat-icon>delete</mat-icon>-->
-<!--      </button>-->
-
       <div class="bet-details">
         <img [ngSrc]="bet.imgUrl || 'assets/housemat-1.jpg'"  width="50" height="50" alt="BBN Eviction" class="event-image" />
         <div class="event-info">
@@ -29,19 +19,22 @@
         <mat-icon (click)="removeBet(bet)">delete</mat-icon>
       </div>
     </div>
-  </div>
-  <h3>PAYMENT METHODS</h3>
-  <div class="payment-methods">
-    <mat-radio-group>
-      <mat-radio-button *ngFor="let method of paymentMethods" [value]="method">
-        <img [src]="method.icon" alt="{{ method.name }}">
-        {{ method.name }}
-      </mat-radio-button>
-    </mat-radio-group>
-  </div>
-  <div class="total-bet">
     <p>TOTAL BET: {{ stake }} FCFA</p>
     <p>TOTAL WINNING: {{ totalWinning }} FCFA</p>
-    <button mat-raised-button color="primary" (click)="validateBet()">VALIDATE</button>
+    <div class="total-bet">
+      <button mat-raised-button color="primary" (click)="validateBet()">VALIDATE</button>
+    </div>
   </div>
+  <ng-container
+    *ngIf="((userService.userCurrentBalance$ | async)?.dCurBalance || 0) + ((userService.userCurrentBalance$ | async)?.dWinBalance || 0) < stake">
+    <h3>RECHARGE NOW</h3>
+    <div class="payment-methods">
+      <mat-radio-group>
+        <mat-radio-button *ngFor="let method of paymentMethods$ | async" [value]="method">
+          <img [src]="'assets/payments/' + method.strImageUrl" alt="{{ method.strProviderName }}">
+          {{ method.strProviderName }}
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </ng-container>
 </mat-dialog-content>

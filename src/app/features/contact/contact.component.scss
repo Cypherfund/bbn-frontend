@@ -1,0 +1,34 @@
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: unset;
+  }
+
+  p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .success-message {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: green;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+}
+
+
+::ng-deep .mat-mdc-raised-button:not(:disabled), .mat-mdc-raised-button {
+  border-radius: 5px !important;
+  color: white !important;
+  background-color: #699BF7 !important;
+}

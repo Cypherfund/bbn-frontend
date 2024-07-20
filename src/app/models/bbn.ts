@@ -63,6 +63,15 @@ export interface BBNEvent {
   link?: string;
 }
 
+export interface UserBalance {
+  id: number;
+  lgUserId: string;
+  dCurBalance: number;
+  dWinBalance: number;
+  dtCreated: string;
+  dtUpdated: string;
+}
+
 export type EventStatus = "SETTLED" | "PENDING" | "CANCELLED";
 
 export type EventType = "NOMINATIONS" | "EVICTIONS" | "TASKS" | "WINNER" | "HEAD_OF_HOUSE" | "VETO_POWER" | "NOMINATION_REPLACEMENT" | "VETO_POWER_REPLACEMENT" | "DISQUALIFICATION" | "EVICTION_REPLACEMENT";

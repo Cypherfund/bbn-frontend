@@ -22,7 +22,10 @@ import {MatListModule} from "@angular/material/list";
 import {HomeCarouselComponent} from "./features/home/components/home-carousel/home-carousel.component";
 import {GamesApiService} from "./services/game/games-api.service";
 import {GamesService} from "./services/game/games.service";
-
+import {PaymentService} from "./services/payment/payment.service";
+import {PaymentApiService} from "./services/payment/payment-api.service";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { AboutComponent } from './features/about/about.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -31,7 +34,8 @@ import {GamesService} from "./services/game/games.service";
         FooterComponent,
         CampaignCardComponent,
         EarningsComponent,
-        TaskCenterComponent
+        TaskCenterComponent,
+        AboutComponent
     ],
     imports: [
         BrowserModule,
@@ -45,6 +49,7 @@ import {GamesService} from "./services/game/games.service";
         MatIconModule,
         MatButtonModule,
         MatListModule,
+        MatProgressSpinnerModule,
         HomeCarouselComponent
     ],
     providers: [
@@ -54,6 +59,8 @@ import {GamesService} from "./services/game/games.service";
         LocalStorageService,
         GamesApiService,
         GamesService,
+        PaymentService,
+        PaymentApiService,
         provideAnimationsAsync()
     ],
     bootstrap: [AppComponent]

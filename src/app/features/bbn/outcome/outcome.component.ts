@@ -6,6 +6,7 @@ import {GamesService} from "../../../services/game/games.service";
 import {Observable, tap} from "rxjs";
 import {CartService} from "../../../services/cart.service";
 import {BBNEvent, Outcome} from "../../../models/bbn";
+import {LocalStorageService} from "../../../services/localstorage/local-storage.service";
 
 @Component({
   selector: 'app-outcome',
@@ -20,6 +21,7 @@ export class OutcomeComponent implements OnInit {
               public gamesService: GamesService,
               public cartService: CartService,
               private cdr: ChangeDetectorRef,
+              private stoarageService: LocalStorageService,
               private activatedRoute: ActivatedRoute) {}
 
   openBetSummaryDialog() {
@@ -39,6 +41,7 @@ export class OutcomeComponent implements OnInit {
       tap(outcomes =>
       {
         this.eventDetails = this.gamesService.eventDetails;
+        this.loadCartFromLocalStorage();
         this.cdr.detectChanges();
       }
 
@@ -46,6 +49,16 @@ export class OutcomeComponent implements OnInit {
     );
   }
 
+  isParticipantSelected(participant: Outcome, selectedParticipants: Outcome[]): boolean {
+    return selectedParticipants.some(p => p.id === participant.id);
+  }
+
+  private loadCartFromLocalStorage() {
+    const cartItems = this.stoarageService.get('cart');
+    if (!!cartItems && cartItems.length > 0) {
+      this.cartService.addoutcomes(JSON.parse(cartItems));
+    }
+  }
   onCheckboxChange(event: any, participant: Outcome) {
     if (event.checked) {
       this.cartService.addToCart(participant);

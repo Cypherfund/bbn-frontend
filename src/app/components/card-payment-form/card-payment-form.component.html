@@ -1,0 +1,44 @@
+<form [formGroup]="paymentForm" (ngSubmit)="makePayment()">
+  <div class="mb-3">
+    <label for="name" class="form-label" i18n="@@name_on_card">Name on card</label>
+    <input id="name" formControlName="name" class="form-control" i18n-placeholder="@@enter_name" placeholder="Enter Name"/>
+    <div *ngIf="paymentForm.get('name')?.invalid && (paymentForm.get('name')?.dirty || paymentForm.get('name')?.touched)">
+      <small *ngIf="paymentForm.get('name')?.errors?.['required']" class="text-danger" i18n="@@name_required">Name is required.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="cardNumber" class="form-label">Card Number</label>
+    <input id="cardNumber" formControlName="cardNumber" class="form-control" i18n-placeholder="@@enter_card_number" placeholder="Enter Card Number"/>
+    <div *ngIf="paymentForm.get('cardNumber')?.invalid && (paymentForm.get('cardNumber')?.dirty || paymentForm.get('cardNumber')?.touched)">
+      <small *ngIf="paymentForm.get('cardNumber')?.errors?.['required']" class="text-danger" i18n="@@card_number_required">Card number is required.</small>
+      <small *ngIf="paymentForm.get('cardNumber')?.errors?.['pattern']" class="text-danger" i18n="@@invalid_card_number">Invalid card number.</small>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="expirationDate" class="form-label">Expiration Date</label>
+      <input id="expirationDate" formControlName="expirationDate" class="form-control" i18n-placeholder="@@date_format" placeholder="MM/YY" />
+      <div *ngIf="paymentForm.get('expirationDate')?.invalid && (paymentForm.get('expirationDate')?.dirty || paymentForm.get('expirationDate')?.touched)">
+        <small *ngIf="paymentForm.get('expirationDate')?.errors?.['required']" class="text-danger" i18n="@@expiry_date_required">Expiration date is required.</small>
+        <small *ngIf="paymentForm.get('expirationDate')?.errors?.['pattern']" class="text-danger" i18n="@@invalid_date">Invalid date format.</small>
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="cvc" class="form-label">CVC</label>
+      <input id="cvc" formControlName="cvc" class="form-control" i18n="@@enter_cvc" placeholder="Enter CVC">
+      <div *ngIf="paymentForm.get('cvc')?.invalid && (paymentForm.get('cvc')?.dirty || paymentForm.get('cvc')?.touched)">
+        <small *ngIf="paymentForm.get('cvc')?.errors?.['required']" class="text-danger" i18n="@@cvv_required">CVC is required.</small>
+        <small *ngIf="paymentForm.get('cvc')?.errors?.['pattern']" class="text-danger" i18n="@@cvv_invalid">Invalid CVC.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-check mb-3">
+    <input id="saveInfo" formControlName="saveInfo" type="checkbox" class="form-check-input"/>
+    <label for="saveInfo" class="form-check-label" i18n="@@save_payment_info_for_faster_checkout">Save my information for faster checkout</label>
+  </div>
+
+  <button pButton type="submit" class="p-button-raised p-button-rounded p-button-success" [disabled]="paymentForm.invalid" i18n="@@confirm_payment">Confirm Payment</button>
+</form>

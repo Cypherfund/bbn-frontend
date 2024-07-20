@@ -5,6 +5,7 @@ import {APIResponse, UserResponse} from "../../models/user";
 import {Signup, SignupResponse} from "../../models/signup";
 import {Login, LoginResponse} from "../../models/login";
 import {environment} from "../../../environments/environment";
+import {UserBalance} from "../../models/bbn";
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,13 @@ export class UserApiService {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post<LoginResponse>(`${this.baseUrl}signin`,
       userDetails, {headers}).pipe(catchError(error=>throwError(error)));
+  }
+
+  getUserBalance(userId: string): Observable<APIResponse<UserBalance>>{
+    return this.http.get<APIResponse<UserBalance>>(`${this.baseUrl}account/balance/${userId}`).pipe(catchError(error=>throwError(error)));
+  }
+
+  checkIfUserExists(usernameOrEmailOrPhone: string): Observable<APIResponse<string>>{
+    return this.http.get<APIResponse<string>>(`${this.baseUrl}users/valid/${usernameOrEmailOrPhone}`).pipe(catchError(error=>throwError(error)));
   }
 }

@@ -1,0 +1,18 @@
+<form [formGroup]="paymentForm" (ngSubmit)="makePayment()">
+
+  <div *ngIf="paymentForm.get('paymentType')?.value === 'PAYPAL'">
+    <label for="paypalEmail" i18n="@@paypal_email">PayPal Email</label>
+    <input id="paypalEmail" formControlName="paypalEmail" type="email">
+    <div *ngIf="paymentForm.get('paypalEmail')?.invalid && (paymentForm.get('paypalEmail')?.dirty || paymentForm.get('paypalEmail')?.touched)">
+      <small *ngIf="paymentForm.get('paypalEmail')?.errors?.['required']" i18n="@@email_required">PayPal email is required.</small>
+      <small *ngIf="paymentForm.get('paypalEmail')?.errors?.['email']" i18n="@@email_invalid">Invalid email address.</small>
+    </div>
+  </div>
+
+  <div class="form-check mb-3">
+    <input id="saveInfo" formControlName="saveInfo" type="checkbox" class="form-check-input"/>
+    <label for="saveInfo" class="form-check-label" i18n="@@save_payment_info_for_faster_checkout">Save my information for faster checkout</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100" [disabled]="paymentForm.invalid" i18n="@@confirm_payment">Confirm Payment</button>
+</form>

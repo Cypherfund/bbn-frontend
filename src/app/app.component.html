@@ -4,33 +4,41 @@
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [(opened)]="userService.sidenavOpen">
-      <div class="flex justify-content-between align-items-center">
-        <div class="user-info">
-          <mat-icon>person</mat-icon>
-          <div class="user-details">
-            <div class="user-name">Elizabeth Ngai</div>
-            <div class="user-id">ID: 0345DG9</div>
+      <ng-container *ngIf="isLogged">
+        <div class="flex justify-content-between align-items-center">
+          <div class="user-info">
+            <mat-icon>person</mat-icon>
+            <div class="user-details">
+              <div class="user-name">Elizabeth Ngai</div>
+              <div class="user-id">ID: 0345DG9</div>
+            </div>
           </div>
+          <mat-icon class="close-icon" (click)="sidenav.close()">close</mat-icon>
         </div>
-        <mat-icon class="close-icon" (click)="sidenav.close()">close</mat-icon>
-      </div>
-
-      <div class="balance">Balance: <span>10,000 CFA</span></div>
+        <div class="balance">Balance: <span>10,000 CFA</span></div>
+      </ng-container>
+      <ng-container *ngIf="!isLogged">
+        <div class="flex justify-content-between align-items-center">
+          <div class="user-info">
+            <mat-icon>account_circle</mat-icon>
+          </div>
+          <mat-icon class="close-icon" (click)="sidenav.close()">close</mat-icon>
+        </div>
+      </ng-container>
       <mat-nav-list>
-        <mat-list-item>
-
+        <mat-list-item (click)="sidenav.close()" routerLink="/">
           <mat-icon matListIcon>home</mat-icon>
           <span matLine>HOME</span>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isLogged">
           <mat-icon matListIcon>person</mat-icon>
           <span matLine>PROFILE</span>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isLogged">
           <mat-icon matListIcon>account_balance_wallet</mat-icon>
           <span matLine>ACCOUNT</span>
         </mat-list-item>
-        <mat-list-item>
+        <mat-list-item *ngIf="isLogged">
           <mat-icon matListIcon>notifications</mat-icon>
           <span matLine>NOTIFICATIONS</span>
         </mat-list-item>
@@ -38,20 +46,25 @@
           <mat-icon matListIcon>campaign</mat-icon>
           <span matLine>CAMPAIGNS</span>
         </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListIcon>info</mat-icon>
+        <mat-list-item (click)="sidenav.close()" routerLink="/about">
+          <mat-icon matListIcon>info_i</mat-icon>
           <span matLine>ABOUT</span>
         </mat-list-item>
-        <mat-list-item>
-          <mat-icon matListIcon>contact_mail</mat-icon>
+        <mat-list-item (click)="sidenav.close()" routerLink="/contact">
+          <mat-icon matListIcon>call</mat-icon>
           <span matLine>CONTACT US</span>
+        </mat-list-item>
+        <mat-list-item (click)="userService.logout(); sidenav.close()" *ngIf="isLogged">
+          <mat-icon matListIcon>logout</mat-icon>
+          <span matLine>LOGOUT</span>
         </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
       <div class="content">
-        <app-header></app-header>
+        <app-header *ngIf="showHeader"></app-header>
         <router-outlet />
+        <mat-spinner *ngIf="userService.showBlogLoader$ | async" class="fixed right-40 top-50"></mat-spinner>
         <app-footer></app-footer>
       </div>
     </mat-sidenav-content>

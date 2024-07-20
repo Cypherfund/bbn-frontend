@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import {UserResponse} from "../../models/user";
-import {BehaviorSubject, catchError, map, Observable, of, shareReplay, tap, throwError} from 'rxjs';
+import {BehaviorSubject, catchError, filter, map, Observable, of, shareReplay, switchMap, tap, throwError} from 'rxjs';
 import {UserApiService} from "./user-api.service";
 import {LocalStorageService} from "../localstorage/local-storage.service";
 import {Signup, SignupResponse} from "../../models/signup";
 import {Login, LoginResponse} from "../../models/login";
 import {Router} from "@angular/router";
+import {UserBalance} from "../../models/bbn";
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +18,11 @@ export class UserService {
   private currentUser$: BehaviorSubject<UserResponse | null> = new BehaviorSubject<UserResponse | null>(null);
   private loginSubject$ = new BehaviorSubject<number>(0);
   login$: Observable<number>;
+  showBlogLoader$: Observable<boolean>;
+  private showBlogLoaderSubject = new BehaviorSubject<boolean>(false);
 
-  //create a group of observables to manage showing header and footer
-  private showHeader$ = new BehaviorSubject<boolean>(true);
+ userCurrentBalance$: Observable<UserBalance>;
+ private userCurrentBalanceSubject$ = new BehaviorSubject<string>('');
 
   sidenavOpen: boolean = false;
 
@@ -27,6 +30,14 @@ export class UserService {
               private readonly router: Router,
               private readonly stoarageService: LocalStorageService) {
     this.login$ = this.loginSubject$.asObservable();
+    this.showBlogLoader$ = this.showBlogLoaderSubject.asObservable();
+
+    this.userCurrentBalance$ = this.userCurrentBalanceSubject$.pipe(
+      filter(userId => !!userId),
+      switchMap(userId => this.userApiService.getUserBalance(userId)),
+      map(response => response?.data),
+      shareReplay(1)
+    );
   }
 
   get user(): UserResponse {
@@ -41,6 +52,10 @@ export class UserService {
 
   toggleSidenav() {
     this.sidenavOpen = !this.sidenavOpen;
+  }
+
+  loadUserBalance(userId: string) {
+    this.userCurrentBalanceSubject$.next(userId);
   }
 
   recheckToken(): Observable<any> {
@@ -71,15 +86,20 @@ export class UserService {
   }
 
   registerUser(userDetails: Signup): Observable<SignupResponse> {
+    this.showBlogLoaderSubject.next(true);
     return this.userApiService.registerUser(userDetails)
       .pipe(
         tap(response => {
+          this.showBlogLoaderSubject.next(false);
           if (response.success) {
             this.loginUser({usernameOrEmailOrPhone: userDetails.email, password: userDetails.password})
               .subscribe();
           }
         }),
-        catchError(error => throwError(error))
+        catchError(error => {
+          this.showBlogLoaderSubject.next(false);
+          return throwError(error)
+        })
       );
   }
 
@@ -94,6 +114,9 @@ export class UserService {
           ).subscribe();
 
         }
+      }),
+      catchError(error => {
+        return throwError(error)
       })
     );
   }
@@ -107,6 +130,18 @@ export class UserService {
 
 
   navigateToHome() {
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/']);
+  }
+
+  checkIfUserExists(usernameOrEmailOrPhone: string): Observable<string> {
+    return this.userApiService.checkIfUserExists(usernameOrEmailOrPhone)
+      .pipe(
+        map(response => response.data),
+        catchError(error => throwError(error))
+      );
+  }
+
+  showBlockLoader(show: boolean) {
+    this.showBlogLoaderSubject.next(show);
   }
 }

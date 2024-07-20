@@ -1,1 +1,67 @@
-<p>signup works!</p>
+<div class="registration-container">
+  <img src="assets/logo.png" alt="Cypherfund" class="logo" routerLink="/">
+  <h1 class="text-left mat-mdc-card-title">Get Started Now</h1>
+  <p class="text-left">Enter your personal details to create your account</p>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Full Name</mat-label>
+      <input matInput formControlName="fullName" placeholder="John Doe">
+      <mat-error *ngIf="registrationForm.get('fullName')?.hasError('required')">Full Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>User Name</mat-label>
+      <input matInput formControlName="userName" placeholder="Ngai Eli">
+      <mat-error *ngIf="registrationForm.get('userName')?.hasError('required')">User Name is required</mat-error>
+      <mat-error *ngIf="registrationForm.get('userName')?.hasError('usernameTaken')">Username is already taken</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" placeholder="ngai@gmail.com">
+      <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">Invalid email address</mat-error>
+      <mat-error *ngIf="registrationForm.get('email')?.hasError('emailTaken')">Email is already taken</mat-error>
+    </mat-form-field>
+    <div class="phone-number-group">
+      <mat-form-field appearance="outline" class="country-code">
+        <mat-label>Country Code<span class="fi" [ngClass]="'fi-cm'"></span></mat-label>
+        <mat-select formControlName="countryCode" #sl>
+          <mat-option *ngFor="let country of countries" [value]="country.code">
+            <span class="fi" [ngClass]="'fi-' + country.short.toLowerCase()"></span>
+            ({{country.code}})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="phone-number">
+        <mat-label>Phone Number</mat-label>
+        <input matInput formControlName="phoneNumber" type="tel" placeholder="650 076 456">
+        <mat-error *ngIf="registrationForm.get('phoneNumber')?.hasError('required')">Phone Number is required</mat-error>
+        <mat-error *ngIf="registrationForm.get('phoneNumber')?.hasError('pattern')">Invalid phone number</mat-error>
+        <mat-error *ngIf="registrationForm.get('phoneNumber')?.hasError('phoneNumberTaken')">Phone number is already taken</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password">
+      <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">Password is required</mat-error>
+      <mat-error *ngIf="registrationForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Repeat Password</mat-label>
+      <input matInput formControlName="repeatPassword" type="password">
+      <mat-error *ngIf="registrationForm.get('repeatPassword')?.hasError('required')">Repeat Password is required</mat-error>
+      <mat-error *ngIf="registrationForm.get('repeatPassword')?.hasError('minlength')">Password must be at least 6 characters</mat-error>
+      <mat-error *ngIf="registrationForm?.hasError('passwordMismatch')">Passwords must match</mat-error>
+    </mat-form-field>
+    <mat-checkbox class="w-full text-left pb-1" formControlName="agreeTerms" required>
+      I agree to the <a href="#" class="terms">Terms & Conditions</a>
+      <mat-error *ngIf="registrationForm.get('agreeTerms')?.hasError('required')">You must agree to the terms</mat-error>
+    </mat-checkbox>
+    <button mat-raised-button color="primary" type="submit" class="full-width">Sign Up</button>
+<!--    <div class="or-separator">or</div>-->
+<!--    <button mat-stroked-button class="full-width google-signin">-->
+<!--      <img src="assets/google-logo.png" alt="Google" class="google-logo">-->
+<!--      Sign in with Google-->
+<!--    </button>-->
+    <p>Already have an account? <a routerLink="/login" class="signin-link">Sign in</a></p>
+  </form>
+</div>

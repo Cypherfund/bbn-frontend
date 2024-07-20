@@ -1,0 +1,25 @@
+<div class="contact-container">
+  <h1>Contact Us</h1>
+  <p>If you have any questions or feedback, feel free to contact us using the form below.</p>
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Your Name">
+      <mat-error *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.hasError('required')">Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" placeholder="your.email@example.com">
+      <mat-error *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.hasError('required')">Email is required</mat-error>
+      <mat-error *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.hasError('email')">Invalid email address</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Message</mat-label>
+      <textarea matInput formControlName="message" placeholder="Your Message" rows="5"></textarea>
+      <mat-error *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.hasError('required')">Message is required</mat-error>
+      <mat-error *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.hasError('minlength')">Message must be at least 10 characters long</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="w-full" type="submit" [disabled]="!contactForm.valid">Send</button>
+  </form>
+  <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+</div>

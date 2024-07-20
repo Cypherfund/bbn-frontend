@@ -1,0 +1,115 @@
+.registration-container {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  p {
+    color: #5D5D5D;
+  }
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.phone-number-group {
+  display: flex;
+  gap: 10px;
+}
+
+.country-code {
+  flex: 1;
+}
+
+.phone-number {
+  flex: 2;
+}
+
+.prefix-container {
+  display: flex;
+  align-items: center;
+}
+
+.flag {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.google-signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.google-logo {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.or-separator {
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+.terms, .signin-link {
+  color: #3f51b5;
+  text-decoration: none;
+}
+
+.terms:hover, .signin-link:hover {
+  text-decoration: underline;
+}
+
+.mat-mdc-card-title {
+  font-family: var(--mat-card-title-text-font);
+  line-height: var(--mat-card-title-text-line-height);
+  font-size: var(--mat-card-title-text-size);
+  letter-spacing: var(--mat-card-title-text-tracking);
+  font-weight: var(--mat-card-title-text-weight);
+  color: #5D5D5D;
+  text-align: left;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  margin-top: 5px;
+}
+
+::ng-deep mdc-form-field mat-internal-form-field {
+  width: 100%;
+}
+::ng-deep .mat-pseudo-checkbox {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+::ng-deep .mat-mdc-option .mat-pseudo-checkbox-minimal {
+  margin-left: unset !important;
+}
+
+::ng-deep .mat-mdc-raised-button:not(:disabled), .mat-mdc-raised-button {
+  border-radius: 5px !important;
+  color: white !important;
+  background-color: #699BF7 !important;
+}
+
+
+::ng-deep .mat-mdc-progress-spinner{
+  width: 50% !important;
+  height: 100px;
+  position: relative;
+  top: 11px;
+  color: white !important;
+}
+
+::ng-deep .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic {
+  stroke: white !important;
+}

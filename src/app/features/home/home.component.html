@@ -4,7 +4,7 @@
   <br/>
   <div class="campaigns-section">
     <h2>CAMPAIGNS</h2>
-    <p>Lorem ipsum dolor sit amet consectetur. Et proin porta.</p>
+    <p>Welcome to Cypherfund, where the game begins.</p>
     <div class="campaigns">
       <app-campaign-card *ngFor="let game of topTournaments$ | async" [tournament]="game" (selectedGame)="selectTournament($event)" ></app-campaign-card>
       <app-campaign-card *ngFor="let game of otherGames" [tournament]="game" (selectedGame)="selectTournament($event)" ></app-campaign-card>

@@ -1,0 +1,16 @@
+
+.btn.btn-primary {
+  margin: 0 10%;
+}
+
+.p-button-success {
+  background-color: var(--main-color-shade-1) !important;
+  border-radius: 10px;
+  color: var(--color-white) !important;
+}
+
+ ngbutton:disabled {
+  background-color: var(--main-color-shade-1);
+  border-radius: 10px;
+  color: var(--color-white) ;
+}

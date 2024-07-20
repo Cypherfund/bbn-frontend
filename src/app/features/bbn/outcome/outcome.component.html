@@ -1,6 +1,6 @@
 <mat-card class="outcomes-container">
-  <mat-card-title>{{eventDetails?.name}}</mat-card-title>
-  <mat-card-subtitle>Predict {{eventDetails?.name}}. Let's go!</mat-card-subtitle>
+  <mat-card-title>{{eventDetails.name}}</mat-card-title>
+  <mat-card-subtitle>Predict {{eventDetails.name}}. Let's go!</mat-card-subtitle>
   <div class="search-container">
     <mat-form-field appearance="outline">
       <mat-label>Search for participant</mat-label>
@@ -23,7 +23,7 @@
           </svg>
         </div>
       </mat-card-content>
-      <mat-checkbox class="select-checkbox" (change)="onCheckboxChange($event, participant)" [checked]="(cartService.selectedOutcomes$ | async)?.includes(participant)"></mat-checkbox>
+      <mat-checkbox class="select-checkbox" (change)="onCheckboxChange($event, participant)" [checked]="isParticipantSelected(participant, (cartService.selectedOutcomes$ | async) || [])"></mat-checkbox>
     </mat-card>
   </div>
   <div class="fab-container">
