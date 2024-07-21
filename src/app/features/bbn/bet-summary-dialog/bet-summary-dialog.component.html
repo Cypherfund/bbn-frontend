@@ -14,13 +14,13 @@
         <span class="odds-value">1</span>
         <mat-icon class="plus">arrow_drop_down</mat-icon>
       </div>
-      <div class="bet-amount">{{stake}} FCFA</div>
+      <div class="bet-amount">{{stake | currency:'XAF'}}</div>
       <div class="remove-icon">
         <mat-icon (click)="removeBet(bet)">delete</mat-icon>
       </div>
     </div>
-    <p>TOTAL BET: {{ stake }} FCFA</p>
-    <p>TOTAL WINNING: {{ totalWinning }} FCFA</p>
+    <p>TOTAL BET: {{ stake | currency:'XAF'}} </p>
+    <p>TOTAL WINNING: {{ totalWinning | currency:'XAF'}}</p>
     <div class="total-bet">
       <button mat-raised-button color="primary" (click)="validateBet()">VALIDATE</button>
     </div>

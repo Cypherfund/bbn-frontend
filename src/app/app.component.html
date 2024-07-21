@@ -9,8 +9,8 @@
           <div class="user-info">
             <mat-icon>person</mat-icon>
             <div class="user-details">
-              <div class="user-name">Elizabeth Ngai</div>
-              <div class="user-id">ID: 0345DG9</div>
+              <div class="user-name">{{userService.user?.name}}</div>
+              <div class="user-id">ID: {{userService.user?.userId?.substring(0, 10) }}</div>
             </div>
           </div>
           <mat-icon class="close-icon" (click)="sidenav.close()">close</mat-icon>
