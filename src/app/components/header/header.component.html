@@ -3,10 +3,10 @@
     <div class="menu-icon">
       <span class="material-icons" (click)="userService.toggleSidenav()">menu</span>
     </div>
-    <div class="logo">Cypherfund</div>
-    <nav class="nav-buttons">
-      <button class="nav-btn">Sign Up</button>
-      <button class="nav-btn">Login</button>
+    <img src="assets/logo.png" alt="Cypherfund" class="logo" routerLink="/">
+    <nav class="nav-buttons" *ngIf="!isLogged">
+      <button class="nav-btn signup" routerLink="/signup">Sign Up</button>
+      <button class="nav-btn" routerLink="/login">Login</button>
     </nav>
   </div>
 </header>

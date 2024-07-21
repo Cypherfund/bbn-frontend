@@ -14,7 +14,7 @@
       <input matInput formControlName="password" type="password">
       <mat-error *ngIf="formGroup.get('password')?.hasError('required')">Password is required</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit" class="full-width">
+    <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="formGroup.invalid || inProgress">
       <mat-spinner *ngIf="inProgress" ></mat-spinner>
       <span *ngIf="!inProgress">Sign In</span>
     </button>

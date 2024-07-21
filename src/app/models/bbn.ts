@@ -66,8 +66,8 @@ export interface BBNEvent {
 export interface UserBalance {
   id: number;
   lgUserId: string;
-  dCurBalance: number;
-  dWinBalance: number;
+  dcurBalance: number;
+  dwinBalance: number;
   dtCreated: string;
   dtUpdated: string;
 }

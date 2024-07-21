@@ -16,9 +16,7 @@ header {
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #117BBE;
+  width: 110px;
 }
 
 .nav-buttons {
@@ -30,11 +28,16 @@ header {
   background-color: #fff;
   color: #699BF7;
   border: 2px solid #699BF7;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 5px 15px;
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s, color 0.3s;
+}
+
+.signup {
+  color: #fff;
+  background-color: #699BF7;
 }
 
 .nav-btn:hover {
@@ -43,22 +46,23 @@ header {
 }
 
 .menu-icon {
-  display: none;
+  //display: none;
+  display: block;
   cursor: pointer;
 }
 
 .menu-icon .material-icons {
-  font-size: 24px;
+  font-size: 40px;
   color: #699BF7;
 }
 
-@media (max-width: 768px) {
-  .nav-buttons {
-    display: none;
-  }
-
-  .menu-icon {
-    display: block;
-  }
-}
+//@media (max-width: 768px) {
+//  .nav-buttons {
+//    display: none;
+//  }
+//
+//  .menu-icon {
+//    display: block;
+//  }
+//}
 

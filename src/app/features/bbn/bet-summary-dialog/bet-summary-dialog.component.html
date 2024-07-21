@@ -26,7 +26,7 @@
     </div>
   </div>
   <ng-container
-    *ngIf="((userService.userCurrentBalance$ | async)?.dCurBalance || 0) + ((userService.userCurrentBalance$ | async)?.dWinBalance || 0) < stake">
+    *ngIf="((userService.userCurrentBalance$ | async)?.dcurBalance || 0) + ((userService.userCurrentBalance$ | async)?.dwinBalance || 0) < stake">
     <h3>RECHARGE NOW</h3>
     <div class="payment-methods">
       <mat-radio-group>

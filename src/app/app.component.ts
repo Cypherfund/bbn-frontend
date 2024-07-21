@@ -19,7 +19,6 @@ export class AppComponent {
   showHeader: boolean = true;
   isLogged!: boolean;
 
-
   constructor(private readonly changeDetectorRef: ChangeDetectorRef,
               private readonly media: MediaMatcher,
               private router: Router,
@@ -48,6 +47,7 @@ export class AppComponent {
     this.userService.login$.pipe().subscribe( loginVal => {
       if (loginVal === 1) {
         this.isLogged = !!Object.keys(this.userService.user).length;
+        this.userService.loadUserBalance(this.userService.user.userId);
       } else {
         this.isLogged = false;
       }

@@ -22,6 +22,7 @@ export class UserService {
   private showBlogLoaderSubject = new BehaviorSubject<boolean>(false);
 
  userCurrentBalance$: Observable<UserBalance>;
+  totalBalance: number = 0;
  private userCurrentBalanceSubject$ = new BehaviorSubject<string>('');
 
   sidenavOpen: boolean = false;
@@ -36,6 +37,11 @@ export class UserService {
       filter(userId => !!userId),
       switchMap(userId => this.userApiService.getUserBalance(userId)),
       map(response => response?.data),
+      tap(balance => {
+        if (balance) {
+          this.totalBalance = balance?.dwinBalance + balance.dcurBalance
+        }
+      }),
       shareReplay(1)
     );
   }
