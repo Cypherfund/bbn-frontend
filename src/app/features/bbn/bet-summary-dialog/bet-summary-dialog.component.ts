@@ -8,14 +8,10 @@ import {UserService} from "../../../services/user/user.service";
 import {PaymentService} from "../../../services/payment/payment.service";
 import {PaymentMethod} from "../../../models/payment";
 import {
-  MatSnackBar,
-  MatSnackBarAction,
-  MatSnackBarActions,
-  MatSnackBarLabel,
-  MatSnackBarRef
+  MatSnackBar
 } from "@angular/material/snack-bar";
-import {MatButtonModule} from "@angular/material/button";
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {SnackBarMessageBetComponent} from "./snack-bar-message-bet.component";
 
 @Component({
   selector: 'app-bet-summary-dialog',
@@ -25,14 +21,13 @@ import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 export class BetSummaryDialogComponent {
   bets: Bet[] = [];
   selectedOutcome$ = this.cartService.selectedOutcomes$;
-  stake = 100;
+  totalStake = 0;
   betsForm!: FormGroup;
   eventDetails: Partial<BBNEvent> = {};
 
   selectedProvider!: PaymentMethod;
   paymentMethods$: Observable<PaymentMethod[]>;
 
-  totalWinning!: number;
   durationInSeconds = 5;
   msg: string = '';
 
@@ -49,16 +44,7 @@ export class BetSummaryDialogComponent {
     });
     this.selectedOutcome$ = this.selectedOutcome$.pipe(
       tap(outcomes => {
-        this.bets = this.createBets(outcomes);
-        this.totalWinning = this.bets.reduce((acc, bet) => acc + bet.events.reduce((acc, event) => acc + event.odds * this.stake, 0), 0);
-        this.eventDetails = this.gameService.eventDetails;
-        this.stake = this.bets.length * 100;
-
-        this.betsForm = this.fb.group({
-          bets: this.fb.array(this.bets.map(bet => this.createBetForm(bet)))
-        });
-
-        this.stake = this.betsFormArray.controls.reduce((acc, control) => acc + control.value.amount, 0);
+        this.calculateAmounts(outcomes);
         this.cdr.detectChanges();
       })
     );
@@ -67,6 +53,17 @@ export class BetSummaryDialogComponent {
       tap(providers => this.selectedProvider = providers[0])
     );
   }
+
+  calculateAmounts(outcomes: Outcome[]) {
+    this.bets = this.createBets(outcomes);
+    this.eventDetails = this.gameService.eventDetails;
+    this.betsForm = this.fb.group({
+      bets: this.fb.array(this.bets.map(bet => this.createBetForm(bet)))
+    });
+
+    this.totalStake = this.betsFormArray.controls.reduce((acc, control) => acc + control.value.amount, 0);
+  }
+
   get betsFormArray(): FormArray {
     return this.betsForm.get('bets') as FormArray;
   }
@@ -74,7 +71,7 @@ export class BetSummaryDialogComponent {
   createBetForm(bet: Bet): FormGroup {
     return this.fb.group({
       betType: [bet.betType],
-      amount: [bet.amount],
+      amount: [bet.amount || 200],
       events: [bet.events]
     });
   }
@@ -105,7 +102,7 @@ export class BetSummaryDialogComponent {
 
       return {
         betType: events.length > 1 ? 'COMBINATION' : 'SINGLE',
-        amount: this.stake,
+        amount: 200, // Default stake amount example
         events,
       };
     });
@@ -153,53 +150,35 @@ export class BetSummaryDialogComponent {
   }
 
   validateBet() {
-    const betType: BetType = this.bets.length === 1 ? "SINGLE" : "COMBINATION";
     const predictionRequest: PredictionRequest = {
       userId: this.userService.user.userId,
       ticketType: "ODDS",
       bets: this.bets
     };
     console.log(predictionRequest);
-
-    this.msg = 'Bet Placed Successfully';
-    this.openSnackBar();
-    this.dialogRef.close();
+    this.userService.showBlockLoader(true);
+    this.userService.placeBet(predictionRequest).subscribe(
+      {
+        next: () => {
+          this.msg = 'Bet Placed Successfully';
+          this.cartService.clearCart();
+          this.openSnackBar();
+          this.dialogRef.close();
+        },
+        error: () => {
+          this.msg = "failed to save bet";
+          this.openSnackBar();
+        }
+      }
+    ).add(() => this.userService.showBlockLoader(false));
   }
 
   openSnackBar() {
-    this._snackBar.openFromComponent(PizzaPartyAnnotatedComponent, {
+    this._snackBar.openFromComponent(SnackBarMessageBetComponent, {
       duration: this.durationInSeconds * 1000,
     });
   }
   printTickets(): void {
     window.print();
   }
-}
-
-@Component({
-  selector: 'snack-bar-annotated-component-example-snack',
-  template: `
-    <span class="example-pizza-party" matSnackBarLabel>
-  Bet placed successfuly!!!
-    </span>
-    <span matSnackBarActions>
-  <button mat-button matSnackBarAction (click)="snackBarRef.dismissWithAction()">🍕</button>
-</span>
-
-
-  `,
-  styles: `
-    :host {
-      display: flex;
-    }
-
-    .example-pizza-party {
-      color: hotpink;
-    }
-  `,
-  standalone: true,
-  imports: [MatButtonModule, MatSnackBarLabel, MatSnackBarActions, MatSnackBarAction],
-})
-export class PizzaPartyAnnotatedComponent {
-  snackBarRef = inject(MatSnackBarRef);
 }

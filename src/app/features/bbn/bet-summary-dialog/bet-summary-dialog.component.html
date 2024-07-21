@@ -1,15 +1,15 @@
 <ng-container *ngIf="{
-selectedOutcomes: selectedOutcome$ | async,
+selectedOutcomes: (selectedOutcome$ | async) || [],
 userBalance: userService.userCurrentBalance$ | async,
 paymentMethods: paymentMethods$ | async
 } as observables">
   <mat-dialog-content class="bet-summary-dialog">
     <div class="bets-container">
-      <h1>User Bets</h1>
+      <h1>Your predictions</h1>
       <form [formGroup]="betsForm">
         <div formArrayName="bets" *ngFor="let betControl of betsFormArray.controls; let i = index">
           <div [formGroupName]="i" class="bet-section ticket">
-            <h2>Bet Ticket {{ i + 1 }}</h2>
+            <h2>Ticket {{ i + 1 }}</h2>
             <div>
               <strong>Bet Type:</strong> {{ betControl.value.betType }}
             </div>
@@ -24,7 +24,7 @@ paymentMethods: paymentMethods$ | async
             <div>
               <mat-form-field appearance="outline" class="full-width">
                 <mat-label>Stake</mat-label>
-                <input matInput formControlName="amount" type="number">
+                <input matInput formControlName="amount" type="number" min="200" (ngModelChange)="calculateAmounts(observables.selectedOutcomes)">
               </mat-form-field>
             </div>
             <div>
@@ -41,13 +41,13 @@ paymentMethods: paymentMethods$ | async
         </div>
       </form>
       <div class="total-section">
-        <h2>Pay: {{ stake | currency:'XAF'}}</h2>
+        <h2>Pay: {{ totalStake | currency:'XAF'}}</h2>
       </div>
       <button mat-raised-button color="primary" (click)="validateBet()" class="w-full">VALIDATE</button>
       <button mat-raised-button color="primary" (click)="printTickets()" class="w-full">PRINT</button>
     </div>
     <ng-container
-      *ngIf="(observables.userBalance?.dcurBalance || 0) + (observables.userBalance?.dwinBalance || 0) < stake">
+      *ngIf="(observables.userBalance?.dcurBalance || 0) + (observables.userBalance?.dwinBalance || 0) < totalStake">
       <h3>RECHARGE NOW</h3>
       <div class="payment-methods">
         <mat-radio-group>
