@@ -16,6 +16,7 @@ import {MatBadgeModule} from "@angular/material/badge";
 import {BetSummaryDialogComponent} from "./bet-summary-dialog/bet-summary-dialog.component";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatDialogModule} from "@angular/material/dialog";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {MatDialogModule} from "@angular/material/dialog";
   ],
   imports: [
     CommonModule,
+    FormsModule,
     BbnRoutingModule,
     MatListModule,
     MatIconModule,
