@@ -76,6 +76,6 @@ export type EventStatus = "SETTLED" | "PENDING" | "CANCELLED";
 
 export type EventType = "NOMINATIONS" | "EVICTIONS" | "TASKS" | "WINNER" | "HEAD_OF_HOUSE" | "VETO_POWER" | "NOMINATION_REPLACEMENT" | "VETO_POWER_REPLACEMENT" | "DISQUALIFICATION" | "EVICTION_REPLACEMENT";
 
-export type BetType = "SINGLE" | "COMBINATION";
+export type BetType = "SINGLE" | "MULTIPLE";
 
 export type TicketType = "ODDS" | "JACKPOT";

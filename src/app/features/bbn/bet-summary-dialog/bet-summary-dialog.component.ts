@@ -101,7 +101,7 @@ export class BetSummaryDialogComponent {
       }));
 
       return {
-        betType: events.length > 1 ? 'COMBINATION' : 'SINGLE',
+        betType: events.length > 1 ? 'MULTIPLE' : 'SINGLE',
         amount: 200, // Default stake amount example
         events,
       };
