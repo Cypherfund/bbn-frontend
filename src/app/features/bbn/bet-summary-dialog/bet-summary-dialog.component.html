@@ -1,40 +1,64 @@
-<mat-dialog-content class="bet-summary-dialog">
-  <h2>BET SUMMARY - BBN</h2>
-  <div class="bet-summary">
-    <div class="bet-item" *ngFor="let bet of selectedOutcome$ | async">
-      <div class="bet-details">
-        <img [ngSrc]="bet.imgUrl || 'assets/housemat-1.jpg'"  width="50" height="50" alt="BBN Eviction" class="event-image" />
-        <div class="event-info">
-          <div class="event-title">{{eventDetails.name}}</div>
-          <div class="participant-name">{{ bet.description }}</div>
+<ng-container *ngIf="{
+selectedOutcomes: selectedOutcome$ | async,
+userBalance: userService.userCurrentBalance$ | async,
+paymentMethods: paymentMethods$ | async
+} as observables">
+  <mat-dialog-content class="bet-summary-dialog">
+    <div class="bets-container">
+      <h1>User Bets</h1>
+      <form [formGroup]="betsForm">
+        <div formArrayName="bets" *ngFor="let betControl of betsFormArray.controls; let i = index">
+          <div [formGroupName]="i" class="bet-section ticket">
+            <h2>Bet Ticket {{ i + 1 }}</h2>
+            <div>
+              <strong>Bet Type:</strong> {{ betControl.value.betType }}
+            </div>
+            <div>
+              <strong>Events:</strong>
+              <ul>
+                <li *ngFor="let event of betControl.value.events">
+                  Event ID: {{ event.eventId }}, Prediction: {{ event.prediction }}, Odds: {{ event.odds }}
+                </li>
+              </ul>
+            </div>
+            <div>
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Stake</mat-label>
+                <input matInput formControlName="amount" type="number">
+              </mat-form-field>
+            </div>
+            <div>
+              <strong>Potential Winning:</strong> {{ calculatePotentialWinning(betControl.value) | currency }}
+            </div>
+            <div>
+              <strong>Tax:</strong> {{ calculateTax(betControl.value) | currency }}
+            </div>
+            <div>
+              <strong>Bonus:</strong> {{ calculateBonus(betControl.value) | currency }}
+            </div>
+          </div>
+          <mat-divider></mat-divider>
         </div>
+      </form>
+      <div class="total-section">
+        <h2>Pay: {{ stake | currency:'XAF'}}</h2>
       </div>
-      <div class="bet-odds">
-        <mat-icon class="minus">arrow_drop_up</mat-icon>
-        <span class="odds-value">1</span>
-        <mat-icon class="plus">arrow_drop_down</mat-icon>
+      <button mat-raised-button color="primary" (click)="validateBet()" class="w-full">VALIDATE</button>
+      <button mat-raised-button color="primary" (click)="printTickets()" class="w-full">PRINT</button>
+    </div>
+    <ng-container
+      *ngIf="(observables.userBalance?.dcurBalance || 0) + (observables.userBalance?.dwinBalance || 0) < stake">
+      <h3>RECHARGE NOW</h3>
+      <div class="payment-methods">
+        <mat-radio-group>
+          <mat-radio-button *ngFor="let method of observables.paymentMethods" [value]="method">
+            <img [src]="'assets/payments/' + method.strImageUrl" alt="{{ method.strProviderName }}">
+            {{ method.strProviderName }}
+          </mat-radio-button>
+        </mat-radio-group>
       </div>
-      <div class="bet-amount">{{stake | currency:'XAF'}}</div>
-      <div class="remove-icon">
-        <mat-icon (click)="removeBet(bet)">delete</mat-icon>
-      </div>
-    </div>
-    <p>TOTAL BET: {{ stake | currency:'XAF'}} </p>
-    <p>TOTAL WINNING: {{ totalWinning | currency:'XAF'}}</p>
-    <div class="total-bet">
-      <button mat-raised-button color="primary" (click)="validateBet()">VALIDATE</button>
-    </div>
-  </div>
-  <ng-container
-    *ngIf="((userService.userCurrentBalance$ | async)?.dcurBalance || 0) + ((userService.userCurrentBalance$ | async)?.dwinBalance || 0) < stake">
-    <h3>RECHARGE NOW</h3>
-    <div class="payment-methods">
-      <mat-radio-group>
-        <mat-radio-button *ngFor="let method of paymentMethods$ | async" [value]="method">
-          <img [src]="'assets/payments/' + method.strImageUrl" alt="{{ method.strProviderName }}">
-          {{ method.strProviderName }}
-        </mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </ng-container>
-</mat-dialog-content>
+    </ng-container>
+  </mat-dialog-content>
+</ng-container>
+
+

@@ -1,7 +1,7 @@
 export interface PredictionRequest {
   userId: string;
   ticketType: TicketType;
-  bets: BetEvent[];
+  bets: Bet[];
 }
 
 export interface Bet {
