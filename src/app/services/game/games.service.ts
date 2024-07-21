@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {GamesApiService} from "./games-api.service";
-import {BehaviorSubject, catchError, filter, map, Observable, switchMap, tap, throwError} from "rxjs";
-import {BBNEvent, Outcome, PredictionRequest, Tournament} from "../../models/bbn";
+import {BehaviorSubject, catchError, filter, map, Observable, shareReplay, switchMap, tap, throwError} from "rxjs";
+import {BBNEvent, Outcome, PredictionRequest, TicketTransaction, Tournament} from "../../models/bbn";
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,10 @@ export class GamesService {
 
   selectedTournament = 0;
   eventDetails!: BBNEvent;
+
+  transactionHistory$: Observable<TicketTransaction[]>;
+  transactionHistorySubject$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
   constructor(private gamesApi: GamesApiService) {
     this.topTournaments$ = this.loadTournamentsForFirstActiveGame();
 
@@ -39,6 +43,13 @@ export class GamesService {
         return this.gamesApi.getOutcomes(eventId);
       })
     );
+
+    this.transactionHistory$ = this.transactionHistorySubject$.pipe(
+      filter(userId => !!userId),
+      switchMap(userId => this.loadTransactions(userId)),
+      tap(transactions => console.log(transactions)),
+      shareReplay(1)
+    );
   }
 
   loadEvents() {
@@ -47,6 +58,10 @@ export class GamesService {
 
   loadOutcomes(eventId: number) {
     this.outcomeSubject$.next(eventId);
+  }
+
+  loadTransactionHistory(userId: string) {
+    this.transactionHistorySubject$.next(userId);
   }
 
   loadTournamentsForFirstActiveGame(): Observable<Tournament[]> {
@@ -70,5 +85,9 @@ export class GamesService {
         map(() => {}),
         catchError(error => throwError(error))
       );
+  }
+
+  loadTransactions(userId: string): Observable<TicketTransaction[]> {
+    return this.gamesApi.userTransactions(userId);
   }
 }

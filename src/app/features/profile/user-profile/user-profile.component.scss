@@ -32,3 +32,47 @@
     justify-content: space-between;
   }
 }
+
+
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  .balance-section {
+    text-align: center;
+    margin-bottom: 40px;
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    button {
+      margin: 0 10px;
+    }
+  }
+
+  .transactions-section {
+    .transaction-card {
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 20px;
+
+      h3 {
+        margin-top: 0;
+      }
+
+      .bet-details {
+        padding: 10px;
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+
+        p {
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+}

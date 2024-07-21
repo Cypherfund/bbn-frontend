@@ -72,6 +72,31 @@ export interface UserBalance {
   dtUpdated: string;
 }
 
+export interface BetTransaction {
+  id: number;
+  betType: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string | null;
+  potentialWinnings: number;
+  taxAmount: number;
+  finalWinnings: number;
+  amount: number;
+}
+
+export interface TicketTransaction {
+  id: number;
+  userId: string;
+  type: string;
+  totalAmount: number;
+  totalOdds: number;
+  status: string;
+  correctPredictions: number;
+  createdAt: string;
+  updatedAt: string | null;
+  bets: BetTransaction[];
+}
+
 export type EventStatus = "SETTLED" | "PENDING" | "CANCELLED";
 
 export type EventType = "NOMINATIONS" | "EVICTIONS" | "TASKS" | "WINNER" | "HEAD_OF_HOUSE" | "VETO_POWER" | "NOMINATION_REPLACEMENT" | "VETO_POWER_REPLACEMENT" | "DISQUALIFICATION" | "EVICTION_REPLACEMENT";

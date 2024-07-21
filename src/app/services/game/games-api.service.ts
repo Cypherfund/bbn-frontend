@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
-import {BBNEvent, Category, Game, Outcome, PredictionRequest, Tournament} from "../../models/bbn";
+import {BBNEvent, Category, Game, Outcome, PredictionRequest, TicketTransaction, Tournament} from "../../models/bbn";
 import {APIResponse} from "../../models/user";
 import {LocalStorageService} from "../localstorage/local-storage.service";
 
@@ -45,6 +45,11 @@ export class GamesApiService {
     const headers = this.getHeadersWithAuthorization();
     headers.append('Content-Type', 'application/json');
     return this.http.post<APIResponse<any>>(`${this.baseUrl}/bets`, predictionRequest, {headers}).pipe(catchError(error=>throwError(error)));
+  }
+
+  userTransactions(userId: string): Observable<TicketTransaction[]>{
+    const headers = this.getHeadersWithAuthorization();
+    return this.http.get<TicketTransaction[]>(`${this.baseUrl}/bets/tickets/${userId}`, {headers}).pipe(catchError(error=>throwError(error)));
   }
 
   private getHeadersWithAuthorization(): HttpHeaders {

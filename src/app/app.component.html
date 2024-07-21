@@ -35,7 +35,7 @@
           <mat-icon matListIcon>person</mat-icon>
           <span matLine>PROFILE</span>
         </mat-list-item>
-        <mat-list-item *ngIf="isLogged">
+        <mat-list-item *ngIf="isLogged" (click)="sidenav.close()" routerLink="/account">
           <mat-icon matListIcon>account_balance_wallet</mat-icon>
           <span matLine>ACCOUNT</span>
         </mat-list-item>

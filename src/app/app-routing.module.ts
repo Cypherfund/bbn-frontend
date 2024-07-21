@@ -10,6 +10,7 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'contact', loadChildren: () => import('./features/contact/contact.module').then(m => m.ContactModule)},
   {path: 'profile', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)},
+  {path: 'account', loadChildren: () => import('./features/account/account.module').then(m => m.AccountModule)},
   {path: '', component: HomeComponent}
 ];
 
