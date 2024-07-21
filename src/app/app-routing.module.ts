@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'bbn', loadChildren: () => import('./features/bbn/bbn.module').then(m => m.BbnModule) },
   {path: 'about', component: AboutComponent},
   {path: 'contact', loadChildren: () => import('./features/contact/contact.module').then(m => m.ContactModule)},
+  {path: 'profile', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)},
   {path: '', component: HomeComponent}
 ];
 

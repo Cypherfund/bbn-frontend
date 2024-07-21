@@ -31,7 +31,7 @@
           <mat-icon matListIcon>home</mat-icon>
           <span matLine>HOME</span>
         </mat-list-item>
-        <mat-list-item *ngIf="isLogged">
+        <mat-list-item *ngIf="isLogged" (click)="sidenav.close()" routerLink="/profile">
           <mat-icon matListIcon>person</mat-icon>
           <span matLine>PROFILE</span>
         </mat-list-item>

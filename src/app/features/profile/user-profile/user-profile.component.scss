@@ -1,0 +1,34 @@
+.profile-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+  }
+
+  .profile-details {
+    margin-top: 20px;
+  }
+
+  .profile-card {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .profile-avatar {
+    background-image: url('/assets/housemat-1.png');
+    background-size: cover;
+  }
+
+  mat-card-title, mat-card-subtitle, p {
+    margin: 0;
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+}
