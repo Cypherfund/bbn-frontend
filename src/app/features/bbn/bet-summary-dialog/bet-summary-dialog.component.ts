@@ -157,7 +157,7 @@ export class BetSummaryDialogComponent {
     };
     console.log(predictionRequest);
     this.userService.showBlockLoader(true);
-    this.userService.placeBet(predictionRequest).subscribe(
+    this.gameService.placeBet(predictionRequest).subscribe(
       {
         next: () => {
           this.msg = 'Bet Placed Successfully';

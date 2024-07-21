@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {BBNEvent, Category, Game, Outcome, Tournament} from "../../models/bbn";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
+import {BBNEvent, Category, Game, Outcome, PredictionRequest, Tournament} from "../../models/bbn";
+import {APIResponse} from "../../models/user";
+import {LocalStorageService} from "../localstorage/local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,8 @@ export class GamesApiService {
 
   baseUrl: string =  `${environment.apiUrl}/bbn-api`
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+              private localStorageService: LocalStorageService) {}
 
   getActiveGames(): Observable<Game[]> {
     return this.http.get<Game[]>(`${this.baseUrl}/admin/games`);
@@ -36,5 +39,16 @@ export class GamesApiService {
 
   getOutcomes(eventId: number): Observable<Outcome[]> {
     return this.http.get<Outcome[]>(`${this.baseUrl}/admin/events/${eventId}/outcomes`);
+  }
+
+  placeBet(predictionRequest: PredictionRequest): Observable<APIResponse<void>>{
+    const headers = this.getHeadersWithAuthorization();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<APIResponse<any>>(`${this.baseUrl}/bets`, predictionRequest, {headers}).pipe(catchError(error=>throwError(error)));
+  }
+
+  private getHeadersWithAuthorization(): HttpHeaders {
+    const token = this.localStorageService.get('token')
+    return new HttpHeaders().set('Authorization', 'Bearer ' + token);
   }
 }

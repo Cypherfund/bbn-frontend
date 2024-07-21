@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {GamesApiService} from "./games-api.service";
-import {BehaviorSubject, filter, map, Observable, switchMap, tap} from "rxjs";
-import {BBNEvent, Outcome, Tournament} from "../../models/bbn";
+import {BehaviorSubject, catchError, filter, map, Observable, switchMap, tap, throwError} from "rxjs";
+import {BBNEvent, Outcome, PredictionRequest, Tournament} from "../../models/bbn";
 
 @Injectable({
   providedIn: 'root'
@@ -62,5 +62,13 @@ export class GamesService {
   addLink(tournament: Tournament): Tournament {
     tournament.link = '/bbn';
     return tournament
+  }
+
+  placeBet(predictionRequest: PredictionRequest): Observable<void> {
+    return this.gamesApi.placeBet(predictionRequest)
+      .pipe(
+        map(response => response.data),
+        catchError(error => throwError(error))
+      );
   }
 }

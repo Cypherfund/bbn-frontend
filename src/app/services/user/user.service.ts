@@ -6,7 +6,7 @@ import {LocalStorageService} from "../localstorage/local-storage.service";
 import {Signup, SignupResponse} from "../../models/signup";
 import {Login, LoginResponse} from "../../models/login";
 import {Router} from "@angular/router";
-import {PredictionRequest, UserBalance} from "../../models/bbn";
+import {UserBalance} from "../../models/bbn";
 
 @Injectable({
   providedIn: 'root'
@@ -141,14 +141,6 @@ export class UserService {
 
   checkIfUserExists(usernameOrEmailOrPhone: string): Observable<string> {
     return this.userApiService.checkIfUserExists(usernameOrEmailOrPhone)
-      .pipe(
-        map(response => response.data),
-        catchError(error => throwError(error))
-      );
-  }
-
-  placeBet(predictionRequest: PredictionRequest): Observable<void> {
-    return this.userApiService.placeBet(predictionRequest)
       .pipe(
         map(response => response.data),
         catchError(error => throwError(error))
