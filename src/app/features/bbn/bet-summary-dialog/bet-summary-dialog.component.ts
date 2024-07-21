@@ -162,6 +162,7 @@ export class BetSummaryDialogComponent {
           this.msg = 'Bet Placed Successfully';
           this.cartService.clearCart();
           this.openSnackBar();
+          this.userService.loadUserBalance(this.userService.user.userId);
           this.dialogRef.close();
         },
         error: () => {
