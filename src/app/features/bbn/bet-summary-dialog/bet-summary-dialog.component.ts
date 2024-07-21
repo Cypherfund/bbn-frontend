@@ -155,7 +155,6 @@ export class BetSummaryDialogComponent {
       ticketType: "ODDS",
       bets: this.bets
     };
-    console.log(predictionRequest);
     this.userService.showBlockLoader(true);
     this.gameService.placeBet(predictionRequest).subscribe(
       {

@@ -67,7 +67,7 @@ export class GamesService {
   placeBet(predictionRequest: PredictionRequest): Observable<void> {
     return this.gamesApi.placeBet(predictionRequest)
       .pipe(
-        map(response => response.data),
+        map(() => {}),
         catchError(error => throwError(error))
       );
   }
