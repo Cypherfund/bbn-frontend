@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class HomeComponent {
   otherGames: Tournament[] = [
-    { name: 'Wheel of Fortune', imgUrl: 'assets/sping-wheel.webp', link: '/lottery', categoryId: 1, endDate: '2021-12-31', id: 1, startDate: '2021-01-01' },
+    { name: 'Wheel of Fortune', imgUrl: 'assets/wheel_sharejpg.webp', link: '/lottery', categoryId: 1, endDate: '2021-12-31', id: 1, startDate: '2021-01-01' },
     { name: 'Micro Tasks', imgUrl: 'assets/micro-task.jpg', link: '/task', categoryId: 1, endDate: '2021-12-31', id: 1, startDate: '2021-01-01' },
     { name: 'Gists', imgUrl: 'assets/blog.jpg', link: '/blog' , categoryId: 1, endDate: '2021-12-31', id: 1, startDate: '2021-01-01'},
 
