@@ -26,6 +26,7 @@ import {PaymentService} from "./services/payment/payment.service";
 import {PaymentApiService} from "./services/payment/payment-api.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AboutComponent } from './features/about/about.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 @NgModule({
     declarations: [
         AppComponent,
@@ -38,6 +39,7 @@ import { AboutComponent } from './features/about/about.component';
         AboutComponent
     ],
     imports: [
+      BrowserAnimationsModule,
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,

@@ -53,6 +53,8 @@
   }
 
   .transactions-section {
+    max-width: 100%;
+    overflow-x: scroll;
     h3 {
       font-size: 1.5em;
       margin-bottom: 10px;
@@ -122,6 +124,7 @@
         background: #f9f9f9;
         border-radius: 8px;
         margin-top: 10px;
+        width: 90%;
 
         .bet-detail {
           margin-bottom: 10px;
@@ -134,3 +137,52 @@
   }
 }
 
+
+
+//table css
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  //display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}

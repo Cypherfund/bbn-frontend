@@ -2,7 +2,7 @@
   <div class="balance-section">
     <div class="balance-info">
       <h2 class="text-left">Balance</h2>
-      <h1 class="text-left">{{ accountBalance | currency: 'XAF' }} </h1>
+      <h1 class="text-left">{{ userService.totalBalance | currency: 'XAF' }} </h1>
     </div>
     <div class="actions">
       <div class="example-button-container">
@@ -20,35 +20,83 @@
 
   <div class="transactions-section">
     <h3>Transactions</h3>
-    <div *ngFor="let transaction of (transactions$ | async) || []" class="transaction-card">
-      <div class="transaction-info">
-        <div class="transaction-icon">
-          <mat-icon>receipt</mat-icon>
-        </div>
-        <div class="transaction-details">
-          <p class="transaction-id">Transaction ID: {{ transaction.id }}</p>
-          <p class="transaction-type">Type: {{ transaction.type }}</p>
-          <p class="transaction-amount">Total Amount: {{ transaction.totalAmount | currency:'XAF' }}</p>
-          <p class="transaction-status">Status: {{ transaction.status }}</p>
-          <p class="transaction-created-at">Created At: {{ transaction.createdAt | date:'short' }}</p>
-        </div>
-      </div>
-      <button mat-button (click)="toggleRow(transaction)" aria-label="Toggle details">
-        <mat-icon>{{ expandedElement === transaction ? 'expand_less' : 'expand_more' }}</mat-icon>
-      </button>
-      <div *ngIf="expandedElement === transaction" class="bets-details">
-        <h4>Bets:</h4>
-        <div *ngFor="let bet of transaction.bets" class="bet-detail">
-          <p><strong>Bet ID:</strong> {{ bet.id }}</p>
-          <p><strong>Bet Type:</strong> {{ bet.betType }}</p>
-          <p><strong>Status:</strong> {{ bet.status }}</p>
-          <p><strong>Potential Winnings:</strong> {{ bet.potentialWinnings | currency:'XAF' }}</p>
-          <p><strong>Tax Amount:</strong> {{ bet.taxAmount | currency:'XAF' }}</p>
-          <p><strong>Final Winnings:</strong> {{ bet.finalWinnings | currency:'XAF' }}</p>
-          <p><strong>Amount:</strong> {{ bet.amount | currency:'XAF' }}</p>
-        </div>
-      </div>
-    </div>
+<!--    <div *ngFor="let transaction of (transactions$ | async) || []" class="transaction-card">-->
+<!--      <div class="transaction-info">-->
+<!--        <div class="transaction-icon">-->
+<!--          <mat-icon>receipt</mat-icon>-->
+<!--        </div>-->
+<!--        <div class="transaction-details">-->
+<!--          <p class="transaction-id">Transaction ID: {{ transaction.id }}</p>-->
+<!--          <p class="transaction-type">Type: {{ transaction.type }}</p>-->
+<!--          <p class="transaction-amount">Total Amount: {{ transaction.totalAmount | currency:'XAF' }}</p>-->
+<!--          <p class="transaction-status">Status: {{ transaction.status }}</p>-->
+<!--          <p class="transaction-created-at">Created At: {{ transaction.createdAt | date:'short' }}</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <button mat-button (click)="toggleRow(transaction)" aria-label="Toggle details">-->
+<!--        <mat-icon>{{ expandedElement === transaction ? 'expand_less' : 'expand_more' }}</mat-icon>-->
+<!--      </button>-->
+<!--      <div *ngIf="expandedElement === transaction" class="bets-details">-->
+<!--        <h4>Bets:</h4>-->
+<!--        <div *ngFor="let bet of transaction.bets" class="bet-detail">-->
+<!--          <p><strong>Bet ID:</strong> {{ bet.id }}</p>-->
+<!--          <p><strong>Bet Type:</strong> {{ bet.betType }}</p>-->
+<!--          <p><strong>Status:</strong> {{ bet.status }}</p>-->
+<!--          <p><strong>Potential Winnings:</strong> {{ bet.potentialWinnings | currency:'XAF' }}</p>-->
+<!--          <p><strong>Tax Amount:</strong> {{ bet.taxAmount | currency:'XAF' }}</p>-->
+<!--          <p><strong>Final Winnings:</strong> {{ bet.finalWinnings | currency:'XAF' }}</p>-->
+<!--          <p><strong>Amount:</strong> {{ bet.amount | currency:'XAF' }}</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    table expandable-->
+    <table mat-table
+           [dataSource]="(transactions$ | async) || []" multiTemplateDataRows
+           class="mat-elevation-z8">
+      @for (column of columnsToDisplay; track column) {
+      <ng-container matColumnDef="{{column}}">
+      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+    </ng-container>
+      }
+      <ng-container matColumnDef="expand">
+        <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button aria-label="expand row" (click)="(expandedElementTEst = expandedElementTEst === element ? null : element); $event.stopPropagation()">
+            <mat-icon *ngIf="expandedElementTEst === element">keyboard_arrow_up</mat-icon>
+            <mat-icon *ngIf="expandedElementTEst != element">keyboard_arrow_down</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElementTEst ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram" *ngFor="let bet of element.bets; let i = index">
+              <div class="example-element-position"> BET {{i + 1}} </div>
+              <div class="example-element-position">Type: {{bet.betType}} </div>
+              <div class="example-element-name">Status: {{bet.status}} </div>
+              <div class="example-element-weight">Stake: {{bet.amount | currency: 'XAF'}} </div>
+              <div class="example-element-name">Potential Winning: {{bet.potentialWinnings | currency: 'XAF'}} </div>
+              <div class="example-element-name">Tax: {{bet.taxAmount | currency: 'XAF'}} </div>
+              <div class="example-element-name">Final Winning {{bet.finalWinnings | currency: 'XAF'}} </div>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+          class="example-element-row"
+          [class.example-expanded-row]="expandedElementTEst === element"
+          (click)="expandedElementTEst = expandedElementTEst === element ? null : element">
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    </table>
+
   </div>
 
 

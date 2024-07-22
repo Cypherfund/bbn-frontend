@@ -4,6 +4,7 @@ import { AccountComponent } from './account/account.component';
 import {Route, RouterModule} from "@angular/router";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {MatTableModule} from "@angular/material/table";
 
 const routes: Route[] = [
   {path: '', component: AccountComponent}
@@ -18,6 +19,7 @@ const routes: Route[] = [
     CommonModule,
     MatIconModule,
     MatButtonModule,
+    MatTableModule,
     RouterModule.forChild(routes)
   ]
 })
