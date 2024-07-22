@@ -20,36 +20,6 @@
 
   <div class="transactions-section">
     <h3>Transactions</h3>
-<!--    <div *ngFor="let transaction of (transactions$ | async) || []" class="transaction-card">-->
-<!--      <div class="transaction-info">-->
-<!--        <div class="transaction-icon">-->
-<!--          <mat-icon>receipt</mat-icon>-->
-<!--        </div>-->
-<!--        <div class="transaction-details">-->
-<!--          <p class="transaction-id">Transaction ID: {{ transaction.id }}</p>-->
-<!--          <p class="transaction-type">Type: {{ transaction.type }}</p>-->
-<!--          <p class="transaction-amount">Total Amount: {{ transaction.totalAmount | currency:'XAF' }}</p>-->
-<!--          <p class="transaction-status">Status: {{ transaction.status }}</p>-->
-<!--          <p class="transaction-created-at">Created At: {{ transaction.createdAt | date:'short' }}</p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <button mat-button (click)="toggleRow(transaction)" aria-label="Toggle details">-->
-<!--        <mat-icon>{{ expandedElement === transaction ? 'expand_less' : 'expand_more' }}</mat-icon>-->
-<!--      </button>-->
-<!--      <div *ngIf="expandedElement === transaction" class="bets-details">-->
-<!--        <h4>Bets:</h4>-->
-<!--        <div *ngFor="let bet of transaction.bets" class="bet-detail">-->
-<!--          <p><strong>Bet ID:</strong> {{ bet.id }}</p>-->
-<!--          <p><strong>Bet Type:</strong> {{ bet.betType }}</p>-->
-<!--          <p><strong>Status:</strong> {{ bet.status }}</p>-->
-<!--          <p><strong>Potential Winnings:</strong> {{ bet.potentialWinnings | currency:'XAF' }}</p>-->
-<!--          <p><strong>Tax Amount:</strong> {{ bet.taxAmount | currency:'XAF' }}</p>-->
-<!--          <p><strong>Final Winnings:</strong> {{ bet.finalWinnings | currency:'XAF' }}</p>-->
-<!--          <p><strong>Amount:</strong> {{ bet.amount | currency:'XAF' }}</p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-
 <!--    table expandable-->
     <table mat-table
            [dataSource]="(transactions$ | async) || []" multiTemplateDataRows
