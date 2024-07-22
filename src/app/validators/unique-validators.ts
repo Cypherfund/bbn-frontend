@@ -12,8 +12,18 @@ export function usernameTakenValidator(userService: UserService): AsyncValidator
           map(data => {
             if (data === 'USER_EXISTS') {
               control.setErrors({ usernameTaken: true });
+            } else if (data === 'USER_NOT_EXISTS') {
+              const errors = control.errors;
+              if (errors) {
+                delete errors['usernameTaken'];
+                if (Object.keys(errors).length === 0) {
+                  control.setErrors(null);
+                } else {
+                  control.setErrors(errors);
+                }
+              }
             }
-            return (data === 'USER_EXISTS' ? { usernameTaken: true } : null);
+            return control.errors;
           }),
           catchError(() => of(null))
         )
@@ -31,8 +41,18 @@ export function emailTakenValidator(userService: UserService): AsyncValidatorFn 
           map(isTaken => {
             if (isTaken === 'USER_EXISTS') {
               control.setErrors({ emailTaken: true });
+            } else if (isTaken === 'USER_NOT_EXISTS') {
+              const errors = control.errors;
+              if (errors) {
+                delete errors['emailTaken'];
+                if (Object.keys(errors).length === 0) {
+                  control.setErrors(null);
+                } else {
+                  control.setErrors(errors);
+                }
+              }
             }
-            return (isTaken === 'USER_EXISTS' ? { emailTaken: true } : null);
+            return control.errors;
           }),
           catchError(() => of(null))
         )
@@ -50,9 +70,20 @@ export function phoneNumberTakenValidator(userService: UserService): AsyncValida
           map(data => {
             if (data === 'USER_EXISTS') {
               control.setErrors({ phoneNumberTaken: true });
+            }else if (data === 'USER_NOT_EXISTS') {
+              const errors = control.errors;
+              if (errors) {
+                delete errors['phoneNumberTaken'];
+                if (Object.keys(errors).length === 0) {
+                  control.setErrors(null);
+                } else {
+                  control.setErrors(errors);
+                }
+              }
             }
-            return (data === 'USER_EXISTS' ? { phoneNumberTaken: true } : null);
-          }),          catchError(() => of(null))
+            return control.errors;
+          }),
+          catchError(() => of(null))
         )
       )
     );

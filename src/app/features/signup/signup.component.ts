@@ -44,10 +44,10 @@ export class SignupComponent {
   }
 
   onSubmit() {
+    this.registrationForm.markAllAsTouched();
     if (this.registrationForm.valid) {
         this.registerUser();
     } else {
-      console.log(this.registrationForm)
       logFormErrors(this.registrationForm);
 
       this.validateAllFormFields(this.registrationForm);
@@ -61,6 +61,17 @@ export class SignupComponent {
         this.validateAllFormFields(control);
       } else {
         control?.markAsTouched({ onlySelf: true });
+      }
+    });
+  }
+
+  triggerValidation(formGroup: FormGroup): void {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormGroup) {
+        this.triggerValidation(control);
+      } else {
+        control?.updateValueAndValidity();
       }
     });
   }
