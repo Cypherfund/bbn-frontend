@@ -17,6 +17,7 @@ import {BetSummaryDialogComponent} from "./bet-summary-dialog/bet-summary-dialog
 import {MatRadioModule} from "@angular/material/radio";
 import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatBadgeModule,
     MatRadioModule,
     MatDialogModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    MatProgressSpinnerModule
   ]
 })
 export class BbnModule { }

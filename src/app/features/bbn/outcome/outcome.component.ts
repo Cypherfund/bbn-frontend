@@ -7,6 +7,7 @@ import {Observable, tap} from "rxjs";
 import {CartService} from "../../../services/cart.service";
 import {BBNEvent, Outcome} from "../../../models/bbn";
 import {LocalStorageService} from "../../../services/localstorage/local-storage.service";
+import {LoaderService} from "../../../services/loader.service";
 
 @Component({
   selector: 'app-outcome',
@@ -21,6 +22,7 @@ export class OutcomeComponent implements OnInit {
               public gamesService: GamesService,
               public cartService: CartService,
               private cdr: ChangeDetectorRef,
+              private loaderService: LoaderService,
               private stoarageService: LocalStorageService,
               private activatedRoute: ActivatedRoute) {}
 
@@ -47,6 +49,7 @@ export class OutcomeComponent implements OnInit {
 
       )
     );
+    this.outcomes$ = this.loaderService.showLoaderUntilComplete(this.outcomes$)
   }
 
   isParticipantSelected(participant: Outcome, selectedParticipants: Outcome[]): boolean {

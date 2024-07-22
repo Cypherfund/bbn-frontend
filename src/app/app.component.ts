@@ -2,7 +2,8 @@ import {ChangeDetectorRef, Component, Input} from '@angular/core';
 import {MediaMatcher} from "@angular/cdk/layout";
 import {UserService} from "./services/user/user.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {filter} from "rxjs";
+import {filter, Observable} from "rxjs";
+import {LoaderService} from "./services/loader.service";
 
 @Component({
   selector: 'app-root',
@@ -19,10 +20,13 @@ export class AppComponent {
   showHeader: boolean = true;
   isLogged!: boolean;
 
+  showLoader$ = this.loaderService.isLoading$;
+
   constructor(private readonly changeDetectorRef: ChangeDetectorRef,
               private readonly media: MediaMatcher,
-              private router: Router,
-              private route: ActivatedRoute,
+              private readonly router: Router,
+              private readonly route: ActivatedRoute,
+              private readonly loaderService: LoaderService,
               public readonly userService: UserService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -51,6 +55,7 @@ export class AppComponent {
       } else {
         this.isLogged = false;
       }
+      this.changeDetectorRef.detectChanges();
     })
   }
 

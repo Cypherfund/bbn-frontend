@@ -52,7 +52,7 @@ paymentMethods: paymentMethods$ | async
       <div class="payment-methods">
         <mat-radio-group>
           <mat-radio-button *ngFor="let method of observables.paymentMethods" [value]="method">
-            <img [src]="'assets/payments/' + method.strImageUrl" alt="{{ method.strProviderName }}">
+            <img width="50" height="50" [src]="'assets/payments/' + method.strImageUrl" alt="{{ method.strProviderName }}">
             {{ method.strProviderName }}
           </mat-radio-button>
         </mat-radio-group>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {GamesService} from "../../services/game/games.service";
 import {Tournament} from "../../models/bbn";
 import {Router} from "@angular/router";
+import {LoaderService} from "../../services/loader.service";
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,9 @@ export class HomeComponent {
 
   topTournaments$ = this.gamesService.topTournaments$;
   constructor(private gamesService: GamesService,
+              private loaderService: LoaderService,
               private router: Router) {
+    this.topTournaments$ = this.loaderService.showLoaderUntilComplete(this.topTournaments$)
   }
 
   selectTournament($event: Tournament) {

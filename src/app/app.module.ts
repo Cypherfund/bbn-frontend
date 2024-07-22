@@ -27,6 +27,7 @@ import {PaymentApiService} from "./services/payment/payment-api.service";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AboutComponent } from './features/about/about.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {LoaderService} from "./services/loader.service";
 @NgModule({
     declarations: [
         AppComponent,
@@ -63,6 +64,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         GamesService,
         PaymentService,
         PaymentApiService,
+        LoaderService,
         provideAnimationsAsync()
     ],
     bootstrap: [AppComponent]

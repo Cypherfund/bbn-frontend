@@ -1,12 +1,28 @@
 import { Injectable } from '@angular/core';
 import {GamesApiService} from "./games-api.service";
-import {BehaviorSubject, catchError, filter, map, Observable, shareReplay, switchMap, tap, throwError} from "rxjs";
+import {
+  BehaviorSubject,
+  catchError,
+  filter,
+  finalize,
+  map,
+  Observable,
+  shareReplay,
+  switchMap,
+  tap,
+  throwError
+} from "rxjs";
 import {BBNEvent, Outcome, PredictionRequest, TicketTransaction, Tournament} from "../../models/bbn";
+import {LoaderService} from "../loader.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
+  private isLoadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isLoading$: Observable<boolean> = this.isLoadingSubject.asObservable();
+
+
   topTournaments$: Observable<Tournament[]>;
 
   events$: Observable<BBNEvent[]>;
@@ -21,7 +37,8 @@ export class GamesService {
   transactionHistory$: Observable<TicketTransaction[]>;
   transactionHistorySubject$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  constructor(private gamesApi: GamesApiService) {
+  constructor(private gamesApi: GamesApiService,
+              private loaderService: LoaderService) {
     this.topTournaments$ = this.loadTournamentsForFirstActiveGame();
 
     this.events$ = this.eventSubject$.pipe(

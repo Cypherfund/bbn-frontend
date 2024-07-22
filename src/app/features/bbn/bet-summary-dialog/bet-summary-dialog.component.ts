@@ -155,7 +155,6 @@ export class BetSummaryDialogComponent {
       ticketType: "ODDS",
       bets: this.bets
     };
-    this.userService.showBlockLoader(true);
     this.gameService.placeBet(predictionRequest).subscribe(
       {
         next: () => {
@@ -170,7 +169,7 @@ export class BetSummaryDialogComponent {
           this.openSnackBar();
         }
       }
-    ).add(() => this.userService.showBlockLoader(false));
+    );
   }
 
   openSnackBar() {

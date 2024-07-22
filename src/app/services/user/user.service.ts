@@ -18,8 +18,6 @@ export class UserService {
   private currentUser$: BehaviorSubject<UserResponse | null> = new BehaviorSubject<UserResponse | null>(null);
   private loginSubject$ = new BehaviorSubject<number>(0);
   login$: Observable<number>;
-  showBlogLoader$: Observable<boolean>;
-  private showBlogLoaderSubject = new BehaviorSubject<boolean>(false);
 
  userCurrentBalance$: Observable<UserBalance>;
   totalBalance: number = 0;
@@ -31,7 +29,6 @@ export class UserService {
               private readonly router: Router,
               private readonly stoarageService: LocalStorageService) {
     this.login$ = this.loginSubject$.asObservable();
-    this.showBlogLoader$ = this.showBlogLoaderSubject.asObservable();
 
     this.userCurrentBalance$ = this.userCurrentBalanceSubject$.pipe(
       filter(userId => !!userId),
@@ -92,18 +89,15 @@ export class UserService {
   }
 
   registerUser(userDetails: Signup): Observable<SignupResponse> {
-    this.showBlogLoaderSubject.next(true);
     return this.userApiService.registerUser(userDetails)
       .pipe(
         tap(response => {
-          this.showBlogLoaderSubject.next(false);
           if (response.success) {
             this.loginUser({usernameOrEmailOrPhone: userDetails.email, password: userDetails.password})
               .subscribe();
           }
         }),
         catchError(error => {
-          this.showBlogLoaderSubject.next(false);
           return throwError(error)
         })
       );
@@ -147,7 +141,4 @@ export class UserService {
       );
   }
 
-  showBlockLoader(show: boolean) {
-    this.showBlogLoaderSubject.next(show);
-  }
 }

@@ -4,6 +4,7 @@ import {GamesService} from "../../../services/game/games.service";
 import {UserService} from "../../../services/user/user.service";
 import {Observable} from "rxjs";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {LoaderService} from "../../../services/loader.service";
 
 @Component({
   selector: 'app-account',
@@ -72,13 +73,14 @@ export class AccountComponent {
   expandedElementTEst!: PeriodicElement | null;
 
   accountBalance: number = 4840.12;
-  transactions: TicketTransaction[] = [];
   expandedElement!: TicketTransaction | null;
 
   transactions$: Observable<TicketTransaction[]> = this.gamesService.transactionHistory$;
 
   constructor(public gamesService: GamesService,
+              public loaderService: LoaderService,
               public userService: UserService) {
+    this.transactions$ = this.loaderService.showLoaderUntilComplete(this.transactions$)
   }
 
   ngOnInit(): void {
