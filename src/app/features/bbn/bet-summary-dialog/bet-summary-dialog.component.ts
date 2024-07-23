@@ -10,7 +10,7 @@ import {PaymentMethod} from "../../../models/payment";
 import {
   MatSnackBar
 } from "@angular/material/snack-bar";
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SnackBarMessageBetComponent} from "./snack-bar-message-bet.component";
 
 @Component({
@@ -60,6 +60,13 @@ export class BetSummaryDialogComponent {
     this.betsForm = this.fb.group({
       bets: this.fb.array(this.bets.map(bet => this.createBetForm(bet)))
     });
+    this.totalStake = this.betsFormArray.controls.reduce((acc, control) => acc + control.value.amount, 0);
+  }
+
+  upateAmounts(control: AbstractControl) {
+    control.get('potentialWinning')?.setValue(this.calculatePotentialWinning(control.value));
+    control.get('tax')?.setValue(this.calculateTax(control.value));
+    control.get('bonus')?.setValue(this.calculateBonus(control.value));
 
     this.totalStake = this.betsFormArray.controls.reduce((acc, control) => acc + control.value.amount, 0);
   }
@@ -71,8 +78,11 @@ export class BetSummaryDialogComponent {
   createBetForm(bet: Bet): FormGroup {
     return this.fb.group({
       betType: [bet.betType],
-      amount: [bet.amount || 200],
-      events: [bet.events]
+      amount: [bet.amount],
+      events: [bet.events],
+      potentialWinning: [this.calculatePotentialWinning(bet)],
+      tax: [this.calculateTax(bet)],
+      bonus: [this.calculateBonus(bet)]
     });
   }
 
