@@ -64,6 +64,7 @@ export class OutcomeComponent implements OnInit {
   }
   onCheckboxChange(event: any, participant: Outcome) {
     if (event.checked) {
+      participant.eventName = this.eventDetails.name;
       this.cartService.addToCart(participant);
     } else {
       this.cartService.removeFromCart(participant.id);

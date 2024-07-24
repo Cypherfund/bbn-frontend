@@ -1,0 +1,75 @@
+<ng-container *ngIf="{
+  selectedOutcomes: (selectedOutcome$ | async) || [],
+  userBalance: userService.userCurrentBalance$ | async,
+  paymentMethods: paymentMethods$ | async
+} as observables">
+  <mat-dialog-content class="bet-summary-dialog">
+    <div class="ticket-container">
+      <form [formGroup]="betsForm">
+        <div formArrayName="bets" *ngFor="let betControl of betsFormArray.controls; let i = index">
+          <div [formGroupName]="i" class="ticket">
+            <div class="ticket-header">
+              <h3>Ticket {{ i + 1 }} - {{ betControl.value.betType }}</h3>
+            </div>
+
+            <div class="ticket-body" *ngFor="let event of betControl.value.events">
+              <div class="bet-item">
+                <div class="bet-details">
+                  <p><strong>{{ event.eventId }}. {{ event.eventName }}</strong></p>
+                  <p>{{ event.prediction }} - {{ event.description }}</p>
+                </div>
+                <div class="bet-odds">
+                  <p>{{ event.odds }}</p>
+                  <button mat-icon-button color="warn" (click)="removeBet(event)">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <mat-divider></mat-divider>
+            </div>
+
+            <div class="ticket-footer">
+              <div class="footer-item">
+                <span>Potential Winning</span>
+                <span>{{ betControl.value.potentialWinning | currency: 'XAF' }}</span>
+              </div>
+              <div class="footer-item">
+                <span>Tax</span>
+                <span>{{ betControl.value.tax | currency: 'XAF' }}</span>
+              </div>
+              <div class="footer-item">
+                <span>Bonus</span>
+                <span>{{ betControl.value.bonus | currency: 'XAF' }}</span>
+              </div>
+              <div class="footer-item">
+                <span class="w-20">STAKE</span>
+                <div class="stake-input">
+                  <button mat-mini-button (click)="decreaseStake(i)">-</button>
+                  <input matInput type="number" formControlName="amount" class="w-50" (input)="upateAmounts(betControl)">
+                  <button mat-mini-button (click)="increaseStake(i)">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="total-section">
+        <h2>Pay: {{ totalStake | currency: 'XAF' }}</h2>
+      </div>
+      <button mat-raised-button color="primary" (click)="validateBet()" class="w-full">VALIDATE</button>
+      <button mat-raised-button color="primary" (click)="printTickets()" class="w-full">PRINT</button>
+    </div>
+
+    <ng-container *ngIf="(observables.userBalance?.dcurBalance || 0) + (observables.userBalance?.dwinBalance || 0) < totalStake">
+      <h3>RECHARGE NOW</h3>
+      <div class="payment-methods">
+        <mat-radio-group>
+          <mat-radio-button *ngFor="let method of observables.paymentMethods" [value]="method">
+            <img width="50" height="50" [src]="'assets/payments/' + method.strImageUrl" alt="{{ method.strProviderName }}">
+            {{ method.strProviderName }}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </ng-container>
+  </mat-dialog-content>
+</ng-container>

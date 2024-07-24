@@ -1,0 +1,120 @@
+.bet-summary-dialog {
+  .ticket-container {
+    margin: 20px 0;
+    .ticket {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      font-family: 'Arial, sans-serif';
+      background-color: #fff;
+
+      .ticket-header {
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        h3 {
+          margin: 0;
+          font-size: 1.5rem;
+        }
+      }
+
+      .ticket-body {
+        padding: 10px;
+
+        .bet-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 0;
+
+          .bet-details {
+            p {
+              margin: 2px 0;
+            }
+          }
+
+          .bet-odds {
+            display: flex;
+            align-items: center;
+            p {
+              margin: 0 10px 0 0;
+            }
+          }
+        }
+      }
+
+      .ticket-footer {
+        padding: 10px;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+
+        .footer-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          span {
+            margin: 2px 0;
+          }
+        }
+
+        .stake-input {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 5px;
+          //button {
+          //  margin: 0 5px;
+          //}
+          input {
+            width: 50%;
+
+          }
+        }
+      }
+    }
+
+    .total-section {
+      text-align: right;
+      margin-top: 20px;
+      h2 {
+        margin: 0;
+        font-size: 2rem;
+        text-align: center;
+      }
+    }
+
+    .w-full {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+
+  .payment-methods {
+    margin-top: 20px;
+
+    mat-radio-group {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      mat-radio-button {
+        margin: 0 10px;
+        img {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .mat-mdc-raised-button:not(:disabled), .mat-mdc-raised-button {
+  border-radius: 5px !important;
+  color: white !important;
+  background-color: #699BF7 !important;
+}
+

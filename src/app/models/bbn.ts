@@ -12,6 +12,8 @@ export interface Bet {
 
 export interface BetEvent {
   eventId: number;
+  eventName?: string;
+  description?: string;
   prediction: number;
   odds: number;
 }
@@ -21,6 +23,7 @@ export interface Outcome {
   id: number;
   imgUrl: string;
   eventId: number;
+  eventName?: string;
   description: string;
   odds: number;
 }

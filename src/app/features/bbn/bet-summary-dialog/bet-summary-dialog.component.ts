@@ -15,8 +15,8 @@ import {SnackBarMessageBetComponent} from "./snack-bar-message-bet.component";
 
 @Component({
   selector: 'app-bet-summary-dialog',
-  templateUrl: './bet-summary-dialog.component.html',
-  styleUrl: './bet-summary-dialog.component.scss',
+  templateUrl: './bet-summary-dialog.component-test.html',
+  styleUrl: './bet-summary-dialog.component-test.scss',
 })
 export class BetSummaryDialogComponent {
   bets: Bet[] = [];
@@ -71,6 +71,18 @@ export class BetSummaryDialogComponent {
     this.totalStake = this.betsFormArray.controls.reduce((acc, control) => acc + control.value.amount, 0);
   }
 
+  decreaseStake(ticketIndex: number) {
+    if (this.betsFormArray.controls[ticketIndex].value.amount > 0) {
+      this.betsFormArray.controls[ticketIndex].value.amount++
+      this.upateAmounts(this.betsFormArray.controls[ticketIndex])
+    }
+  }
+
+  increaseStake(ticketIndex: number) {
+    this.betsFormArray.controls[ticketIndex].value.amount++
+    this.upateAmounts(this.betsFormArray.controls[ticketIndex])
+  }
+
   get betsFormArray(): FormArray {
     return this.betsForm.get('bets') as FormArray;
   }
@@ -106,7 +118,9 @@ export class BetSummaryDialogComponent {
     return combinations.map((combination): Bet => {
       const events: BetEvent[] = combination.map((outcome): BetEvent => ({
         eventId: outcome.eventId,
+        eventName: outcome.eventName,
         prediction: outcome.id, // Assuming prediction is the outcome id
+        description: outcome.description, // Assuming description is the outcome description
         odds: outcome.odds,
       }));
 
@@ -155,8 +169,8 @@ export class BetSummaryDialogComponent {
     return helper(0);
   }
 
-  removeBet(bet:any) {
-    this.cartService.removeFromCart(bet.id);
+  removeBet(event:BetEvent) {
+    this.cartService.removeFromCart(event.prediction);
   }
 
   validateBet() {
