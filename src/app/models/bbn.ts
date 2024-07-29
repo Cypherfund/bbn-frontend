@@ -98,6 +98,7 @@ export interface TicketTransaction {
   createdAt: string;
   updatedAt: string | null;
   bets: BetTransaction[];
+  showDetails?: boolean; //used for ui expansion
 }
 
 export type EventStatus = "SETTLED" | "PENDING" | "CANCELLED";
