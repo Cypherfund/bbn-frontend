@@ -6,6 +6,8 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {LoaderService} from "../../../services/loader.service";
 import {provideNativeDateAdapter} from "@angular/material/core";
 import {BetTransaction, TransactionSearch} from "../../../models/bbn";
+import {PaymentSheetComponent} from "../payment-sheet/payment-sheet.component";
+import {MatBottomSheet} from "@angular/material/bottom-sheet";
 
 @Component({
   selector: 'app-account',
@@ -30,7 +32,8 @@ export class AccountComponent {
 
   constructor(public gamesService: GamesService,
               public loaderService: LoaderService,
-              public userService: UserService) {
+              public userService: UserService,
+              private bottomSheet: MatBottomSheet) {
     this.transactions$ = this.loaderService.showLoaderUntilComplete(this.transactions$);
     const today = new Date();
     this.startDate = new Date(today.setHours(0, 0, 0, 0));
@@ -65,6 +68,10 @@ export class AccountComponent {
 
   toggleDetails(transaction: BetTransaction) {
     transaction.showDetails = !transaction.showDetails;
+  }
+
+  openBottomSheet(): void {
+    this.bottomSheet.open(PaymentSheetComponent);
   }
 }
 

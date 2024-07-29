@@ -13,6 +13,8 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatGridListModule} from "@angular/material/grid-list";
+import { PaymentSheetComponent } from './payment-sheet/payment-sheet.component';
+import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 
 const routes: Route[] = [
   {path: '', component: AccountComponent}
@@ -21,7 +23,8 @@ const routes: Route[] = [
 
 @NgModule({
   declarations: [
-    AccountComponent
+    AccountComponent,
+    PaymentSheetComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,8 @@ const routes: Route[] = [
     MatTabsModule,
     MatFormFieldModule,
     MatGridListModule,
+    MatGridListModule,
+    MatBottomSheetModule,
     RouterModule.forChild(routes)
   ]
 })

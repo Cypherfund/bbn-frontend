@@ -1,0 +1,13 @@
+mat-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .mat-list-icon {
+    color: #555;
+  }
+
+  .secondary {
+    color: #999;
+  }
+}

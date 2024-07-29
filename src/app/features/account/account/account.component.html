@@ -10,7 +10,7 @@
   </header>
   <div class="navigation">
     <div class="nav-item"> <mat-icon>currency_exchange</mat-icon> <p>Withdraw</p></div>
-    <div class="nav-item"> <mat-icon>account_balance_wallet</mat-icon> <p>Deposit</p> </div>
+    <div class="nav-item"> <mat-icon (click)="openBottomSheet()">account_balance_wallet</mat-icon> <p>Deposit</p> </div>
     <div class="nav-item"> <mat-icon>history</mat-icon><p>History</p> </div>
   </div>
   <mat-tab-group>
