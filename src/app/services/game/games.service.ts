@@ -4,7 +4,6 @@ import {
   BehaviorSubject,
   catchError,
   filter,
-  finalize,
   map,
   Observable,
   shareReplay,
@@ -12,7 +11,7 @@ import {
   tap,
   throwError
 } from "rxjs";
-import {BBNEvent, Outcome, PredictionRequest, TicketTransaction, Tournament} from "../../models/bbn";
+import {BBNEvent, BetTransaction, Outcome, PredictionRequest, Tournament, TransactionSearch} from "../../models/bbn";
 import {LoaderService} from "../loader.service";
 
 @Injectable({
@@ -34,11 +33,10 @@ export class GamesService {
   selectedTournament = 0;
   eventDetails!: BBNEvent;
 
-  transactionHistory$: Observable<TicketTransaction[]>;
-  transactionHistorySubject$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  transactionHistory$: Observable<BetTransaction[]>;
+  transactionHistorySubject$: BehaviorSubject<TransactionSearch> = new BehaviorSubject<TransactionSearch>({userId: ''});
 
-  constructor(private gamesApi: GamesApiService,
-              private loaderService: LoaderService) {
+  constructor(private gamesApi: GamesApiService) {
     this.topTournaments$ = this.loadTournamentsForFirstActiveGame();
 
     this.events$ = this.eventSubject$.pipe(
@@ -62,9 +60,13 @@ export class GamesService {
     );
 
     this.transactionHistory$ = this.transactionHistorySubject$.pipe(
-      filter(userId => !!userId),
-      switchMap(userId => this.loadTransactions(userId)),
-      tap(transactions => console.log(transactions)),
+      filter(searchCriteria => searchCriteria !== null  && searchCriteria.userId !== ''),
+      switchMap(searchCriteria => this.loadTransactions(searchCriteria)),
+      map(transactions => transactions.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())),
+      map(transactions => transactions.map(transaction => {
+        transaction.odds = transaction.betItems.reduce((acc, event) => acc * event.odds, 1);
+        return transaction;
+      })),
       shareReplay(1)
     );
   }
@@ -77,8 +79,8 @@ export class GamesService {
     this.outcomeSubject$.next(eventId);
   }
 
-  loadTransactionHistory(userId: string) {
-    this.transactionHistorySubject$.next(userId);
+  loadTransactionHistory(search: TransactionSearch) {
+    this.transactionHistorySubject$.next(search);
   }
 
   loadTournamentsForFirstActiveGame(): Observable<Tournament[]> {
@@ -104,7 +106,7 @@ export class GamesService {
       );
   }
 
-  loadTransactions(userId: string): Observable<TicketTransaction[]> {
-    return this.gamesApi.userTransactions(userId);
+  loadTransactions(search: TransactionSearch): Observable<BetTransaction[]> {
+    return this.gamesApi.userTransactions(search);
   }
 }

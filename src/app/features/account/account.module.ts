@@ -9,10 +9,10 @@ import {MatDividerModule} from "@angular/material/divider";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatOptionModule} from "@angular/material/core";
 import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatTabsModule} from "@angular/material/tabs";
+import {MatGridListModule} from "@angular/material/grid-list";
 
 const routes: Route[] = [
   {path: '', component: AccountComponent}
@@ -35,6 +35,7 @@ const routes: Route[] = [
     MatInputModule,
     MatTabsModule,
     MatFormFieldModule,
+    MatGridListModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -1,21 +1,17 @@
 <div class="transactions-container">
-  <div class="balance-section">
-    <div class="balance-info">
-      <h2 class="text-left">Balance</h2>
-      <h1 class="text-left">{{ userService.totalBalance | currency: 'XAF' }} </h1>
-    </div>
-    <div class="actions">
-      <div class="example-button-container">
-        <button mat-raised-button class="nav-btn deposit" color="primary" (click)="deposit(1000)">
-          <mat-icon>business_center</mat-icon>
-          Deposit
-        </button>
-        <button mat-raised-button class="nav-btn" color="accent" (click)="withdraw(1000)">
-          <mat-icon>outbound</mat-icon>
-          Withdraw
-        </button>
+  <header class="header">
+    <div class="header-content">
+      <h1>Hello {{ userService.user.username}},</h1>
+      <div class="flex justify-content-between align-items-center">
+        <p>Your Available Balance</p>
+        <h2><b>{{ userService.totalBalance | currency: 'XAF' }}</b> </h2>
       </div>
     </div>
+  </header>
+  <div class="navigation">
+    <div class="nav-item"> <mat-icon>currency_exchange</mat-icon> <p>Withdraw</p></div>
+    <div class="nav-item"> <mat-icon>account_balance_wallet</mat-icon> <p>Deposit</p> </div>
+    <div class="nav-item"> <mat-icon>history</mat-icon><p>History</p> </div>
   </div>
   <mat-tab-group>
     <mat-tab label="Tickets">
@@ -52,7 +48,7 @@
             <mat-datepicker #endDatePicker></mat-datepicker>
           </mat-form-field>
 
-          <button mat-raised-button color="primary w-full" (click)="search()">SEARCH</button>
+          <button mat-raised-button color="primary w-full" (click)="searchTransaction()">SEARCH</button>
         </div>
       </div>
 
@@ -63,23 +59,21 @@
           <div class="transaction-item" [ngClass]="{'pending': transaction.status === 'PENDING', 'won': transaction.status === 'WON', 'lost': transaction.status === 'LOST', 'cashout': transaction.status === 'CASHOUT'}">
             <div class="transaction-header" (click)="toggleDetails(transaction)">
               <div class="transaction-info">
-                <b>{{ transaction.type}}</b>
+                <b>{{ transaction.betType}}</b>
                 <p>ID: {{ transaction.id }}</p>
                 <p>{{ transaction.createdAt | date: 'short' }}</p>
               </div>
               <div class="transaction-amount">
-                <p>Total: {{ transaction.totalAmount | currency }}</p>
-                <p>Odds: {{ transaction.totalOdds }}</p>
+                <p>Total: {{ transaction.finalWinnings | currency }}</p>
+                <p>Odds: {{ transaction.odds }}</p>
               </div>
             </div>
             <div class="transaction-details" *ngIf="transaction.showDetails">
-              <div *ngFor="let bet of transaction.bets">
-                <p><strong>{{ bet.betType }}</strong></p>
-                <p>Potential Winnings: {{ bet.potentialWinnings | currency }}</p>
-                <p>Tax Amount: {{ bet.taxAmount | currency }}</p>
-                <p>Final Winnings: {{ bet.finalWinnings | currency }}</p>
-                <p>Stake: {{ bet.amount | currency }}</p>
-                <p>Status: {{ bet.status }}</p>
+              <div *ngFor="let bet of transaction.betItems">
+                <p><strong>{{ bet.eventName }}</strong></p>
+                <p>Choice: {{ bet.outcomeId }}</p>
+                <p>Odds: {{ bet.odds}}</p>
+                <p>Status: {{ bet.status}}</p>
               </div>
             </div>
             <mat-divider></mat-divider>

@@ -75,6 +75,15 @@ export interface UserBalance {
   dtUpdated: string;
 }
 
+export interface TransactionSearch {
+  userId: string;
+  startDate?: Date;
+  endDate?: Date;
+  betType?: string;
+  jackpotId?: string;
+  status?: string;
+}
+
 export interface BetTransaction {
   id: number;
   betType: string;
@@ -85,20 +94,19 @@ export interface BetTransaction {
   taxAmount: number;
   finalWinnings: number;
   amount: number;
+  showDetails?: boolean; //used for ui expansion
+  betItems: BetItem[];
+  odds?: number; //added for ui
 }
 
-export interface TicketTransaction {
+export interface BetItem {
   id: number;
-  userId: string;
-  type: string;
-  totalAmount: number;
-  totalOdds: number;
+  eventId: number;
+  odds: number;
   status: string;
-  correctPredictions: number;
-  createdAt: string;
-  updatedAt: string | null;
-  bets: BetTransaction[];
-  showDetails?: boolean; //used for ui expansion
+  outcomeId: number;
+  outcomeName: string;
+  eventName: string;
 }
 
 export type EventStatus = "SETTLED" | "PENDING" | "CANCELLED";

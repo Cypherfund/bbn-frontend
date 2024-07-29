@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import {TicketTransaction} from "../../../models/bbn";
 import {GamesService} from "../../../services/game/games.service";
 import {UserService} from "../../../services/user/user.service";
 import {Observable} from "rxjs";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {LoaderService} from "../../../services/loader.service";
 import {provideNativeDateAdapter} from "@angular/material/core";
+import {BetTransaction, TransactionSearch} from "../../../models/bbn";
 
 @Component({
   selector: 'app-account',
@@ -26,20 +26,34 @@ export class AccountComponent {
   startDate!: Date;
   endDate!: Date;
 
-  transactions$: Observable<TicketTransaction[]> = this.gamesService.transactionHistory$;
+  transactions$: Observable<BetTransaction[]> = this.gamesService.transactionHistory$;
 
   constructor(public gamesService: GamesService,
               public loaderService: LoaderService,
               public userService: UserService) {
-    this.transactions$ = this.loaderService.showLoaderUntilComplete(this.transactions$)
+    this.transactions$ = this.loaderService.showLoaderUntilComplete(this.transactions$);
+    const today = new Date();
+    this.startDate = new Date(today.setHours(0, 0, 0, 0));
+    this.endDate = new Date(today.setHours(23, 59, 59, 999));
   }
 
   ngOnInit(): void {
     this.userService.login$.pipe().subscribe( loginVal => {
       if (loginVal === 1) {
-        this.gamesService.loadTransactionHistory(this.userService.user.userId);
+        this.searchTransaction();
       }
     })
+  }
+
+  public searchTransaction() {
+    this.startDate = new Date(this.startDate.setHours(0, 0, 0, 0));
+    this.endDate = new Date(this.endDate.setHours(23, 59, 59, 999));
+    let transactionSearch: TransactionSearch = {
+      userId: this.userService.user.userId,
+      startDate: this.startDate,
+      endDate: this.endDate
+    }
+    this.gamesService.loadTransactionHistory(transactionSearch);
   }
 
   deposit(amount: number): void {
@@ -49,12 +63,7 @@ export class AccountComponent {
 
   }
 
-
-  search() {
-    // Implement search functionality here
-  }
-
-  toggleDetails(transaction: TicketTransaction) {
+  toggleDetails(transaction: BetTransaction) {
     transaction.showDetails = !transaction.showDetails;
   }
 }

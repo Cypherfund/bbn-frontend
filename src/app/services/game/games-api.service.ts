@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../environments/environment";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
-import {BBNEvent, Category, Game, Outcome, PredictionRequest, TicketTransaction, Tournament} from "../../models/bbn";
+import {
+  BBNEvent,
+  BetTransaction,
+  Category,
+  Game,
+  Outcome,
+  PredictionRequest,
+  Tournament, TransactionSearch
+} from "../../models/bbn";
 import {APIResponse} from "../../models/user";
 import {LocalStorageService} from "../localstorage/local-storage.service";
 
@@ -47,9 +55,21 @@ export class GamesApiService {
     return this.http.post<APIResponse<any>>(`${this.baseUrl}/bets`, predictionRequest, {headers}).pipe(catchError(error=>throwError(error)));
   }
 
-  userTransactions(userId: string): Observable<TicketTransaction[]>{
+  userTransactions(search: TransactionSearch): Observable<BetTransaction[]>{
     const headers = this.getHeadersWithAuthorization();
-    return this.http.get<TicketTransaction[]>(`${this.baseUrl}/bets/tickets/${userId}`, {headers}).pipe(catchError(error=>throwError(error)));
+
+    let params = new HttpParams();
+    params = params.set('betType', search.betType || '');
+    params = params.set('jackpotId', search.jackpotId || '');
+    params = params.set('status', search.status || '');
+    if (!!search.startDate) {
+      params = params.set('startDate', search.startDate.toISOString());
+    }
+    if (!!search.endDate) {
+      params = params.set('endDate', search.endDate.toISOString());
+    }
+
+    return this.http.get<BetTransaction[]>(`${this.baseUrl}/bets/tickets/${search.userId}`, {headers, params }).pipe(catchError(error=>throwError(error)));
   }
 
   private getHeadersWithAuthorization(): HttpHeaders {
