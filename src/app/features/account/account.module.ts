@@ -13,7 +13,6 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatInputModule} from "@angular/material/input";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatGridListModule} from "@angular/material/grid-list";
-import { PaymentSheetComponent } from './payment-sheet/payment-sheet.component';
 import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
@@ -25,8 +24,7 @@ const routes: Route[] = [
 
 @NgModule({
   declarations: [
-    AccountComponent,
-    PaymentSheetComponent
+    AccountComponent
   ],
   imports: [
     CommonModule,

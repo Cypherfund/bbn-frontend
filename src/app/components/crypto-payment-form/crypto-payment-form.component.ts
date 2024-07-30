@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {CreatePlanRequest, PaymentMethod} from "../../../models/payment";
+import {PaymentMethod, RechargeRequest} from "../../models/payment";
 
 @Component({
   selector: 'app-crypto-payment-form',
@@ -24,7 +24,7 @@ export class CryptoPaymentFormComponent {
 
   makePayment() {
     if (this.paymentForm.valid) {
-      const request: Partial<CreatePlanRequest> = {
+      const request: Partial<RechargeRequest> = {
         extra: JSON.stringify({...this.paymentForm.value}),
         paymentMethod: "CRYPTO",
         paymentCode: this.paymentMethod.strPaymentCode

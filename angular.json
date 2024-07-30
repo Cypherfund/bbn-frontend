@@ -20,15 +20,26 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "locales": {
+          "fr-Fr": {
+            "translation": "src/locale/messages.fr.json",
+            "baseHref": ""
+          }
+        },
+        "sourceLocale": "en-US"
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "localize": false,
             "outputPath": "dist/bbn-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -57,6 +68,9 @@
             }
           },
           "configurations": {
+            "fr-Fr": {
+              "localize": ["fr-Fr"]
+            },
             "production": {
               "budgets": [
                 {
@@ -106,7 +120,8 @@
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",

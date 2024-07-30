@@ -1,47 +1,67 @@
 <ng-container *ngIf="{
   paymentMethods: paymentMethods$ | async
 } as observables">
-</ng-container>
 <div class="container-payment">
   <div class="flex justify-content-between align-items-center">
     <h4>Payment Methods</h4>
     <mat-icon class="close-icon" (click)="_bottomSheetRef.dismiss()">close</mat-icon>
   </div>
 
-  <mat-nav-list>
-    <ng-container *ngFor="let suppportedMethod of supportedMethods">
-      <ng-container [ngSwitch]="suppportedMethod">
-        <mat-list-item *ngSwitchCase="'MOBILE_WALLET'">
-          <mat-icon mat-list-icon>credit_card</mat-icon>
-          <div class="flex flex-column">
-            <div mat-line>Mobile Wallets</div>
-            <div mat-line class="secondary">Simplified transactions</div>
-          </div>
-          <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
-        </mat-list-item>
+  <ng-container *ngIf="step === 0">
+
+    <mat-icon mat-list-icon (click)="selectedPaymentMethod = ''" *ngIf="selectedPaymentMethod">keyboard_arrow_left</mat-icon>
+    <mat-nav-list>
+      <ng-container *ngIf="!selectedPaymentMethod">
+        <ng-container *ngFor="let suppportedMethod of supportedMethods">
+          <ng-container [ngSwitch]="suppportedMethod">
+            <mat-list-item *ngSwitchCase="'MOBILE_WALLET'"  (click)="selectedPaymentMethod = 'MOBILE_WALLET'">
+              <mat-icon mat-list-icon>credit_card</mat-icon>
+              <div class="flex flex-column">
+                <div mat-line>Mobile Wallets</div>
+                <div mat-line class="secondary">Simplified transactions</div>
+              </div>
+              <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+            </mat-list-item>
+          </ng-container>
+        </ng-container>
       </ng-container>
-    </ng-container>
 
-    <div [ngSwitch]="selectedProvider?.strDriverClassName">
-      <div *ngSwitchCase="'MonetbilPaymentIntegrator'">
-        <app-mobile-payment-form (processPayment)="makePayment($event)" [paymentMethod]="selectedProvider"></app-mobile-payment-form>
-      </div>
-      <div *ngSwitchCase="'Coinbase'">
-        <app-crypto-payment-form (processPayment)="makePayment($event)"></app-crypto-payment-form>
-      </div>
+      <ng-container *ngIf="selectedPaymentMethod">
+        <ng-container *ngFor="let paymentMethod of observables?.paymentMethods">
+          <mat-list-item (click)="selectedProvider = paymentMethod; step = 1">
+            <mat-icon mat-list-icon>credit_card</mat-icon>
+            <div class="flex flex-column">
+              <div mat-line>{{paymentMethod.strProviderName}}</div>
+              <!--            <div mat-line class="secondary">Max. {{paymentMethod.dbMaxDepositAmount ? paymentMethod.dbMaxDepositAmount : '40000'}}</div>-->
+            </div>
+            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+          </mat-list-item>
+        </ng-container>
+      </ng-container>
 
-      <div *ngSwitchCase="'AUTHORIZE'">
-        <app-card-payment-form (processPayment)="makePayment($event)"></app-card-payment-form>
-      </div>
+    </mat-nav-list>
+  </ng-container>
 
-      <div *ngSwitchCase="'PAYPAL'">
-        <app-paypal-payment-form (processPayment)="makePayment($event)"></app-paypal-payment-form>
-      </div>
-
-      <div *ngSwitchDefault>
-      </div>
+  <div [ngSwitch]="selectedProvider?.strDriverClassName" *ngIf="step === 1">
+    <mat-icon mat-list-icon (click)="step = 0" *ngIf="selectedPaymentMethod">keyboard_arrow_left</mat-icon>
+    <div *ngSwitchCase="'MonetbilPaymentIntegrator'">
+      <app-mobile-payment-form (processPayment)="makePayment($event)" [paymentMethod]="selectedProvider"></app-mobile-payment-form>
+    </div>
+    <div *ngSwitchCase="'Coinbase'">
+      <app-crypto-payment-form (processPayment)="makePayment($event)"></app-crypto-payment-form>
     </div>
 
-  </mat-nav-list>
+    <div *ngSwitchCase="'AUTHORIZE'">
+      <app-card-payment-form (processPayment)="makePayment($event)"></app-card-payment-form>
+    </div>
+
+    <div *ngSwitchCase="'PAYPAL'">
+      <app-paypal-payment-form (processPayment)="makePayment($event)"></app-paypal-payment-form>
+    </div>
+
+    <div *ngSwitchDefault>
+    </div>
+  </div>
 </div>
 
+</ng-container>

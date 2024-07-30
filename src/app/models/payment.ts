@@ -18,10 +18,11 @@ export interface PaymentMethod {
 
 export type SupportedMethod = "MOBILE_WALLET" | "BANK_TRANSFER" | "CREDIT_CARD" | "PAYPAL" | "CRYPTO";
 
-
-export interface CreatePlanRequest {
-  planId: number;
-  paymentMethod: SupportedMethod;
+export interface RechargeRequest {
+  userId: string;
+  reference: string;
+  paymentMethod: string;
   paymentCode: string;
   extra: string;
+  amount: number;
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {UserResponse} from "../../models/user";
 import {BehaviorSubject, catchError, filter, map, Observable, of, shareReplay, switchMap, tap, throwError} from 'rxjs';
 import {UserApiService} from "./user-api.service";
@@ -7,6 +7,8 @@ import {Signup, SignupResponse} from "../../models/signup";
 import {Login, LoginResponse} from "../../models/login";
 import {Router} from "@angular/router";
 import {UserBalance} from "../../models/bbn";
+import {RechargeRequest} from "../../models/payment";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +21,15 @@ export class UserService {
   private loginSubject$ = new BehaviorSubject<number>(0);
   login$: Observable<number>;
 
- userCurrentBalance$: Observable<UserBalance>;
+  userCurrentBalance$: Observable<UserBalance>;
   totalBalance: number = 0;
- private userCurrentBalanceSubject$ = new BehaviorSubject<string>('');
+  private userCurrentBalanceSubject$ = new BehaviorSubject<string>('');
 
   sidenavOpen: boolean = false;
 
   constructor(private readonly userApiService: UserApiService,
               private readonly router: Router,
+              private _snackBar: MatSnackBar,
               private readonly stoarageService: LocalStorageService) {
     this.login$ = this.loginSubject$.asObservable();
 
@@ -49,7 +52,7 @@ export class UserService {
 
   set user(value: UserResponse) {
     this._user = value;
-    this.userInitials = value.name.substring(0,2) || value.email.substring(0,2);
+    this.userInitials = value.name.substring(0, 2) || value.email.substring(0, 2);
     this.loginSubject$.next(1);
   }
 
@@ -59,6 +62,14 @@ export class UserService {
 
   loadUserBalance(userId: string) {
     this.userCurrentBalanceSubject$.next(userId);
+  }
+
+  rechargeUserAccount(rechargeRequest: RechargeRequest) {
+    return this.userApiService.rechargeUserAccount(rechargeRequest);
+  }
+
+  checkTransactionStatus(reference: string) {
+    return this.userApiService.checkStatus(reference);
   }
 
   recheckToken(): Observable<any> {
@@ -80,11 +91,11 @@ export class UserService {
         }),
         shareReplay(1),
         catchError(error => {
-          return of ()
+          return of()
         })
       );
     } else {
-      return of ();
+      return of();
     }
   }
 
@@ -139,6 +150,15 @@ export class UserService {
         map(response => response.data),
         catchError(error => throwError(error))
       );
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
+      panelClass: ['snackbar']
+    });
   }
 
 }

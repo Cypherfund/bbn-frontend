@@ -1,9 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CreatePlanRequest, PaymentMethod} from "../../../models/payment";
 import {NgIf} from "@angular/common";
-import {Plan} from "../../../models/qrcode";
-import {UserService} from "../../../services/user/user.service";
+import {PaymentMethod, RechargeRequest} from "../../models/payment";
 
 @Component({
   selector: 'app-mobile-payment-form',
@@ -22,26 +20,34 @@ export class MobilePaymentFormComponent {
 
   paymentForm!: FormGroup;
   successMsg: string = 'Confirm payment on your phone by dialing *126# and entering your pin.';
-  selectedPlan: Plan;
 
-  constructor(fb: FormBuilder,
-              private userService: UserService) {
-    this.selectedPlan = this.userService.selectedPlan;
+  constructor(fb: FormBuilder) {
 
     this.paymentForm = fb.group({
       phn: ['', [Validators.required, Validators.pattern('^6[0-9]{8}$')]],
+      amount: ['', [Validators.required]],
       saveInfo: [false]
     });
   }
 
   makePayment() {
+    console.log(this.paymentForm.value)
     if (this.paymentForm.valid) {
-      const request: Partial<CreatePlanRequest> = {
+      const request: Partial<RechargeRequest> = {
         extra: JSON.stringify({...this.paymentForm.value}),
         paymentMethod: "MOBILE_WALLET",
-        paymentCode: this.paymentMethod.strPaymentCode
+        paymentCode: this.paymentMethod.strPaymentCode,
+        amount: this.paymentForm.value.amount,
+        reference: this.generateTransactionReference(),
       }
+      console.log(request);
       this.processPayment.emit({request, msg: this.successMsg});
     }
+  }
+
+  generateTransactionReference() {
+    const timestamp = Date.now(); // Get the current timestamp
+    const randomNum = Math.floor(Math.random() * 1000000);
+    return `${timestamp}-${randomNum}`;
   }
 }

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {PaymentMethod} from "../../models/payment";
+import {PaymentMethod, RechargeRequest} from "../../models/payment";
 
 @Component({
   selector: 'app-paypal-payment-form',
@@ -26,7 +26,7 @@ export class PaypalPaymentFormComponent {
 
   makePayment() {
     if (this.paymentForm.valid) {
-      const request: Partial<CreatePlanRequest> = {
+      const request: Partial<RechargeRequest> = {
         extra: JSON.stringify({...this.paymentForm.value}),
         paymentMethod: "PAYPAL",
         paymentCode: this.paymentMethod.strPaymentCode

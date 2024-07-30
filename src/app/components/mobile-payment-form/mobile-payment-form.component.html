@@ -8,14 +8,16 @@
     </div>
   </div>
 
-  <div class="summary">
-    <p>Subtotal: ${{selectedPlan.price}}</p>
-    <p>VAT (20%): $0.00</p>
-    <p>Total: ${{selectedPlan.price}}</p>
+  <div class="form-group">
+    <label for="amount" class="form-label" i18n="@@amount">Amount</label>
+    <input id="amount" formControlName="amount" class="form-control" i18n-placeholder="@@enter_phone" placeholder="Enter Amount"/>
+    <div *ngIf="paymentForm.get('amount')?.invalid && (paymentForm.get('amount')?.dirty || paymentForm.get('amount')?.touched)">
+      <small *ngIf="paymentForm.get('amount')?.errors?.['required']" class="text-danger" i18n="@@phone_required">Invalid amount</small>
+    </div>
   </div>
 
   <button type="submit" [disabled]="paymentForm.invalid" i18n="@@confirm_payment">
     <i *ngIf="paymentInProcess"  class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-    <span *ngIf="!paymentInProcess">Pay ${{selectedPlan.price}}</span>
+    <span *ngIf="!paymentInProcess">Submit</span>
   </button>
 </form>
