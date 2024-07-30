@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {CreatePlanRequest, PaymentMethod} from "../../../models/payment";
+import {PaymentMethod} from "../../models/payment";
 
 @Component({
   selector: 'app-paypal-payment-form',

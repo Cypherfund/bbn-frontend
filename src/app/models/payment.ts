@@ -16,7 +16,7 @@ export interface PaymentMethod {
   bcashout: boolean;
 }
 
-type SupportedMethod = "MOBILE_WALLET" | "BANK_TRANSFER" | "CREDIT_CARD" | "PAYPAL" | "CRYPTO";
+export type SupportedMethod = "MOBILE_WALLET" | "BANK_TRANSFER" | "CREDIT_CARD" | "PAYPAL" | "CRYPTO";
 
 
 export interface CreatePlanRequest {
