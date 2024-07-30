@@ -31,7 +31,6 @@ export class MobilePaymentFormComponent {
   }
 
   makePayment() {
-    console.log(this.paymentForm.value)
     if (this.paymentForm.valid) {
       const request: Partial<RechargeRequest> = {
         extra: JSON.stringify({...this.paymentForm.value}),
@@ -40,7 +39,6 @@ export class MobilePaymentFormComponent {
         amount: this.paymentForm.value.amount,
         reference: this.generateTransactionReference(),
       }
-      console.log(request);
       this.processPayment.emit({request, msg: this.successMsg});
     }
   }

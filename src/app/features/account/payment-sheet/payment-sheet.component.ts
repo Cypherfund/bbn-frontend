@@ -66,24 +66,28 @@ export class PaymentSheetComponent {
     this.userService.rechargeUserAccount(paymentPayload).subscribe({
       next: (apires) => {
         if (apires && apires.success) {
-          let checkStatus = false;
-          for (let i = 0; i < 6; i++) {
-            if (checkStatus) break;
-            setTimeout(() => {
-              this.userService.checkTransactionStatus(paymentPayload.reference).subscribe({
-                next: (status) => {
-                  if (!!status && status.data === 'SUCCESS') {
-                    this.userService.openSnackBar('Transaction successful');
-                    this.userService.loadUserBalance(this.userService.user.userId);
-                    checkStatus = true;
-                  } else if (!!status && status.data === 'FAILED') {
-                    this.userService.openSnackBar('Transaction failed. Please try again.');
-                    checkStatus = true;
-                  }
+          let attemptCount = 0;
+          const maxAttempts = 5;
+          const intervalId = setInterval(async () => {
+            attemptCount++;
+            await this.userService.checkTransactionStatus(paymentPayload.reference).subscribe({
+              next: (status) => {
+                if (!!status && status.data === 'SUCCESS') {
+                  this.userService.openSnackBar('Transaction successful');
+                  this.userService.loadUserBalance(this.userService.user.userId);
+                  clearInterval(intervalId);
+                } else if (!!status && status.data === 'FAILED') {
+                  this.userService.openSnackBar('Transaction failed. Please try again.');
+                  clearInterval(intervalId);
                 }
-              });
-            }, 30000);
-          }
+              }
+            });
+            if (attemptCount >= maxAttempts) {
+              console.log('Max attempts reached, clearing interval.');
+              clearInterval(intervalId);
+            }
+
+          }, 30000);
         } else {
           this.userService.openSnackBar('Transaction failed. Please try again.');
         }

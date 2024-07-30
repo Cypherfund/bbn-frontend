@@ -32,7 +32,8 @@ export class UserApiService {
   }
 
   getUserBalance(userId: string): Observable<APIResponse<UserBalance>>{
-    return this.http.get<APIResponse<UserBalance>>(`${this.baseUrl}account/balance/${userId}`).pipe(catchError(error=>throwError(error)));
+    const headers = this.getHeadersWithAuthorization();
+    return this.http.get<APIResponse<UserBalance>>(`${this.baseUrl}account/balance/${userId}`, {headers}).pipe(catchError(error=>throwError(error)));
   }
 
   checkIfUserExists(usernameOrEmailOrPhone: string): Observable<APIResponse<string>>{
@@ -47,7 +48,7 @@ export class UserApiService {
 
   checkStatus(reference: string): Observable<APIResponse<string>>{
     const headers = this.getHeadersWithAuthorization();
-    return this.http.get<APIResponse<string>>(`${this.baseUrl}account/status?reference=${reference}`, {headers}).pipe(catchError(error=>throwError(error)));
+    return this.http.post<APIResponse<string>>(`${this.baseUrl}account/status?reference=${reference}`, '',{headers}).pipe(catchError(error=>throwError(error)));
   }
 
   private getHeadersWithAuthorization(): HttpHeaders {
