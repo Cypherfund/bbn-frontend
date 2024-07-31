@@ -36,7 +36,8 @@ export class GamesService {
   transactionHistory$: Observable<BetTransaction[]>;
   transactionHistorySubject$: BehaviorSubject<TransactionSearch> = new BehaviorSubject<TransactionSearch>({userId: ''});
 
-  constructor(private gamesApi: GamesApiService) {
+  constructor(private gamesApi: GamesApiService,
+              private loaderService: LoaderService) {
     this.topTournaments$ = this.loadTournamentsForFirstActiveGame();
 
     this.events$ = this.eventSubject$.pipe(
@@ -69,6 +70,7 @@ export class GamesService {
       })),
       shareReplay(1)
     );
+    this.loaderService.showLoaderUntilComplete(this.transactionHistory$);
   }
 
   loadEvents() {
@@ -81,6 +83,7 @@ export class GamesService {
 
   loadTransactionHistory(search: TransactionSearch) {
     this.transactionHistorySubject$.next(search);
+    this.loaderService.showLoaderUntilComplete(this.transactionHistory$);
   }
 
   loadTournamentsForFirstActiveGame(): Observable<Tournament[]> {

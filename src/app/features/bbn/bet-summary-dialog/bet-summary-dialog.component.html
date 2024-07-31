@@ -56,20 +56,13 @@
       <div class="total-section">
         <h2>Pay: {{ totalStake | currency: 'XAF' }}</h2>
       </div>
-      <button mat-raised-button color="primary" (click)="validateBet()" class="w-full">VALIDATE</button>
+      <button mat-raised-button color="primary" *ngIf="(observables.userBalance?.dcurBalance || 0) + (observables.userBalance?.dwinBalance || 0) >= totalStake" (click)="validateBet()" class="w-full">VALIDATE</button>
       <button mat-raised-button color="primary" (click)="printTickets()" class="w-full">PRINT</button>
     </div>
 
     <ng-container *ngIf="(observables.userBalance?.dcurBalance || 0) + (observables.userBalance?.dwinBalance || 0) < totalStake">
-      <h3>RECHARGE NOW</h3>
-      <div class="payment-methods">
-        <mat-radio-group>
-          <mat-radio-button *ngFor="let method of observables.paymentMethods" [value]="method">
-            <img width="50" height="50" [src]="'assets/payments/' + method.strImageUrl" alt="{{ method.strProviderName }}">
-            {{ method.strProviderName }}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
+      <h3>Not Enough Funds</h3>
+      <button mat-raised-button color="primary" routerLink="/account" class="w-full">Recharge</button>
     </ng-container>
   </mat-dialog-content>
 </ng-container>

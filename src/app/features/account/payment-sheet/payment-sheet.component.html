@@ -2,25 +2,30 @@
   paymentMethods: paymentMethods$ | async
 } as observables">
 <div class="container-payment">
-  <div class="flex justify-content-between align-items-center">
+  <div class="flex justify-content-between align-items-center pt-02 pb-2 align-items-center">
     <h4>Payment Methods</h4>
     <mat-icon class="close-icon" (click)="_bottomSheetRef.dismiss()">close</mat-icon>
   </div>
+  <div *ngIf="loading" class="loader-container">
+    <div class="loader"></div>
+    <p style="color: #010b1d; text-align: center">{{msg}}</p>
+  </div>
+  <mat-error *ngIf="errorMsg">{{errorMsg}}</mat-error>
 
   <ng-container *ngIf="step === 0">
 
-    <mat-icon mat-list-icon (click)="selectedPaymentMethod = ''" *ngIf="selectedPaymentMethod">keyboard_arrow_left</mat-icon>
+    <mat-icon mat-list-icon (click)="selectedPaymentMethod = ''" *ngIf="selectedPaymentMethod">arrow_back</mat-icon>
     <mat-nav-list>
       <ng-container *ngIf="!selectedPaymentMethod">
         <ng-container *ngFor="let suppportedMethod of supportedMethods">
           <ng-container [ngSwitch]="suppportedMethod">
             <mat-list-item *ngSwitchCase="'MOBILE_WALLET'"  (click)="selectedPaymentMethod = 'MOBILE_WALLET'">
               <mat-icon mat-list-icon>credit_card</mat-icon>
-              <div class="flex flex-column">
+              <div class="flex flex-column pl-5">
                 <div mat-line>Mobile Wallets</div>
                 <div mat-line class="secondary">Simplified transactions</div>
               </div>
-              <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+              <mat-icon mat-list-icon class="absolute right-0">keyboard_arrow_right</mat-icon>
             </mat-list-item>
           </ng-container>
         </ng-container>
@@ -29,12 +34,11 @@
       <ng-container *ngIf="selectedPaymentMethod">
         <ng-container *ngFor="let paymentMethod of observables?.paymentMethods">
           <mat-list-item (click)="selectedProvider = paymentMethod; step = 1">
-            <mat-icon mat-list-icon>credit_card</mat-icon>
+            <img width="50" height="50" [src]="'assets/payments/' + paymentMethod.strImageUrl" alt="{{ paymentMethod.strProviderName }}">
             <div class="flex flex-column">
-              <div mat-line>{{paymentMethod.strProviderName}}</div>
-              <!--            <div mat-line class="secondary">Max. {{paymentMethod.dbMaxDepositAmount ? paymentMethod.dbMaxDepositAmount : '40000'}}</div>-->
+              <div mat-line class="pl-2">{{paymentMethod.strProviderName}}</div>
             </div>
-            <mat-icon mat-list-icon>keyboard_arrow_right</mat-icon>
+            <mat-icon mat-list-icon class="absolute right-0">keyboard_arrow_right</mat-icon>
           </mat-list-item>
         </ng-container>
       </ng-container>
@@ -43,9 +47,13 @@
   </ng-container>
 
   <div [ngSwitch]="selectedProvider?.strDriverClassName" *ngIf="step === 1">
-    <mat-icon mat-list-icon (click)="step = 0" *ngIf="selectedPaymentMethod">keyboard_arrow_left</mat-icon>
+    <mat-icon mat-list-icon (click)="step = 0" *ngIf="selectedPaymentMethod">arrow_back</mat-icon>
     <div *ngSwitchCase="'MonetbilPaymentIntegrator'">
-      <app-mobile-payment-form (processPayment)="makePayment($event)" [paymentMethod]="selectedProvider"></app-mobile-payment-form>
+      <app-mobile-payment-form
+        (processPayment)="makePayment($event)"
+        [paymentMethod]="selectedProvider"
+        [data]="data"
+      ></app-mobile-payment-form>
     </div>
     <div *ngSwitchCase="'Coinbase'">
       <app-crypto-payment-form (processPayment)="makePayment($event)"></app-crypto-payment-form>
