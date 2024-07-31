@@ -74,7 +74,7 @@ export class PaymentSheetComponent {
       next: (apires) => {
         if (apires && apires.success) {
           let attemptCount = 0;
-          const maxAttempts = 25;
+          const maxAttempts = 36;
           this.msg = msg;
           const intervalId = setInterval(async () => {
             attemptCount++;
