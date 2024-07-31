@@ -1,3 +1,4 @@
+
 <form [formGroup]="paymentForm" (ngSubmit)="makePayment()">
   <div class="form-group">
     <label for="phn" class="form-label" i18n="@@phone_number">Phone Number</label>
@@ -13,6 +14,8 @@
     <input id="amount" formControlName="amount" class="form-control" i18n-placeholder="@@enter_phone" placeholder="Enter Amount"/>
     <div *ngIf="paymentForm.get('amount')?.invalid && (paymentForm.get('amount')?.dirty || paymentForm.get('amount')?.touched)">
       <small *ngIf="paymentForm.get('amount')?.errors?.['required']" class="text-danger" i18n="@@phone_required">Invalid amount</small>
+      <small *ngIf="paymentForm.get('amount')?.errors?.['min']" class="text-danger" i18n="@@phone_required">Minimum amount is {{minAmount}}</small>
+      <small *ngIf="paymentForm.get('amount')?.errors?.['max']" class="text-danger" i18n="@@phone_required">Max amount is {{maxAmount}}</small>
     </div>
   </div>
 

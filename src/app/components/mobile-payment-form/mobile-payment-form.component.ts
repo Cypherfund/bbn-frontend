@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {NgIf} from "@angular/common";
+import {CurrencyPipe, NgIf} from "@angular/common";
 import {PaymentMethod, RechargeRequest} from "../../models/payment";
 
 @Component({
@@ -10,16 +10,21 @@ import {PaymentMethod, RechargeRequest} from "../../models/payment";
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    CurrencyPipe
   ]
 })
-export class MobilePaymentFormComponent {
+export class MobilePaymentFormComponent implements AfterViewInit{
   @Input() paymentMethod!: PaymentMethod;
   @Input() paymentInProcess!: boolean;
+  @Input() data!: {action: string};
   @Output() processPayment: EventEmitter<any> = new EventEmitter<any>();
 
   paymentForm!: FormGroup;
   successMsg: string = 'Confirm payment on your phone by dialing *126# and entering your pin.';
+
+  minAmount: number = 1;
+  maxAmount: number = 1000;
 
   constructor(fb: FormBuilder) {
 
@@ -41,6 +46,25 @@ export class MobilePaymentFormComponent {
       }
       this.processPayment.emit({request, msg: this.successMsg});
     }
+  }
+
+  ngAfterViewInit() {
+
+    if (!!this.data && this.data.action === 'deposit') {
+      this.minAmount = this.paymentMethod.dbMinDepositAmount;
+      this.maxAmount = this.paymentMethod.dbMaxDepositAmount;
+    } else {
+      this.minAmount = this.paymentMethod.dbMinWithdrawalAmount;
+      this.maxAmount = this.paymentMethod.dbMaxWithdrawalAmount;
+    }
+
+    if (this.maxAmount)
+      this.paymentForm.get('amount')?.addValidators([Validators.max(this.maxAmount)]);
+
+    if (this.minAmount)
+      this.paymentForm.get('amount')?.addValidators([Validators.min(this.minAmount)]);
+
+    this.paymentForm.get('amount')?.updateValueAndValidity();
   }
 
   generateTransactionReference() {

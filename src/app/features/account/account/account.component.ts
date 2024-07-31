@@ -8,6 +8,7 @@ import {provideNativeDateAdapter} from "@angular/material/core";
 import {BetTransaction, TransactionSearch} from "../../../models/bbn";
 import {PaymentSheetComponent} from "../payment-sheet/payment-sheet.component";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-account',
@@ -33,6 +34,7 @@ export class AccountComponent {
   constructor(public gamesService: GamesService,
               public loaderService: LoaderService,
               public userService: UserService,
+              private router: Router,
               private bottomSheet: MatBottomSheet) {
     this.transactions$ = this.loaderService.showLoaderUntilComplete(this.transactions$);
     const today = new Date();
@@ -59,19 +61,21 @@ export class AccountComponent {
     this.gamesService.loadTransactionHistory(transactionSearch);
   }
 
-  deposit(amount: number): void {
-  }
-
-  withdraw(amount: number): void {
-
-  }
-
   toggleDetails(transaction: BetTransaction) {
     transaction.showDetails = !transaction.showDetails;
   }
 
-  openBottomSheet(): void {
-    this.bottomSheet.open(PaymentSheetComponent);
+  openBottomSheet(action: string): void {
+    this.bottomSheet.open(PaymentSheetComponent, {
+      data: {action}
+    });
+  }
+
+  reloadPage(): void {
+    this.router.navigate([this.router.url])
+      .then(() => {
+        window.location.reload();
+      });
   }
 }
 

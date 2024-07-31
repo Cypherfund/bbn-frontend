@@ -12,10 +12,10 @@
 }
 
  ngbutton:disabled {
-  background-color: var(--main-color-shade-1);
   border-radius: 10px;
-  color: var(--color-white) ;
-}
+   background-color: #ccc !important;
+   cursor: not-allowed !important;
+ }
 
 
 .form-group {
@@ -35,6 +35,7 @@
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  height: 35px;
 }
 
 .summary {
@@ -43,16 +44,24 @@
 }
 
 button {
-  background-color: #ff6b00;
+  height: 50px;
+  font-size: 1.5em;
+  background-color: #699BF7;
   color: #fff;
   border: none;
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
   width: 100%;
+
+}
+
+button:disabled {
+  background-color: #ccc !important;
+  cursor: not-allowed !important;
 }
 
 button:hover {
-  background-color: #ff5714;
+  background-color: #010b1d;
 }
 
