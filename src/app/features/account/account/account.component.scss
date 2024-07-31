@@ -2,6 +2,10 @@
   padding: 20px;
   padding-top: unset;
   background: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  max-width: 400px;
+  margin: auto;
   .transactions-header {
     display: flex;
     justify-content: space-between;
