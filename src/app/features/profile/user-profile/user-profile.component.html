@@ -1,21 +1,98 @@
+
 <div class="profile-container">
-  <h1>User Profile</h1>
-  <div class="profile-details">
-    <mat-card class="profile-card">
-      <mat-card-header>
-        <div mat-card-avatar class="profile-avatar"></div>
-        <mat-card-title>{{userService.user.name }}</mat-card-title>
-        <mat-card-subtitle>ID: {{ user.id }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p><strong>Email:</strong> {{ userService.user.email }}</p>
-        <p><strong>Phone Number:</strong> {{ userService.user.phone }}</p>
-        <p><strong>Balance:</strong> {{ userService.totalBalance | currency:'XAF' }}</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button color="primary">Edit Profile</button>
-        <button mat-raised-button color="warn" (click)="userService.logout()">Logout</button>
-      </mat-card-actions>
-    </mat-card>
+  <div class="profile-header">
+    <img src="assets/housemat-1.jpg" alt="User Profile" class="profile-pic" />
+    <div class="user-info">
+      <h3>{{userService.user.name }}</h3>
+      <p>{{ userService.user.email }}</p>
+      <p>{{ userService.user.phone }}</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h4>General</h4>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon matListIcon>person</mat-icon>
+        <div class="flex flex-column pl-3 line-height-1-2">
+          <div matLine>Edit Profile</div>
+          <div matLine class="subtext">Change profile picture, number, E-mail</div>
+        </div>
+        <button mat-icon-button matListAvatar class="absolute right-0">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon>lock</mat-icon>
+        <div class="flex flex-column pl-3 line-height-1-2">
+          <div matLine>Change Password</div>
+          <div matLine class="subtext">Update and strengthen account security</div>
+        </div>
+        <button mat-icon-button matListAvatar class="absolute right-0">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon>gavel</mat-icon>
+        <div class="flex flex-column pl-3 line-height-1-2">
+          <div matLine>Terms of Use</div>
+          <div matLine class="subtext">Protect your account now</div>
+        </div>
+        <button mat-icon-button matListAvatar class="absolute right-0">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon>credit_card</mat-icon>
+        <div class="flex flex-column pl-3 line-height-1-2">
+          <div matLine>Add Card</div>
+          <div matLine class="subtext">Securely add payment method</div>
+        </div>
+        <button mat-icon-button matListAvatar class="absolute right-0">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </div>
+
+
+  <div class="section">
+    <h4>Preferences</h4>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon matListIcon>notifications</mat-icon>
+        <div class="flex flex-column pl-3 line-height-1-2">
+          <div matLine>Push Notification</div>
+          <div matLine class="subtext">Enable push notifications</div>
+        </div>
+        <mat-slide-toggle matListAvatar [checked]="true"></mat-slide-toggle>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon>help</mat-icon>
+        <div class="flex flex-column pl-3 line-height-1-2">
+          <div matLine>FAQ</div>
+          <div matLine class="subtext">Securely add payment method</div>
+        </div>
+        <button mat-icon-button matListAvatar class="absolute right-0">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon matListIcon color="warn" (click)="userService.logout()">logout</mat-icon>
+        <div class="flex flex-column pl-3 line-height-1-2">
+          <div matLine>Log Out</div>
+          <div matLine class="subtext">Securely log out of Account</div>
+        </div>
+        <button mat-icon-button matListAvatar class="absolute right-0">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
   </div>
 </div>
+

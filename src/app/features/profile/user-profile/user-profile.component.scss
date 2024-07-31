@@ -1,78 +1,78 @@
 .profile-container {
-  max-width: 800px;
-  margin: 0 auto;
   padding: 20px;
-  text-align: left;
+  background-color: #f5f5f5;
+  height: 100%;
+  overflow-y: auto;
 
-  h1 {
-    font-size: 2.5em;
-    margin-bottom: 20px;
-  }
-
-  .profile-details {
-    margin-top: 20px;
-  }
-
-  .profile-card {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .profile-avatar {
-    background-image: url('/assets/housemat-1.png');
-    background-size: cover;
-  }
-
-  mat-card-title, mat-card-subtitle, p {
-    margin: 0;
-  }
-
-  mat-card-actions {
+  .profile-header {
     display: flex;
-    justify-content: space-between;
-  }
-}
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-
-.profile-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-
-  .balance-section {
-    text-align: center;
-    margin-bottom: 40px;
-
-    h2 {
-      margin-bottom: 20px;
+    .profile-pic {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin-right: 20px;
     }
 
-    button {
-      margin: 0 10px;
-    }
-  }
-
-  .transactions-section {
-    .transaction-card {
-      padding: 20px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      margin-bottom: 20px;
-
+    .user-info {
       h3 {
-        margin-top: 0;
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+        color: #699BF7;
       }
 
-      .bet-details {
-        padding: 10px;
-        border: 1px dashed #ccc;
-        border-radius: 5px;
-        margin-bottom: 10px;
+      p {
+        margin: 0;
+        color: gray;
+        font-size: 14px;
+      }
+    }
+  }
 
-        p {
-          margin: 5px 0;
+  .section {
+    margin-top: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    h4 {
+      padding: 10px 20px;
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+      color: #699BF7;
+    }
+
+    mat-list {
+      padding: 0;
+
+      mat-list-item {
+        padding: 15px 20px;
+
+        .subtext {
+          color: gray;
+          font-size: 12px;
+        }
+
+        mat-icon {
+          color: #02102b;
+        }
+
+        mat-slide-toggle {
+          margin-left: auto;
         }
       }
     }
   }
+}
+
+::ng-deep .mat-mdc-list-item-unscoped-content.mdc-list-item__primary-text{
+  justify-content: start;
+  position: relative;
 }
