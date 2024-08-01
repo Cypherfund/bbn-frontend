@@ -1,91 +1,66 @@
 import { AbstractControl, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
-import {Observable, of} from 'rxjs';
+import {distinctUntilChanged, finalize, Observable, of, take, tap} from 'rxjs';
 import { map, catchError, debounceTime, switchMap } from 'rxjs/operators';
 import {UserService} from "../services/user/user.service";
 
 export function usernameTakenValidator(userService: UserService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    if (!control.valueChanges || control.pristine) {
+      return of(null);
+    }
     return control.valueChanges.pipe(
       debounceTime(500),
-      switchMap(value =>
-        userService.checkIfUserExists(value).pipe(
-          map(data => {
-            if (data === 'USER_EXISTS') {
-              control.setErrors({ usernameTaken: true });
-            } else if (data === 'USER_NOT_EXISTS') {
-              const errors = control.errors;
-              if (errors) {
-                delete errors['usernameTaken'];
-                if (Object.keys(errors).length === 0) {
-                  control.setErrors(null);
-                } else {
-                  control.setErrors(errors);
-                }
-              }
-            }
-            return control.errors;
-          }),
-          catchError(() => of(null))
-        )
-      )
+      distinctUntilChanged(),
+      take(1),
+      switchMap(value => {
+        return userService.checkIfUserExists(control.value).pipe(
+          map(isTaken => isTaken === 'USER_EXISTS' ? { usernameTaken: true } : null),
+          catchError(() => of(null)), // Handle errors gracefully
+        );
+      })
     );
   };
 }
 
 export function emailTakenValidator(userService: UserService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    if (!control.valueChanges || control.pristine) {
+      return of(null);
+    }
     return control.valueChanges.pipe(
       debounceTime(500),
-      switchMap(value =>
-        userService.checkIfUserExists(value).pipe(
-          map(isTaken => {
-            if (isTaken === 'USER_EXISTS') {
-              control.setErrors({ emailTaken: true });
-            } else if (isTaken === 'USER_NOT_EXISTS') {
-              const errors = control.errors;
-              if (errors) {
-                delete errors['emailTaken'];
-                if (Object.keys(errors).length === 0) {
-                  control.setErrors(null);
-                } else {
-                  control.setErrors(errors);
-                }
-              }
-            }
-            return control.errors;
-          }),
-          catchError(() => of(null))
-        )
-      )
+      distinctUntilChanged(),
+      take(1),
+      switchMap(value => {
+        return userService.checkIfUserExists(control.value).pipe(
+          map(isTaken => isTaken === 'USER_EXISTS' ? { emailTaken: true } : null),
+          catchError(() => of(null)), // Handle errors gracefully
+        );
+      })
     );
   };
 }
 
 export function phoneNumberTakenValidator(userService: UserService): AsyncValidatorFn {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    if (!control.valueChanges || control.pristine) {
+      return of(null);
+    }
+    const countryControl = control.parent?.get('countryCode');
     return control.valueChanges.pipe(
       debounceTime(500),
-      switchMap(value =>
-        userService.checkIfUserExists(control.parent?.get('countryCode')?.value + value).pipe(
-          map(data => {
-            if (data === 'USER_EXISTS') {
-              control.setErrors({ phoneNumberTaken: true });
-            }else if (data === 'USER_NOT_EXISTS') {
-              const errors = control.errors;
-              if (errors) {
-                delete errors['phoneNumberTaken'];
-                if (Object.keys(errors).length === 0) {
-                  control.setErrors(null);
-                } else {
-                  control.setErrors(errors);
-                }
-              }
-            }
-            return control.errors;
-          }),
-          catchError(() => of(null))
-        )
-      )
+      distinctUntilChanged(),
+      take(1),
+      switchMap(value => {
+        if (!value || !countryControl?.value) {
+          return of(null);
+        }
+        const combinedValue = countryControl.value + value;
+        return userService.checkIfUserExists(combinedValue).pipe(
+          map(isTaken => isTaken === 'USER_EXISTS' ? { phoneNumberTaken: true } : null),
+          catchError(() => of(null)), // Handle errors gracefully
+        );
+      })
     );
   };
 }

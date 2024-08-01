@@ -107,6 +107,7 @@ export class UserService {
             this.loginUser({usernameOrEmailOrPhone: userDetails.email, password: userDetails.password})
               .subscribe();
           }
+          return throwError(() => new Error(response?.message ? response.message : 'An error occurred'));
         }),
         catchError(error => {
           return throwError(error)

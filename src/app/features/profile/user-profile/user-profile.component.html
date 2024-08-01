@@ -82,8 +82,8 @@
         </button>
       </mat-list-item>
 
-      <mat-list-item>
-        <mat-icon matListIcon color="warn" (click)="userService.logout()">logout</mat-icon>
+      <mat-list-item (click)="userService.logout()">
+        <mat-icon matListIcon color="warn" >logout</mat-icon>
         <div class="flex flex-column pl-3 line-height-1-2">
           <div matLine>Log Out</div>
           <div matLine class="subtext">Securely log out of Account</div>

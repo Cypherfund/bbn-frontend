@@ -2,6 +2,7 @@
   <img src="assets/logo.png" alt="Cypherfund" class="logo" routerLink="/">
   <h1 class="text-left mat-mdc-card-title">Get Started Now</h1>
   <p class="text-left">Enter your personal details to create your account</p>
+  <mat-error *ngIf="errorMsg">{{errorMsg}}</mat-error>
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Full Name</mat-label>
@@ -13,6 +14,8 @@
       <input matInput formControlName="userName" placeholder="Ngai Eli">
       <mat-error *ngIf="registrationForm.get('userName')?.hasError('required')">User Name is required</mat-error>
       <mat-error *ngIf="registrationForm.get('userName')?.hasError('usernameTaken')">Username is already taken</mat-error>
+      <mat-error *ngIf="registrationForm.get('userName')?.hasError('minlength')">At least 3 characters</mat-error>
+      <mat-error *ngIf="registrationForm.get('userName')?.hasError('maxlength')">At most 15 characters</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
@@ -56,7 +59,7 @@
       I agree to the <a href="#" class="terms">Terms & Conditions</a>
       <mat-error *ngIf="registrationForm.get('agreeTerms')?.hasError('required')">You must agree to the terms</mat-error>
     </mat-checkbox>
-    <button mat-raised-button color="primary" type="submit" class="full-width">Sign Up</button>
+    <button #button mat-raised-button color="primary" type="submit" class="full-width relative">Sign Up</button>
 <!--    <div class="or-separator">or</div>-->
 <!--    <button mat-stroked-button class="full-width google-signin">-->
 <!--      <img src="assets/google-logo.png" alt="Google" class="google-logo">-->
