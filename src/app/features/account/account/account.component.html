@@ -55,32 +55,57 @@
 
       <mat-divider></mat-divider>
 
-      <div class="transactions-list">
-        <ng-container *ngFor="let transaction of transactions$ | async">
-          <div class="transaction-item" [ngClass]="{'pending': transaction.status === 'PENDING', 'won': transaction.status === 'WON', 'lost': transaction.status === 'LOST', 'cashout': transaction.status === 'CASHOUT'}">
-            <div class="transaction-header" (click)="toggleDetails(transaction)">
-              <div class="transaction-info">
-                <b>{{ transaction.betType}}</b>
-                <p>ID: {{ transaction.id }}</p>
-                <p>{{ transaction.createdAt | date: 'short' }}</p>
-              </div>
-              <div class="transaction-amount">
-                <p>Total: {{ transaction.finalWinnings | currency }}</p>
-                <p>Odds: {{ transaction.odds }}</p>
-              </div>
-            </div>
-            <div class="transaction-details" *ngIf="transaction.showDetails">
-              <div *ngFor="let bet of transaction.betItems">
-                <p><strong>{{ bet.eventName }}</strong></p>
-                <p>Choice: {{ bet.outcomeId }}</p>
-                <p>Odds: {{ bet.odds}}</p>
-                <p>Status: {{ bet.status}}</p>
-              </div>
-            </div>
-            <mat-divider></mat-divider>
-          </div>
-        </ng-container>
-      </div>
+      <mat-card *ngIf="{transactions: (transactions$ | async)} as transactions">
+        <mat-table [dataSource]="transactions?.transactions?.data || []" class="bills-table">
+
+          <!-- Prediction Date Column -->
+          <ng-container matColumnDef="createdAt">
+            <mat-header-cell *matHeaderCellDef class="expand-header"> date </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.createdAt | date: 'short' }} </mat-cell>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <span class="status">{{element.status}}</span>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Amount Column -->
+          <ng-container matColumnDef="finalWinnings">
+            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              {{element.amount | currency:'USD':'symbol'}}
+              <button mat-icon-button class="chat-icon" routerLink="/contact">
+                <mat-icon>chat</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <!-- Expand Row Column -->
+          <ng-container matColumnDef="expand">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <button mat-icon-button>
+                <mat-icon>arrow_forward</mat-icon>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                       [showFirstLastButtons]="showFirstLastButtons"
+                       [length]="transactions?.transactions?.page?.totalElements || 0"
+                       [pageSize]="pageSize"
+                       [pageIndex]="pageIndex"
+                       (page)="handlePageEvent($event)"
+                       aria-label="Select page of transaction history">
+        </mat-paginator>
+      </mat-card>
+
     </mat-tab>
     <mat-tab label="Deposits"> Deposits </mat-tab>
     <mat-tab label="Withdrawals"> Withdrawals</mat-tab>

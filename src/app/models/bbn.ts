@@ -82,6 +82,8 @@ export interface TransactionSearch {
   betType?: string;
   jackpotId?: string;
   status?: string;
+  page?: number;
+  size?: number;
 }
 
 export interface BetTransaction {

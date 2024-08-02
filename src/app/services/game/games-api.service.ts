@@ -55,7 +55,7 @@ export class GamesApiService {
     return this.http.post<APIResponse<any>>(`${this.baseUrl}/bets`, predictionRequest, {headers}).pipe(catchError(error=>throwError(error)));
   }
 
-  userTransactions(search: TransactionSearch): Observable<BetTransaction[]>{
+  userTransactions(search: TransactionSearch): Observable<APIResponse<BetTransaction[]>>{
     const headers = this.getHeadersWithAuthorization();
 
     let params = new HttpParams();
@@ -69,7 +69,15 @@ export class GamesApiService {
       params = params.set('endDate', search.endDate.toISOString());
     }
 
-    return this.http.get<BetTransaction[]>(`${this.baseUrl}/bets/tickets/${search.userId}`, {headers, params }).pipe(catchError(error=>throwError(error)));
+    if (!!search.page) {
+      params = params.set('page', search.page.toString());
+    }
+
+    if (!!search.size) {
+      params = params.set('size', search.size.toString());
+    }
+
+    return this.http.get<APIResponse<BetTransaction[]>>(`${this.baseUrl}/bets/tickets/${search.userId}`, {headers, params }).pipe(catchError(error=>throwError(error)));
   }
 
   private getHeadersWithAuthorization(): HttpHeaders {

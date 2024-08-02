@@ -16,6 +16,7 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 const routes: Route[] = [
   {path: '', component: AccountComponent}
@@ -42,6 +43,7 @@ const routes: Route[] = [
     MatListModule,
     MatCardModule,
     MatBottomSheetModule,
+    MatPaginatorModule,
     RouterModule.forChild(routes)
   ]
 })

@@ -13,15 +13,12 @@ import {
 } from "rxjs";
 import {BBNEvent, BetTransaction, Outcome, PredictionRequest, Tournament, TransactionSearch} from "../../models/bbn";
 import {LoaderService} from "../loader.service";
+import {APIResponse} from "../../models/user";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
-  private isLoadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public isLoading$: Observable<boolean> = this.isLoadingSubject.asObservable();
-
-
   topTournaments$: Observable<Tournament[]>;
 
   events$: Observable<BBNEvent[]>;
@@ -33,7 +30,7 @@ export class GamesService {
   selectedTournament = 0;
   eventDetails!: BBNEvent;
 
-  transactionHistory$: Observable<BetTransaction[]>;
+  transactionHistory$: Observable<APIResponse<BetTransaction[]>>;
   transactionHistorySubject$: BehaviorSubject<TransactionSearch> = new BehaviorSubject<TransactionSearch>({userId: ''});
 
   constructor(private gamesApi: GamesApiService,
@@ -63,8 +60,8 @@ export class GamesService {
     this.transactionHistory$ = this.transactionHistorySubject$.pipe(
       filter(searchCriteria => searchCriteria !== null  && searchCriteria.userId !== ''),
       switchMap(searchCriteria => this.loadTransactions(searchCriteria)),
-      map(transactions => transactions.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())),
-      map(transactions => transactions.map(transaction => {
+      tap(transactions => transactions.data.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())),
+      tap(transactions => transactions.data.map(transaction => {
         transaction.odds = transaction.betItems.reduce((acc, event) => acc * event.odds, 1);
         return transaction;
       })),
@@ -109,7 +106,7 @@ export class GamesService {
       );
   }
 
-  loadTransactions(search: TransactionSearch): Observable<BetTransaction[]> {
+  loadTransactions(search: TransactionSearch): Observable<APIResponse<BetTransaction[]>> {
     return this.gamesApi.userTransactions(search);
   }
 }

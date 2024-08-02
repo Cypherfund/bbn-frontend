@@ -21,7 +21,6 @@ import {catchError} from "rxjs/operators";
 })
 export class SignupComponent implements AfterViewInit, OnDestroy{
   registrationForm!: FormGroup;
-  private spinner!: boolean;
   private subscriptions: Subscription[] = [];
 
   @ViewChild('button', { static: true }) button!: MatButton;
@@ -109,7 +108,6 @@ export class SignupComponent implements AfterViewInit, OnDestroy{
   }
 
   private registerUser() {
-    this.spinner = true
     const user: Signup = {
       name: this.registrationForm.value.fullName,
       username: this.registrationForm.value.userName,
@@ -118,15 +116,12 @@ export class SignupComponent implements AfterViewInit, OnDestroy{
       password: this.registrationForm.value.password,
       roles: ['CUSTOMER']
     };
-    console.log(user);
     const el = {...this.button._elementRef, tagName: 'BUTTON'}
     const registration$ = this.userService.registerUser(user)
       .pipe(
         catchError(error => this.errorMsg = error.error?.message)
       );
     const subscription = this.loaderService.showLoaderUntilComplete(registration$).subscribe();
-
-    subscription.add(() => (this.spinner = false));
 
     this.subscriptions.push(subscription);
   }

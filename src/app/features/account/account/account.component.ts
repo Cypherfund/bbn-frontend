@@ -9,6 +9,8 @@ import {BetTransaction, TransactionSearch} from "../../../models/bbn";
 import {PaymentSheetComponent} from "../payment-sheet/payment-sheet.component";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {Router} from "@angular/router";
+import {PageEvent} from "@angular/material/paginator";
+import {APIResponse} from "../../../models/user";
 
 @Component({
   selector: 'app-account',
@@ -29,7 +31,14 @@ export class AccountComponent {
   startDate!: Date;
   endDate!: Date;
 
-  transactions$: Observable<BetTransaction[]> = this.gamesService.transactionHistory$;
+  transactions$: Observable<APIResponse<BetTransaction[]>> = this.gamesService.transactionHistory$;
+  displayedColumns: string[] = ['expand', 'createdAt', 'status', 'finalWinnings'];
+  showFirstLastButtons = true;
+  length = 50;
+  pageSize = 10;
+  pageIndex = 0;
+
+  pageEvent!: PageEvent;
 
   constructor(public gamesService: GamesService,
               public loaderService: LoaderService,
@@ -56,13 +65,24 @@ export class AccountComponent {
     let transactionSearch: TransactionSearch = {
       userId: this.userService.user.userId,
       startDate: this.startDate,
-      endDate: this.endDate
+      endDate: this.endDate,
+      page: this.pageIndex,
+      size: this.pageSize,
     }
     this.gamesService.loadTransactionHistory(transactionSearch);
   }
 
   toggleDetails(transaction: BetTransaction) {
     transaction.showDetails = !transaction.showDetails;
+  }
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+
+    this.searchTransaction();
   }
 
   openBottomSheet(action: string): void {

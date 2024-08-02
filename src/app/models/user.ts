@@ -3,6 +3,7 @@ export interface APIResponse<T> {
     success: boolean;
     message: string;
     data: T; // Generic type to represent any data structure
+    page: CustomPage;
 }
 
 export interface UserResponse {
@@ -18,3 +19,9 @@ export interface UserResponse {
     strLoginProvider: string;
 }
 
+export interface CustomPage {
+  number: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+}

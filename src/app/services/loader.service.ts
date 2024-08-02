@@ -13,7 +13,6 @@ export class LoaderService {
   }
 
   showLoaderUntilComplete<T>(observable: Observable<T>, targetElement?: ElementRef, renderer?: Renderer2): Observable<T> {
-    console.log(renderer, targetElement)
     this.renderer = renderer!;
     if (targetElement) this.showLoader(targetElement); else this.isLoadingSubject.next(true);
     return observable.pipe(

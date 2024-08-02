@@ -2,6 +2,7 @@
   <img src="assets/logo.png" alt="Cypherfund" class="logo" routerLink="/">
   <h1 class="text-left mat-mdc-card-title">Get Started Now</h1>
   <p class="text-left">Enter your personal details to create your account</p>
+  <mat-error *ngIf="errorMsg">{{errorMsg}}</mat-error>
   <form [formGroup]="formGroup" (ngSubmit)="submitForm()">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
@@ -14,9 +15,8 @@
       <input matInput formControlName="password" type="password">
       <mat-error *ngIf="formGroup.get('password')?.hasError('required')">Password is required</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="formGroup.invalid || inProgress">
-      <mat-spinner *ngIf="inProgress" ></mat-spinner>
-      <span *ngIf="!inProgress">Sign In</span>
+    <button mat-raised-button color="primary" type="submit" class="full-width" [disabled]="formGroup.invalid">
+      Sign In
     </button>
     <p>Don't yet have an account? <a routerLink="/signup" class="signin-link">Sign up</a></p>
     <p>Forgot password? <a routerLink="/password/reset" class="signin-link">Reset now</a></p>
