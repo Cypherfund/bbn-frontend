@@ -41,9 +41,10 @@ export class PaymentSheetComponent {
   paymentMethods$: Observable<PaymentMethod[]>;
   selectedProvider!: PaymentMethod;
   supportedMethods: Set<SupportedMethod> = new Set();
-
   selectedPaymentMethod: string = '';
+
   loading: boolean = false;
+
   msg: string = '';
   errorMsg: string = '';
 

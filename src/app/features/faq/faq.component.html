@@ -1,0 +1,28 @@
+<div class="faq-container">
+  <h1>Frequently asked questions</h1>
+  <p>
+    These are the most commonly asked questions about Untitled UI. Can’t find what you’re looking for?
+    <a routerLink="/contact">Chat to our friendly team!</a>
+  </p>
+
+  <div class="faq-categories">
+    <button mat-button class="category" *ngFor="let category of categories"
+            [ngClass]="{'active': selectedCategory === category}"
+            (click)="selectCategory(category)">
+      {{ category }}
+    </button>
+  </div>
+
+  <div class="faq-list">
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let faq of filteredFaqs">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>help_outline</mat-icon> {{ faq.question }}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{ faq.answer }}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+.edit-profile-container {
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    h2 {
+      margin: 0;
+      flex-grow: 1;
+      text-align: center;
+      font-size: 2em;
+    }
+
+    .back-button {
+      margin-right: auto;
+    }
+  }
+
+  .profile-picture {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .edit-icon {
+      margin-top: -30px;
+      background-color: #ffffff;
+      border-radius: 50%;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .email-field {
+    display: flex;
+    align-items: baseline;
+
+    button {
+      margin-left: 10px;
+    }
+  }
+  ::ng-deep .mat-mdc-raised-button:not(:disabled), .mat-mdc-raised-button {
+    border-radius: 5px !important;
+    color: white !important;
+    background-color: #699BF7 !important;
+  }
+}

@@ -12,7 +12,7 @@
   <div class="section">
     <h4>General</h4>
     <mat-list>
-      <mat-list-item>
+      <mat-list-item routerLink="edit">
         <mat-icon matListIcon>person</mat-icon>
         <div class="flex flex-column pl-3 line-height-1-2">
           <div matLine>Edit Profile</div>
@@ -23,7 +23,7 @@
         </button>
       </mat-list-item>
 
-      <mat-list-item>
+      <mat-list-item routerLink="/password/change">
         <mat-icon matListIcon>lock</mat-icon>
         <div class="flex flex-column pl-3 line-height-1-2">
           <div matLine>Change Password</div>
@@ -34,7 +34,7 @@
         </button>
       </mat-list-item>
 
-      <mat-list-item>
+      <mat-list-item routerLink="terms">
         <mat-icon matListIcon>gavel</mat-icon>
         <div class="flex flex-column pl-3 line-height-1-2">
           <div matLine>Terms of Use</div>
@@ -71,7 +71,7 @@
         <mat-slide-toggle matListAvatar [checked]="true"></mat-slide-toggle>
       </mat-list-item>
 
-      <mat-list-item>
+      <mat-list-item routerLink="/faq">
         <mat-icon matListIcon>help</mat-icon>
         <div class="flex flex-column pl-3 line-height-1-2">
           <div matLine>FAQ</div>

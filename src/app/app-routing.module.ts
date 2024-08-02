@@ -11,7 +11,10 @@ const routes: Routes = [
   {path: 'contact', loadChildren: () => import('./features/contact/contact.module').then(m => m.ContactModule)},
   {path: 'profile', loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule)},
   {path: 'account', loadChildren: () => import('./features/account/account.module').then(m => m.AccountModule)},
-  {path: '', component: HomeComponent}
+  {path: '', component: HomeComponent},
+  { path: 'faq', loadChildren: () => import('./features/faq/faq.module').then(m => m.FaqModule) },
+  { path: 'terms', loadChildren: () => import('./features/terms/terms.module').then(m => m.TermsModule) },
+  { path: 'password', loadChildren: () => import('./features/profile/password/password.module').then(m => m.PasswordModule) }
 ];
 
 @NgModule({

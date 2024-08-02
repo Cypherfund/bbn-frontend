@@ -1,0 +1,44 @@
+<div class="edit-profile-container">
+  <div class="profile-header">
+    <button mat-icon-button class="back-button" aria-label="Back">
+      <mat-icon routerLink="../">arrow_back</mat-icon>
+    </button>
+    <h2>Edit Profile</h2>
+  </div>
+
+  <div class="profile-picture">
+    <img src="assets/housemat-1.jpg" alt="User Profile" class="profile-pic" />
+    <button mat-icon-button class="edit-icon" aria-label="Edit Picture">
+      <mat-icon>camera_alt</mat-icon>
+    </button>
+  </div>
+
+  <form [formGroup]="editProfileForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" placeholder="Scarlett">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" placeholder="Davis" readonly>
+    </mat-form-field>
+
+    <div matPrefix class="email-field">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Scarlettdavis@gmail.com" readonly>
+      </mat-form-field>
+      <button mat-raised-button color="primary">Verify</button>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Phone Number</mat-label>
+      <input matInput formControlName="phone" placeholder="555-1234-5678" readonly>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" class=" w-full save-button">
+      Save
+    </button>
+  </form>
+</div>

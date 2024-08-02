@@ -1,0 +1,45 @@
+<div class="terms-container">
+  <div class="alert-container">
+    <mat-card class="alert-card">
+      <mat-card-content>
+        <p>
+          <strong>Hello 👋</strong><br />
+          Before you create an account, please read and accept our Terms and Conditions.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="terms-card">
+    <mat-card>
+      <mat-card-title>Terms and Conditions</mat-card-title>
+      <mat-card-subtitle>Last updated: 30 May 2024</mat-card-subtitle>
+      <mat-card-content>
+        <p>
+          Please read these Terms and Conditions carefully before creating an account or using the Service.
+          Your access to and use of the Service is conditioned upon your acceptance of and compliance with these Terms.
+          These Terms apply to all visitors, users, and others who access or use the Service.
+        </p>
+
+        <h4>1. Accounts</h4>
+        <p>
+          When you create an account with us, you must provide accurate, complete, and current information at all times.
+          Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.
+        </p>
+
+        <p>
+          You are responsible for safeguarding the password that you use to access the Service and for any activities or actions
+          under your password, whether your password is with our Service or a third-party service.
+        </p>
+
+        <!-- Add more terms as needed -->
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="action-buttons">
+    <button mat-button color="primary" (click)="onAgree()">Agree</button>
+    <button mat-button color="warn" (click)="onDisagree()">Disagree</button>
+  </div>
+</div>
