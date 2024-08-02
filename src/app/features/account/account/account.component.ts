@@ -35,7 +35,7 @@ export class AccountComponent {
   displayedColumns: string[] = ['expand', 'createdAt', 'status', 'finalWinnings'];
   showFirstLastButtons = true;
   length = 50;
-  pageSize = 10;
+  pageSize = 5;
   pageIndex = 0;
 
   pageEvent!: PageEvent;
