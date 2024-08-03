@@ -90,7 +90,7 @@
 }
 
 .bills-table {
-  width: 100%;
+  min-width: fit-content;
 
   .mat-header-cell {
     color: gray;
@@ -100,20 +100,23 @@
   .mat-cell {
     font-size: 14px;
   }
-
-  .expand-header,
-  .mat-column-expand {
-    padding: unset;
+  /* Set max-width for the first column */
+  .expand {
+    max-width: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds "..." if content overflows */
   }
 
-  .mat-column-status {
-    padding: unset;
+  .ticket-status{
+    max-width: 90px;
+  }
+  .date{
+    width: 140px;
   }
 
-  .mat-column-createdAt {
-    padding: unset;
+  .expand{
+    width: 50px;
   }
-
   .status {
     color: orange;
   }
@@ -126,4 +129,33 @@
   button.mat-icon-button {
     color: green;
   }
+
+  tr.example-detail-row {
+    height: 0;
+  }
+
+  .expanded-row {
+    background: #f1f1f1;
+    font-size: 14px;
+    color: #333;
+    border: 0;
+
+    .bet-items {
+      padding: 10px;
+
+      .bet-item {
+        border-bottom: 1px solid #ccc;
+        padding: 5px 0;
+
+        p {
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .mat-mdc-card {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  width: 100%;
 }

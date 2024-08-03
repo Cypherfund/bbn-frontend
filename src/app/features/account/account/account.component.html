@@ -56,46 +56,63 @@
       <mat-divider></mat-divider>
 
       <mat-card *ngIf="{transactions: (transactions$ | async)} as transactions">
-        <mat-table [dataSource]="transactions?.transactions?.data || []" class="bills-table">
+        <div class="mat-table-container">
+          <mat-table [dataSource]="transactions?.transactions?.data || []" class="bills-table" multiTemplateDataRows>
 
-          <!-- Prediction Date Column -->
-          <ng-container matColumnDef="createdAt">
-            <mat-header-cell *matHeaderCellDef class="expand-header"> date </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.createdAt | date: 'short' }} </mat-cell>
-          </ng-container>
+            <!-- Prediction Date Column -->
+            <ng-container matColumnDef="createdAt">
+              <mat-header-cell *matHeaderCellDef class="date"> date </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="date"> {{element.createdAt | date: 'short' }} </mat-cell>
+            </ng-container>
 
-          <!-- Status Column -->
-          <ng-container matColumnDef="status">
-            <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <span class="status">{{element.status}}</span>
-            </mat-cell>
-          </ng-container>
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+              <mat-header-cell *matHeaderCellDef class="ticket-status"> Status </mat-header-cell>
+              <mat-cell *matCellDef="let element" class="ticket-status">
+                <span class="status">{{element.status}}</span>
+              </mat-cell>
+            </ng-container>
 
-          <!-- Amount Column -->
-          <ng-container matColumnDef="finalWinnings">
-            <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              {{element.amount | currency:'XAF'}}
-              <button mat-icon-button class="chat-icon" routerLink="/contact">
-                <mat-icon>chat</mat-icon>
-              </button>
-            </mat-cell>
-          </ng-container>
+            <!-- Amount Column -->
+            <ng-container matColumnDef="finalWinnings">
+              <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{element.amount | currency:'XAF'}}
+                <button mat-icon-button class="chat-icon" routerLink="/contact">
+                  <mat-icon>repeat</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
 
-          <!-- Expand Row Column -->
-          <ng-container matColumnDef="expand">
-            <mat-header-cell *matHeaderCellDef></mat-header-cell>
-            <mat-cell *matCellDef="let element">
-              <button mat-icon-button>
-                <mat-icon>chevron_right</mat-icon>
-              </button>
-            </mat-cell>
-          </ng-container>
+            <!-- Expand Row Column -->
+            <ng-container matColumnDef="expand">
+              <mat-header-cell *matHeaderCellDef class="expand"></mat-header-cell>
+              <mat-cell *matCellDef="let element" class="expand">
+                <button mat-icon-button (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+                  <mat-icon>{{ expandedElement === element ? 'keyboard_arrow_up' : 'chevron_right' }}</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
 
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
+            <ng-container matColumnDef="expandedDetail">
+              <mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length" class="expanded-row">
+                <div *ngIf="expandedElement === element" class="bet-items example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                  <div *ngFor="let item of element?.betItems" class="bet-item">
+                    <p><strong>Event Name:</strong> {{ item.eventName }}</p>
+                    <p><strong>Outcome:</strong> {{ item.outcomeName }}</p>
+                    <p><strong>Odds:</strong> {{ item.odds }}</p>
+                    <p><strong>Status:</strong> {{ item.status }}</p>
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;" class="bet-row"></mat-row>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+          </mat-table>
+        </div>
         <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                        [showFirstLastButtons]="showFirstLastButtons"
                        [length]="transactions?.transactions?.page?.totalElements || 0"

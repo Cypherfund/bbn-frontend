@@ -33,10 +33,15 @@ export class AccountComponent {
 
   transactions$: Observable<APIResponse<BetTransaction[]>> = this.gamesService.transactionHistory$;
   displayedColumns: string[] = ['expand', 'createdAt', 'status', 'finalWinnings'];
+  columnsToDisplay: string[] = ['createdAt', 'status', 'finalWinnings'];
   showFirstLastButtons = true;
   length = 50;
   pageSize = 5;
   pageIndex = 0;
+
+  expandedElement!: BetTransaction | null;
+  isExpansionDetailRow = (i: number, row: BetTransaction) => row.hasOwnProperty('betItems') && this.expandedElement === row;
+
 
   pageEvent!: PageEvent;
 
