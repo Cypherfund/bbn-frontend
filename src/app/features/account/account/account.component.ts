@@ -40,8 +40,6 @@ export class AccountComponent {
   pageIndex = 0;
 
   expandedElement!: BetTransaction | null;
-  isExpansionDetailRow = (i: number, row: BetTransaction) => row.hasOwnProperty('betItems') && this.expandedElement === row;
-
 
   pageEvent!: PageEvent;
 
@@ -75,10 +73,6 @@ export class AccountComponent {
       size: this.pageSize,
     }
     this.gamesService.loadTransactionHistory(transactionSearch);
-  }
-
-  toggleDetails(transaction: BetTransaction) {
-    transaction.showDetails = !transaction.showDetails;
   }
 
   handlePageEvent(e: PageEvent) {

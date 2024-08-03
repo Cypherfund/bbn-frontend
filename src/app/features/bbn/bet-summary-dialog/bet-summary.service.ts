@@ -7,10 +7,10 @@ import {UserService} from "../../../services/user/user.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {CartService} from "../../../services/cart.service";
 import {BetSummaryDialogComponent} from "./bet-summary-dialog.component";
+let msg: string = '';
 
 @Injectable()
 export class BetSummaryService {
-  msg: string = '';
   durationInSeconds = 5;
   constructor(public dialogRef: MatDialogRef<BetSummaryDialogComponent>,
               private gameService: GamesService,
@@ -27,14 +27,15 @@ export class BetSummaryService {
     this.gameService.placeBet(predictionRequest).subscribe(
       {
         next: () => {
-          this.msg = 'Bet Placed Successfully';
+          msg = 'Bet Placed Successfully';
           this.cartService.clearCart();
           this.openSnackBar();
           this.userService.loadUserBalance(this.userService.user.userId);
           this.dialogRef.close();
         },
-        error: () => {
-          this.msg = "failed to save bet";
+        error: (err) => {
+          console.log(err);
+          msg = "failed to save bet";
           this.openSnackBar();
         }
       }
@@ -44,6 +45,7 @@ export class BetSummaryService {
   openSnackBar() {
     this._snackBar.openFromComponent(SnackBarMessageBetComponent, {
       duration: this.durationInSeconds * 1000,
+      data: {msg}
     });
   }
 
@@ -62,7 +64,7 @@ export class BetSummaryService {
 
       return {
         betType: events.length > 1 ? 'MULTIPLE' : 'SINGLE',
-        amount: 200, // Default stake amount example
+        amount: 20, // Default stake amount example
         events,
       };
     });

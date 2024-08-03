@@ -111,7 +111,7 @@
     max-width: 90px;
   }
   .date{
-    width: 140px;
+    width: 145px;
   }
 
   .expand{
@@ -158,4 +158,6 @@
 ::ng-deep .mat-mdc-card {
   overflow-x: auto; /* Enable horizontal scrolling */
   width: 100%;
+  overflow-y: auto;
+  min-height: 400px;
 }

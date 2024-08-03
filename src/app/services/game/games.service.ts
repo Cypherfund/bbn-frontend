@@ -4,8 +4,8 @@ import {
   BehaviorSubject,
   catchError,
   filter,
-  map,
-  Observable,
+  map, never,
+  Observable, of,
   shareReplay,
   switchMap,
   tap,
@@ -14,6 +14,7 @@ import {
 import {BBNEvent, BetTransaction, Outcome, PredictionRequest, Tournament, TransactionSearch} from "../../models/bbn";
 import {LoaderService} from "../loader.service";
 import {APIResponse} from "../../models/user";
+import {response} from "express";
 
 @Injectable({
   providedIn: 'root'
@@ -101,7 +102,10 @@ export class GamesService {
   placeBet(predictionRequest: PredictionRequest): Observable<void> {
     return this.gamesApi.placeBet(predictionRequest)
       .pipe(
-        map(() => {}),
+        map(response => {
+          if (!!response?.success){throw response?.message}
+          else {}
+        } ),
         catchError(error => throwError(error))
       );
   }
