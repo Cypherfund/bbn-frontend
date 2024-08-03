@@ -37,7 +37,9 @@ export class GamesApiService {
   }
 
   getEvents(tournamentId: number): Observable<BBNEvent[]> {
-    return this.http.get<BBNEvent[]>(`${this.baseUrl}/admin/tournaments/${tournamentId}/events`);
+    let params = new HttpParams();
+    params = params.set('status', 'PENDING');
+    return this.http.get<BBNEvent[]>(`${this.baseUrl}/admin/tournaments/${tournamentId}/events`, {params});
   }
 
   getEventDetails(eventId: number): Observable<BBNEvent> {
