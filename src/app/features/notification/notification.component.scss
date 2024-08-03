@@ -1,0 +1,93 @@
+.notifications-card {
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+
+    h2 {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .mark-all-read {
+      font-size: 14px;
+      color: green;
+    }
+  }
+
+  .notification-section {
+    margin-bottom: 16px;
+
+    h3 {
+      margin-bottom: 8px;
+      color: gray;
+      font-size: 14px;
+    }
+
+    .notification-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 8px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+      &.highlighted {
+        background: #e3f2fd;
+      }
+
+      mat-icon {
+        font-size: 36px;
+        margin-right: 12px;
+        color: gray;
+      }
+
+      .notification-content {
+        flex-grow: 1;
+
+        h4 {
+          margin: 0;
+          font-size: 16px;
+          color: black;
+        }
+
+        p {
+          margin: 4px 0 0;
+          font-size: 14px;
+          color: gray;
+
+          .status-completed {
+            color: green;
+          }
+
+          .status-success {
+            color: green;
+          }
+
+          .status-expire {
+            color: red;
+          }
+        }
+      }
+
+      .time {
+        font-size: 12px;
+        color: gray;
+        margin-left: 16px;
+      }
+    }
+  }
+
+  .view-all {
+    font-size: 14px;
+    color: green;
+    display: block;
+    margin: 0 auto;
+  }
+}
