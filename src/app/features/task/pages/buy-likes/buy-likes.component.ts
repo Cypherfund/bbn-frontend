@@ -12,6 +12,10 @@ export class BuyLikesComponent {
     'assets/images/cover1.jpg',
     'assets/images/cover2.jpg',
     'assets/images/cover3.jpg',
+    'assets/images/cover4.jpg',
+    'assets/images/cover1.jpg',
+    'assets/images/cover2.jpg',
+    'assets/images/cover3.jpg',
     'assets/images/cover4.jpg'
   ];
 

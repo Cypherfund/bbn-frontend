@@ -4,11 +4,16 @@
 
   .cover-selector {
     margin: 16px 0;
+    display: flex;
+    gap: 1em;
+    overflow-x: scroll;
+    overflow-y: hidden;
 
     .cover-image {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
+      min-width: 100px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px;
+      height: 120px;
     }
   }
 
@@ -18,14 +23,12 @@
     .url-input {
       width: 100%;
 
-      ::ng-deep .mat-mdc-text-field-wrapper {
-        padding-right: 0;
-        border: 2px solid #ff6a63;
-        border-radius: 50px;
+      .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: white;
       }
-
-      ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
-        border:unset;
+      /* Font color */
+      input.mat-input-element {
+        color: white;
       }
     }
   }
@@ -56,5 +59,27 @@
       width: 100%;
       border-radius: 12px;
     }
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Customize the track (the empty space of the scrollbar) */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Default track color */
+    border-radius: 5px;
+    border: 1px solid gray;
+  }
+
+  /* Customize the scrollbar handle (the part you drag) */
+  ::-webkit-scrollbar-thumb {
+    background-color: #ff6a63; /* Scrollbar color */
+    border-radius: 10px;
+  }
+
+  /* Hover effect for the scrollbar handle */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Color on hover */
   }
 }

@@ -1,11 +1,8 @@
 <div class="get-likes-container">
   <div class="cover-selector">
-    <!-- This can be a list of cover images -->
-    <mat-grid-list cols="4" rowHeight="2:1">
-      <mat-grid-tile *ngFor="let cover of coverImages">
-        <img [src]="cover" alt="cover" class="cover-image"/>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <div *ngFor="let cover of coverImages" class="cover-image"
+         [ngStyle]="{'background': 'url(' + cover + ')'+ ', '+ 'rgba(0, 0, 0, 0.5)', 'background-size': 'cover', 'background-position': 'center'  }">
+    </div>
   </div>
 
   <div class="url-input-container">
