@@ -12,7 +12,7 @@
   <div class="footer">
     <mat-icon class="game-icon left-0">sports_esports</mat-icon>
     <a class="underline">How to earn coins on TikBoost?</a>
-    <div class="progress-container"  *ngIf="timeout >= 0">
+    <div class="progress-container"  *ngIf="timeout > 0">
       <div class="progress-div"
            [ngStyle]="{'width': timeout + '%' }"
       ></div>
