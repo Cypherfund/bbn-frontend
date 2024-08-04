@@ -1,0 +1,33 @@
+<div class="earn-coins-container">
+  <header class="header">
+    <div class="header-content">
+      <mat-icon class="user-icon">account_circle</mat-icon>
+      <h1>Earn Coins</h1>
+      <div class="coins">
+        <span>{{ userCoins }}</span>
+        <mat-icon>monetization_on</mat-icon>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <nav class="bottom-nav">
+<!--    <mat-divider></mat-divider>-->
+    <mat-nav-list>
+      <a mat-list-item routerLink="earn-coins" routerLinkActive="active-link">
+        <mat-icon>monetization_on</mat-icon>
+      </a>
+      <a mat-list-item routerLink="buy-likes" routerLinkActive="active-link">
+        <mat-icon>favorite</mat-icon>
+      </a>
+      <a mat-list-item routerLink="buy-followers" routerLinkActive="active-link">
+        <mat-icon>person</mat-icon>
+      </a>
+      <a mat-list-item routerLink="buy-coins" routerLinkActive="active-link">
+        <mat-icon>storefront</mat-icon>
+      </a>
+    </mat-nav-list>
+  </nav>
+</div>

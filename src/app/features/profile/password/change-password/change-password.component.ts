@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterLink} from "@angular/router";
-import {DialogElementsExampleDialog} from "../../../account/payment-sheet/payment-sheet.component";
+import {DialogElementsExampleDialog} from "../../../account/components/payment-sheet/payment-sheet.component";
 import {MatDialog, MatDialogActions, MatDialogClose} from "@angular/material/dialog";
 
 @Component({

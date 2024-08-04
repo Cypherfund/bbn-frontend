@@ -1,0 +1,33 @@
+<div class="get-likes-container">
+  <div class="cover-selector">
+    <!-- This can be a list of cover images -->
+    <mat-grid-list cols="4" rowHeight="2:1">
+      <mat-grid-tile *ngFor="let cover of coverImages">
+        <img [src]="cover" alt="cover" class="cover-image"/>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <div class="url-input-container">
+    <p class="text-left">Select cover or past your tiktok Video Url</p>
+    <mat-form-field appearance="outline" class="url-input">
+      <mat-label>Video URL</mat-label>
+      <input matInput placeholder="Paste your TikTok video URL" [(ngModel)]="videoUrl">
+      <button mat-icon-button matSuffix (click)="clearUrl()">
+        <mat-icon>link_off</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="instructions">
+    <a href="#" class="instruction-link">How to find your TikTok Video URL?</a>
+  </div>
+
+  <button mat-raised-button color="primary" class="continue-btn" (click)="continue()">
+    Continue
+  </button>
+
+  <div class="lucky-draw-container">
+    <img width="350px" height="auto" src="assets/tasks/draw-caption.png" alt="Lucky Draw">
+  </div>
+</div>

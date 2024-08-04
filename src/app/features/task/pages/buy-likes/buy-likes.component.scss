@@ -1,0 +1,60 @@
+.get-likes-container {
+  text-align: center;
+  padding: 16px;
+
+  .cover-selector {
+    margin: 16px 0;
+
+    .cover-image {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  }
+
+  .url-input-container {
+    margin: 16px 0;
+
+    .url-input {
+      width: 100%;
+
+      ::ng-deep .mat-mdc-text-field-wrapper {
+        padding-right: 0;
+        border: 2px solid #ff6a63;
+        border-radius: 50px;
+      }
+
+      ::ng-deep .mdc-text-field--outlined:not(.mdc-text-field--disabled) .mat-mdc-notch-piece {
+        border:unset;
+      }
+    }
+  }
+
+  .instructions {
+    margin: 16px 0;
+
+    .instruction-link {
+      text-decoration: underline;
+      color: gray;
+    }
+  }
+
+  .continue-btn {
+    width: 55%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #ff6a63;
+    color: white;
+    border-radius: 24px;
+  }
+
+  .lucky-draw-container {
+    text-align: center;
+    margin-top: 16px;
+
+    .lucky-draw-image {
+      width: 100%;
+      border-radius: 12px;
+    }
+  }
+}

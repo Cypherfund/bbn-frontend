@@ -18,6 +18,7 @@ export class AppComponent {
 
   private _mobileQueryListener: () => void;
   showHeader: boolean = true;
+  showFooter: boolean = true;
   isLogged!: boolean;
 
   showLoader$ = this.loaderService.isLoading$;
@@ -37,7 +38,8 @@ export class AppComponent {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         const currentRoute = this.route.snapshot.firstChild?.routeConfig?.path;
-        this.showHeader = !(currentRoute === 'login' || currentRoute === 'signup');
+        this.showHeader = !(currentRoute === 'login' || currentRoute === 'signup' || currentRoute === 'task');
+        this.showFooter = !(currentRoute === 'task');
       });
   }
 

@@ -17,6 +17,7 @@ import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
 import {MatListModule} from "@angular/material/list";
 import {MatCardModule} from "@angular/material/card";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import { TicketHistoryComponent } from './components/ticket-history/ticket-history.component';
 
 const routes: Route[] = [
   {path: '', component: AccountComponent}
@@ -44,7 +45,8 @@ const routes: Route[] = [
     MatCardModule,
     MatBottomSheetModule,
     MatPaginatorModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    TicketHistoryComponent
   ]
 })
 export class AccountModule { }

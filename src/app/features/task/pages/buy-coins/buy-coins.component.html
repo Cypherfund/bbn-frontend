@@ -1,0 +1,14 @@
+<div class="store-container">
+  <div class="product-grid">
+    <div
+      class="product-card"
+      *ngFor="let product of products">
+      <div class="product-info"
+           [ngStyle]="{'background': 'url(' + product.imageUrl + ')'+ ', '+ product.backgroundColor, 'background-size': 'cover', 'background-position': 'center'  }">
+        <h2>{{ product.name }}</h2>
+<!--        <p>{{ product.price | currency:'USD' }}</p>-->
+      </div>
+      <button mat-button [ngClass]="product.buttonClass">{{ product.buttonText }}</button>
+    </div>
+  </div>
+</div>

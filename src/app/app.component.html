@@ -66,7 +66,7 @@
         <app-header *ngIf="showHeader"></app-header>
         <router-outlet />
         <mat-spinner class="fixed top-left-40 z-1" *ngIf="(showLoader$ | async)"></mat-spinner>
-        <app-footer></app-footer>
+        <app-footer *ngIf="showFooter"></app-footer>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

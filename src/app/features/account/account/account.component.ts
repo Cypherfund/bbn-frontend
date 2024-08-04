@@ -6,10 +6,9 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {LoaderService} from "../../../services/loader.service";
 import {provideNativeDateAdapter} from "@angular/material/core";
 import {BetTransaction, TransactionSearch} from "../../../models/bbn";
-import {PaymentSheetComponent} from "../payment-sheet/payment-sheet.component";
+import {PaymentSheetComponent} from "../components/payment-sheet/payment-sheet.component";
 import {MatBottomSheet} from "@angular/material/bottom-sheet";
 import {Router} from "@angular/router";
-import {PageEvent} from "@angular/material/paginator";
 import {APIResponse} from "../../../models/user";
 
 @Component({
@@ -26,22 +25,7 @@ import {APIResponse} from "../../../models/user";
   providers: [provideNativeDateAdapter()],
 })
 export class AccountComponent {
-  selectedBetType = 'all';
-  selectedPeriod = 'lastTwoWeeks';
-  startDate!: Date;
-  endDate!: Date;
-
   transactions$: Observable<APIResponse<BetTransaction[]>> = this.gamesService.transactionHistory$;
-  displayedColumns: string[] = ['expand', 'createdAt', 'status', 'finalWinnings'];
-  columnsToDisplay: string[] = ['createdAt', 'status', 'finalWinnings'];
-  showFirstLastButtons = true;
-  length = 50;
-  pageSize = 5;
-  pageIndex = 0;
-
-  expandedElement!: BetTransaction | null;
-
-  pageEvent!: PageEvent;
 
   constructor(public gamesService: GamesService,
               public loaderService: LoaderService,
@@ -49,39 +33,27 @@ export class AccountComponent {
               private router: Router,
               private bottomSheet: MatBottomSheet) {
     this.transactions$ = this.loaderService.showLoaderUntilComplete(this.transactions$);
-    const today = new Date();
-    this.startDate = new Date(today.setHours(0, 0, 0, 0));
-    this.endDate = new Date(today.setHours(23, 59, 59, 999));
   }
 
   ngOnInit(): void {
     this.userService.login$.pipe().subscribe( loginVal => {
       if (loginVal === 1) {
-        this.searchTransaction();
+        const today = new Date();
+        const startDate = new Date(today.setHours(0, 0, 0, 0));
+        const endDate = new Date(today.setHours(23, 59, 59, 999));
+        const transactionSearch: Partial<TransactionSearch> = {
+          userId: this.userService.user.userId,
+          startDate: startDate,
+          endDate: endDate
+        }
+        this.searchTransaction(transactionSearch);
       }
     })
   }
 
-  public searchTransaction() {
-    this.startDate = new Date(this.startDate.setHours(0, 0, 0, 0));
-    this.endDate = new Date(this.endDate.setHours(23, 59, 59, 999));
-    let transactionSearch: TransactionSearch = {
-      userId: this.userService.user.userId,
-      startDate: this.startDate,
-      endDate: this.endDate,
-      page: this.pageIndex,
-      size: this.pageSize,
-    }
+  public searchTransaction(search: Partial<TransactionSearch>) {
+    let transactionSearch: TransactionSearch = {...search, userId: this.userService.user.userId}
     this.gamesService.loadTransactionHistory(transactionSearch);
-  }
-
-  handlePageEvent(e: PageEvent) {
-    this.pageEvent = e;
-    this.length = e.length;
-    this.pageSize = e.pageSize;
-    this.pageIndex = e.pageIndex;
-
-    this.searchTransaction();
   }
 
   openBottomSheet(action: string): void {
