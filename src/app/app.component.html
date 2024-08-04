@@ -1,6 +1,6 @@
 
 
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+<div class="example-container" *ngIf="!isTaskRoute" [class.example-is-mobile]="mobileQuery.matches">
   <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav #sidenav [mode]="mobileQuery.matches ? 'over' : 'side'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" [(opened)]="userService.sidenavOpen">
@@ -71,3 +71,6 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
+<router-outlet  *ngIf="isTaskRoute"></router-outlet>
+

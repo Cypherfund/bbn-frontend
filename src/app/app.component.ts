@@ -20,6 +20,8 @@ export class AppComponent {
   showHeader: boolean = true;
   showFooter: boolean = true;
   isLogged!: boolean;
+  isTaskRoute = false;
+
 
   showLoader$ = this.loaderService.isLoading$;
 
@@ -40,6 +42,7 @@ export class AppComponent {
         const currentRoute = this.route.snapshot.firstChild?.routeConfig?.path;
         this.showHeader = !(currentRoute === 'login' || currentRoute === 'signup' || currentRoute === 'task');
         this.showFooter = !(currentRoute === 'task');
+        this.isTaskRoute = this.router.url.startsWith('/task');
       });
   }
 
