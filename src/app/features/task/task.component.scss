@@ -15,7 +15,6 @@
     text-align: center;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-    position: -webkit-sticky; /* For Safari */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -67,11 +66,10 @@
     width: 100%;
     box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
-    position: -webkit-sticky; /* For Safari */
-    position: sticky;
+    position: fixed;
     bottom: 0;
     z-index: 1;
-    height: 74px;
+    height: 64px;
     mat-nav-list {
       display: flex;
       justify-content: space-around;
