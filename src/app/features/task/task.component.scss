@@ -15,7 +15,7 @@
     text-align: center;
     border-bottom-left-radius: 50px;
     border-bottom-right-radius: 50px;
-    position: sticky;
+    position: fixed;
     top: 0;
     z-index: 1000;
     height: 92px;
@@ -57,6 +57,8 @@
     margin-left: auto;
     margin-right: auto;
     overflow-y: scroll;
+    position: absolute;
+    top: 124px;
     max-height: calc(100vh - 210px);
   }
 
