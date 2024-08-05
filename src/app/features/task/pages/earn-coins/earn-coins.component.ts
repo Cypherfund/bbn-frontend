@@ -14,14 +14,13 @@ export class EarnCoinsComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.startResizing();
-
+    // this.startResizing();
   }
 
   ngOnDestroy(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    // if (this.intervalId) {
+    //   clearInterval(this.intervalId);
+    // }
   }
 
   startResizing(): void {
