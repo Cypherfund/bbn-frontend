@@ -1,4 +1,5 @@
 import {AfterViewInit, Component} from '@angular/core';
+import {HeaderService} from "./services/header.service";
 
 @Component({
   selector: 'app-task',
@@ -6,14 +7,11 @@ import {AfterViewInit, Component} from '@angular/core';
   styleUrl: './task.component.scss'
 })
 export class TaskComponent implements AfterViewInit{
-  userCoins: number = 0;
 
-  followUser() {
-    this.userCoins += 4;
-  }
+  constructor(public headerService: HeaderService) {}
 
   ngAfterViewInit() {
-    this.checkStickySupport();
+    // this.checkStickySupport();
   }
 
   checkStickySupport() {

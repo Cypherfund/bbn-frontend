@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {HeaderService} from "../../services/header.service";
 
 @Component({
   selector: 'app-buy-coins',
@@ -92,5 +93,9 @@ export class BuyCoinsComponent {
       'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)'
     ];
     return gradients[Math.floor(Math.random() * gradients.length)];
+  }
+
+  constructor(private headerService: HeaderService) {
+    this.headerService.setHeaderTitle('Store');
   }
 }

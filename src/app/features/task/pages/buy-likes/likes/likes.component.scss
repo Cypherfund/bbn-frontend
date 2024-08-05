@@ -1,0 +1,132 @@
+.get-followers-container {
+  text-align: center;
+
+  .profile-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+
+    mat-icon {
+      font-size: 9em;
+      width: 1em;
+      height: 1em;
+      color: gray;
+    }
+
+    .followers,
+    .likes {
+      text-align: center;
+
+      h5 {
+        margin: 0;
+        font-weight: 100;
+        font-size: 1.5em;
+      }
+
+      p {
+        margin: 0;
+        color: #aaa;
+      }
+    }
+
+    .profile-pic {
+      width: 9em;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 20px;
+    }
+  }
+
+  .username {
+    font-size: 18px;
+    color: #777;
+  }
+
+  .tab-group {
+    margin-top: 20px;
+
+    .mat-tab-label {
+      font-weight: bold;
+    }
+    ::ng-deep .mat-mdc-tab-header {
+      background-color: #fff3f3;
+    }
+  }
+
+  .plan-list {
+    margin-top: 20px;
+    margin-left: 16px;
+    margin-right: 16px;
+
+    .plan-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #fff3f3;
+      border-radius: 12px;
+
+      .plan-details {
+        display: flex;
+        align-items: center;
+        .plus {
+          color: gray;
+          font-size: 2em;
+          width: 1em;
+          height: 1em;
+        }
+
+        mat-icon {
+          margin-right: 8px;
+          color: #caca13;
+        }
+      }
+
+      .addition {
+        color: #ff6060;
+      }
+      .weekly-details {
+        margin-right: unset !important;
+      }
+
+      .plan-price {
+        display: flex;
+        align-items: center;
+        background: #ff6060;
+        padding: 8px;
+        border-radius: 20px;
+        min-width: 70px;
+        justify-content: space-between;
+
+        mat-icon {
+          color: yellow;
+        }
+
+        span {
+          margin-right: 8px;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+
+
+::ng-deep .mat-mdc-tab .mdc-tab-indicator__content--underline ,
+.mat-mdc-tab.mdc-tab--active:hover .mdc-tab-indicator__content--underline {
+  border-color: #ff6060 !important;
+}
+
+::ng-deep .mdc-tab--active .mdc-tab__text-label {
+  color: #ff6060 !important;
+}
+
+::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+  font-size: 1.3em;
+}

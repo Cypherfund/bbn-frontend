@@ -9,15 +9,16 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import { EarnCoinsComponent } from './pages/earn-coins/earn-coins.component';
-import { BuyLikesComponent } from './pages/buy-likes/buy-likes.component';
 import { BuyFollowersComponent } from './pages/buy-followers/buy-followers.component';
-import { BuyCoinsComponent } from './pages/buy-coins/buy-coins.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {FormsModule} from "@angular/forms";
-import {MatTableModule} from "@angular/material/table";
 import {MatTabsModule} from "@angular/material/tabs";
+import {HeaderService} from "./services/header.service";
+import {BuyCoinsComponent} from "./pages/buy-coins/buy-coins.component";
+import {BuyLikesComponent} from "./pages/buy-likes/buy-likes.component";
+import {LikesComponent} from "./pages/buy-likes/likes/likes.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {MatTabsModule} from "@angular/material/tabs";
     EarnCoinsComponent,
     BuyLikesComponent,
     BuyFollowersComponent,
-    BuyCoinsComponent
+    BuyCoinsComponent,
+    LikesComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,9 @@ import {MatTabsModule} from "@angular/material/tabs";
     MatGridListModule,
     FormsModule,
     MatTabsModule
+  ],
+  providers: [
+    HeaderService
   ]
 })
 export class TaskModule { }

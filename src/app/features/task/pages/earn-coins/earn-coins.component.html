@@ -4,7 +4,7 @@
   </div>
   <div class="actions">
     <button mat-button color="accent" class="skip-btn">Skip</button>
-    <button mat-raised-button color="primary" class="follow-btn">
+    <button mat-raised-button color="primary" class="follow-btn" (click)="follow()">
       Follow +4
       <mat-icon>monetization_on</mat-icon>
     </button>
@@ -12,9 +12,9 @@
   <div class="footer">
     <mat-icon class="game-icon left-0">sports_esports</mat-icon>
     <a class="underline">How to earn coins on TikBoost?</a>
-    <div class="progress-container"  *ngIf="timeout > 0">
+    <div class="progress-container"  *ngIf="divWidth > 0">
       <div class="progress-div"
-           [ngStyle]="{'width': timeout + '%' }"
+           [style.width.px]="divWidth"
       ></div>
       <p class="progress-text">1000 Coins $4.99</p>
     </div>

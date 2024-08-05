@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { TaskComponent } from './task.component';
 import {UserService} from "../../services/user/user.service";
 import {EarnCoinsComponent} from "./pages/earn-coins/earn-coins.component";
-import {BuyLikesComponent} from "./pages/buy-likes/buy-likes.component";
 import {BuyFollowersComponent} from "./pages/buy-followers/buy-followers.component";
 import {BuyCoinsComponent} from "./pages/buy-coins/buy-coins.component";
+import {BuyLikesComponent} from "./pages/buy-likes/buy-likes.component";
+import {LikesComponent} from "./pages/buy-likes/likes/likes.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'buy-likes',
         component: BuyLikesComponent,
+      },
+      {
+        path: 'promote',
+        component: LikesComponent,
       },
       {
         path: 'buy-followers',

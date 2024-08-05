@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {HeaderService} from "../../services/header.service";
 
 @Component({
   selector: 'app-earn-coins',
@@ -6,22 +7,38 @@ import {Component, OnInit} from '@angular/core';
   styleUrl: './earn-coins.component.scss'
 })
 export class EarnCoinsComponent implements OnInit{
-  timeout: number = 0;
-
-  ngOnInit(): void {
-    this.timeout = 100;
-    this.reduceTimeout();
+  divWidth = 100;
+  private intervalId: any;
+  constructor(private headerService: HeaderService) {
+    this.headerService.setHeaderTitle('Earn Coins');
   }
 
-  private reduceTimeout() {
-    // if (this.timeout >= 10) {
-    //   this.timeout -= 10;
-    //   if (this.timeout === 0) {
-    //     setTimeout(() => {
-    //       this.timeout = 100;
-    //       this.reduceTimeout();
-    //     }, 5000);
-    //   } else setTimeout(() => this.reduceTimeout(), 1000);
-    // }
+  ngOnInit(): void {
+    this.startResizing();
+
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  startResizing(): void {
+    this.intervalId = setInterval(() => {
+      if (this.divWidth > 0) {
+        this.divWidth -= 10;
+      } else {
+        clearInterval(this.intervalId);
+        setTimeout(() => {
+          this.divWidth = 100;
+          this.startResizing();
+        }, 5000);
+      }
+    }, 1000);
+  }
+
+  follow() {
+    this.headerService.followUser();
   }
 }

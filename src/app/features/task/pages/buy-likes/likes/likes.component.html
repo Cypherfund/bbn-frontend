@@ -1,0 +1,55 @@
+<div class="get-followers-container">
+  <div class="profile-info">
+    <div class="followers">
+      <h5>3.0K</h5>
+      <p>Followers</p>
+    </div>
+    <div class="profile-pic">
+      <mat-icon>account_circle</mat-icon>
+    </div>
+    <div class="likes">
+      <h5 class="text-gray-100">4.8K</h5>
+      <p>Likes</p>
+    </div>
+  </div>
+
+  <h3 class="username">Get likes for your video</h3>
+
+  <mat-tab-group class="tab-group">
+    <mat-tab label="Follower">
+      <div class="plan-list">
+        <div class="plan-item" *ngFor="let plan of likesPlan">
+          <div class="plan-details">
+            <mat-icon class="favorite">favorite</mat-icon>
+            <span>{{ plan.name }}</span>
+          </div>
+          <div class="plan-price">
+            <ng-container *ngIf="plan.type === 'coin'; else priceTemplate">
+              <span>{{ plan.price }}</span>
+              <mat-icon>monetization_on</mat-icon>
+            </ng-container>
+            <ng-template #priceTemplate>
+              <span>{{ plan.price | currency:'USD' }}</span>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Package Growth">
+      <div class="plan-list">
+        <div class="plan-item" *ngFor="let plan of packageGrowth">
+          <div class="plan-details">
+            <mat-icon class="favorite">favorite</mat-icon>
+            <span>{{ plan.likes }}</span>
+            <mat-icon class="plus  weekly-details">add</mat-icon>
+            <mat-icon class=" weekly-details">person_add</mat-icon>
+            <span>{{ plan.coins }}</span>
+          </div>
+          <div class="plan-price">
+            <span>{{ plan.price | currency:'USD' }}</span>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

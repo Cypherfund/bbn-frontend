@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {HeaderService} from "../../services/header.service";
 
 @Component({
   selector: 'app-buy-followers',
@@ -30,4 +31,8 @@ export class BuyFollowersComponent {
     { followers: 500, coins: 1000, price: 99.99 },
     { followers: 800, coins: 1500, price: 149.99 }
   ];
+
+  constructor(private headerService: HeaderService) {
+    this.headerService.setHeaderTitle('Buy Followers');
+  }
 }
