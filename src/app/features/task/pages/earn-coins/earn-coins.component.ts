@@ -14,14 +14,14 @@ export class EarnCoinsComponent implements OnInit{
   }
 
   private reduceTimeout() {
-    if (this.timeout >= 10) {
-      this.timeout -= 10;
-      if (this.timeout === 0) {
-        setTimeout(() => {
-          this.timeout = 100;
-          this.reduceTimeout();
-        }, 5000);
-      } else setTimeout(() => this.reduceTimeout(), 1000);
-    }
+    // if (this.timeout >= 10) {
+    //   this.timeout -= 10;
+    //   if (this.timeout === 0) {
+    //     setTimeout(() => {
+    //       this.timeout = 100;
+    //       this.reduceTimeout();
+    //     }, 5000);
+    //   } else setTimeout(() => this.reduceTimeout(), 1000);
+    // }
   }
 }
