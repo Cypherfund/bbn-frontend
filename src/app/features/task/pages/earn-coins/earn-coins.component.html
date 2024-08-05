@@ -12,9 +12,9 @@
   <div class="footer">
     <mat-icon class="game-icon left-0">sports_esports</mat-icon>
     <a class="underline">How to earn coins on TikBoost?</a>
-    <div class="progress-container"  *ngIf="divWidth > 0">
+    <div class="progress-container"  *ngIf="earnService.divWidth > 0">
       <div class="progress-div"
-           [style.width.px]="divWidth"
+           [style.width.%]="earnService.divWidth"
       ></div>
       <p class="progress-text">1000 Coins $4.99</p>
     </div>
