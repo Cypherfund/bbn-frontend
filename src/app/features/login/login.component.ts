@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user/user.service";
 import {Subscription} from "rxjs";
 import {LoaderService} from "../../services/loader.service";
+import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   formGroup!: FormGroup;
   subscriptions: Subscription[] = [];
 
-  errorMsg!: string;
+  errorMsg: string = '';
   constructor(private fb: FormBuilder,
               private loaderService: LoaderService,
               private userService: UserService) {
@@ -23,8 +24,9 @@ export class LoginComponent {
     });
 
     this.subscriptions.push(this.userService.login$.subscribe(loginVal => {
-      if(loginVal === 1)
+      if(loginVal === 1) {
         this.userService.navigateToHome();
+      }
     }));
   }
 
@@ -34,7 +36,12 @@ export class LoginComponent {
       const loginproccess$ = this.userService.loginUser({
         usernameOrEmailOrPhone: this.formGroup.value.email,
         password: this.formGroup.value.password
-      });
+      })
+      .pipe(
+        catchError(err => this.errorMsg = err.error?.message || 'An error occurred')
+      );
+      
+
 
       const subscription = this.loaderService.showLoaderUntilComplete(loginproccess$).subscribe();
 
