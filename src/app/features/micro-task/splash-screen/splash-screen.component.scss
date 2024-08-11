@@ -8,15 +8,17 @@ section {
 }
 
 .up {
-  margin-bottom: -50px;
-  animation: up 2s linear 0.5s 1 forwards;
+  margin-bottom: -450px;
+  animation: up 0.5s linear 0s 1 forwards;
   position: relative;
+  width: 250px;
 }
 
 .down {
-  margin-top: -50;
-  animation: down 2s linear 0.5s 1 forwards;
+  margin-top: -450;
+  animation: down 0.5s linear 0s 1 forwards;
   position: relative;
+  width: 250px;
 }
 
 @keyframes up {
@@ -26,8 +28,8 @@ section {
     right: 0;
   }
   100% {
-    top: -50vh;
-    right: 50vw;
+    top: -32vh;
+    right: 20vw;
   }
 }
 
@@ -38,8 +40,8 @@ section {
     right: 0;
   }
   100% {
-    top: 50vh;
-    right: -50vw;
+    top: 32vh;
+    right: -20vw;
   }
 }
 
@@ -47,16 +49,18 @@ section {
   width: 300px;
   position: relative;
   left: -100vw;
-  animation: logo 2s linear 0.5s 1 forwards;
+  animation: logo 0.5s linear 0s 1 forwards;
 }
 
 @keyframes logo {
   0%{
     position: relative;
     left: -50vw;
+    top: 20vh;
   }
   100% {
     left: 0;
+    top: 20vh;
   }
 }
 
