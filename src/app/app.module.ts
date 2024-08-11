@@ -39,7 +39,7 @@ import { MicroTaskComponent } from './features/micro-task/micro-task.component';
         EarningsComponent,
         TaskCenterComponent,
         AboutComponent,
-        MicroTaskComponent,
+      
     ],
     imports: [
       BrowserAnimationsModule,

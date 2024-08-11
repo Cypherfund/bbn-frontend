@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { MicroTaskRoutingModule } from './micro-task-routing.module';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
+import { MicroTaskComponent } from './micro-task.component';
 
 
 
 @NgModule({
   declarations: [
-    SplashScreenComponent
+    MicroTaskComponent,
+    SplashScreenComponent,
   ],
   imports: [
     CommonModule,
