@@ -5,6 +5,7 @@ import { MicroTaskRoutingModule } from './micro-task-routing.module';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { MicroTaskComponent } from './micro-task.component';
 import { TipsScreenComponent } from './tips-screen/tips-screen.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 
@@ -13,6 +14,7 @@ import { TipsScreenComponent } from './tips-screen/tips-screen.component';
     MicroTaskComponent,
     SplashScreenComponent,
     TipsScreenComponent,
+    SignUpComponent,
   ],
   imports: [
     CommonModule,
