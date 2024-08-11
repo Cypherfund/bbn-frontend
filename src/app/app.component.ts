@@ -40,9 +40,9 @@ export class AppComponent {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         const currentRoute = this.route.snapshot.firstChild?.routeConfig?.path;
-        this.showHeader = !(currentRoute === 'login' || currentRoute === 'signup' || currentRoute === 'task');
-        this.showFooter = !(currentRoute === 'task');
-        this.isTaskRoute = this.router.url.startsWith('/task');
+        this.showHeader = !(currentRoute === 'login' || currentRoute === 'signup' || currentRoute === 'task' || currentRoute === 'micro-task');
+        this.showFooter = !(currentRoute === 'task' || currentRoute === 'micro-task');
+        this.isTaskRoute = this.router.url.startsWith('/task' || router.url.startsWith('/micro-task'));
       });
   }
 

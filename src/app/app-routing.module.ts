@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'terms', loadChildren: () => import('./features/terms/terms.module').then(m => m.TermsModule) },
   { path: 'password', loadChildren: () => import('./features/profile/password/password.module').then(m => m.PasswordModule) },
   { path: 'notification', loadChildren: () => import('./features/notification/notification.module').then(m => m.NotificationModule) },
-  { path: 'task', loadChildren: () => import('./features/task/task.module').then(m => m.TaskModule) }
+  { path: 'task', loadChildren: () => import('./features/task/task.module').then(m => m.TaskModule) },
+  { path: 'micro-task', loadChildren: () => import('./features/micro-task/micro-task.module').then(m => m.MicroTaskModule) }
 ];
 
 @NgModule({
