@@ -10,7 +10,7 @@
   
   <div class="next-btn">
     <div class="indicator" >
-      <div class="ind" *ngFor="let tip of tips"></div>
+      <div class="ind" *ngFor="let tip of tips" [style]="tips.indexOf(tip) === activeTipsIndex ? 'background-color:blue':'width:20px; height:20px; border-radius:50%'"></div>
     </div>
     <button type="button" (click)="moveToNextTips()">Next</button>
   </div>
