@@ -1,0 +1,62 @@
+section {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.up {
+  margin-bottom: -50px;
+  animation: up 2s linear 0.5s 1 forwards;
+  position: relative;
+}
+
+.down {
+  margin-top: -50;
+  animation: down 2s linear 0.5s 1 forwards;
+  position: relative;
+}
+
+@keyframes up {
+  0%{
+    
+    top: 0;
+    right: 0;
+  }
+  100% {
+    top: -50vh;
+    right: 50vw;
+  }
+}
+
+@keyframes down {
+  0%{
+    position: relative;
+    top: 0;
+    right: 0;
+  }
+  100% {
+    top: 50vh;
+    right: -50vw;
+  }
+}
+
+.logo {
+  width: 300px;
+  position: relative;
+  left: -100vw;
+  animation: logo 2s linear 0.5s 1 forwards;
+}
+
+@keyframes logo {
+  0%{
+    position: relative;
+    left: -50vw;
+  }
+  100% {
+    left: 0;
+  }
+}
+
