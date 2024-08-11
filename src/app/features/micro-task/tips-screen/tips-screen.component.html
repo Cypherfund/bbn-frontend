@@ -1,18 +1,17 @@
 <section>
   <div class="skip-btn"><a href="#">Skip</a></div>
   <div class="tips-container">
-    <img [src]="tips[0].img" alt="tip1" class="tip-image">
+    <img [src]="tips[ activeTipsIndex].img" alt="tip1" class="tip-image">
 
-    <h1>{{ tips[0].heading }}</h1>
+    <h1>{{ tips[ activeTipsIndex].heading }}</h1>
 
-    <p>{{ tips[0].tip }}</p>
+    <p>{{ tips[ activeTipsIndex].tip }}</p>
   </div>
   
   <div class="next-btn">
-    <div class="indicator">
-      <div class="ind"></div>
-      <div class="ind"></div>
+    <div class="indicator" >
+      <div class="ind" *ngFor="let tip of tips"></div>
     </div>
-    <button type="button">Next</button>
+    <button type="button" (click)="moveToNextTips()">Next</button>
   </div>
 </section>
