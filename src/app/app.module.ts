@@ -28,6 +28,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AboutComponent } from './features/about/about.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {LoaderService} from "./services/loader.service";
+import { MicroTaskComponent } from './features/micro-task/micro-task.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -37,7 +38,8 @@ import {LoaderService} from "./services/loader.service";
         CampaignCardComponent,
         EarningsComponent,
         TaskCenterComponent,
-        AboutComponent
+        AboutComponent,
+        MicroTaskComponent
     ],
     imports: [
       BrowserAnimationsModule,
