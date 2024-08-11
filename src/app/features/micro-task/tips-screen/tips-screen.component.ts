@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Tips } from './../model/tips-data';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tips-screen',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './tips-screen.component.scss'
 })
 export class TipsScreenComponent {
-
+  @Input() tips : Tips[] = []
+  
 }

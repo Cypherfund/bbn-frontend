@@ -1,0 +1,77 @@
+section {
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 14% auto 0 auto;
+
+}
+
+.tips-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h1, 
+p {
+  text-align: center;
+ 
+}
+
+p {
+  padding: 0 80px;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.ind {
+  width: 50px;
+  background-color: rgb(184, 184, 184);
+  height: 10px;
+  border-radius: 3px;
+
+}
+
+.indicator {
+  display: flex;
+  gap: 3px;
+  margin-top: 100px;
+}
+
+button {
+  border: none;
+  background-color: unset;
+  color: blue;
+  margin-top: 40px;
+  font-size: 25px;
+}
+
+.next-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tip-image {
+  margin-top: 100px;
+}
+
+.skip-btn {
+  text-align: right;
+  width: 100%;
+
+}
+
+.skip-btn a {
+  text-decoration: none;
+  margin-right: 30px;
+  font-size: 25px;
+}

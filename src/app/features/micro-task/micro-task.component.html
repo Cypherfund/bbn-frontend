@@ -1,4 +1,5 @@
 
  <main>
-  <app-splash-screen></app-splash-screen>
+  <app-splash-screen *ngIf="isLoading"></app-splash-screen>
+  <app-tips-screen *ngIf="showTips" [tips]="tipsData"></app-tips-screen>
  </main>
