@@ -1,22 +1,45 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import tips, { Tips } from './model/tips-data';
-
+import { Router } from '@angular/router';
+import { TipsScreenComponent } from './tips-screen/tips-screen.component';
 @Component({
   selector: 'app-micro-task',
   templateUrl: './micro-task.component.html',
   styleUrl: './micro-task.component.scss'
 })
-export class MicroTaskComponent {
+export class MicroTaskComponent  {
+
   isLoading : boolean = true;
-  showTips : boolean = false;
+  showTips! : boolean;
+
+  remTips : boolean = true;
+  removeTips($event : boolean): void {
+    this.remTips = $event
+    // if (!this.remTips) {
+    //   this.showTips = false;
+    // }
+  }   
 
   tipsData : Tips[] = tips;
   
+
+  // @ViewChild(TipsScreenComponent ) signUpComponent!: TipsScreenComponent ;
+  // showSplashScreen!:boolean
+
+  // ngAfterViewInit(): void {
+  //   console.log(this.signUpComponent?.showSplashScrn)
+  //   this.showSplashScreen = this.signUpComponent.showSplashScrn
+
+    
+  // }
+  
   ngOnInit(): void {
+
     setTimeout(() => {
       this.isLoading = false
       this.showTips = true
     }, 1000)
     
   }
+
 }

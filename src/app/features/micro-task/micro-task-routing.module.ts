@@ -2,10 +2,12 @@ import { BuyCoinsComponent } from './../task/pages/buy-coins/buy-coins.component
 import { MicroTaskComponent } from './micro-task.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EarnCoinsComponent } from '../task/pages/earn-coins/earn-coins.component';
+
 import { BuyLikesComponent } from '../task/pages/buy-likes/buy-likes.component';
 import { LikesComponent } from '../task/pages/buy-likes/likes/likes.component';
 import { BuyFollowersComponent } from '../task/pages/buy-followers/buy-followers.component';
+
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -13,8 +15,8 @@ const routes: Routes = [
     component: MicroTaskComponent,
     children: [
       {
-        path: 'earn-coins',
-        component: EarnCoinsComponent
+        path: 'sign-up',
+        component: SignUpComponent
       },
       {
         path: 'buy-likes',

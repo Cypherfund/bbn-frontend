@@ -1,5 +1,6 @@
 
  <main>
   <app-splash-screen *ngIf="isLoading"></app-splash-screen>
-  <app-tips-screen *ngIf="showTips" [tips]="tipsData"></app-tips-screen>
+  <app-tips-screen *ngIf="showTips && remTips" [tips]="tipsData" (showSplashScrn)="removeTips($event)"></app-tips-screen>
+  <router-outlet *ngIf="!remTips"></router-outlet>
  </main>

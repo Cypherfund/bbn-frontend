@@ -1,17 +1,27 @@
+import { Router } from '@angular/router';
 import { Tips } from './../model/tips-data';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-tips-screen',
   templateUrl: './tips-screen.component.html',
   styleUrl: './tips-screen.component.scss'
 })
-export class TipsScreenComponent {
+export class TipsScreenComponent implements OnInit{
+  ngOnInit(): void {
+    this.showSplashScrn.emit(true);
+  }
+
+  @Output() showSplashScrn = new EventEmitter<boolean>();
+
+  constructor(private router: Router) {}
+  
   @Input() tips : Tips[] = [];
 
   activeTipsIndex = 0
   tipsToShow = this.tips[this.activeTipsIndex]
  
+  
   nav = false
 
   moveToNextTips = () => {
@@ -25,9 +35,21 @@ export class TipsScreenComponent {
       }
     }
    if (this.nav) {
-    console.log('moving to sign up page');
+    this.showSplashScrn.emit(false);
+    this.router.navigate(['micro-task/sign-up'])
    }
 
+   
   }
+
+  navToSignUpPage() {
+    this.showSplashScrn.emit(false);
+   }
+
+
+
+
+  //changing page
+  
   
 }
