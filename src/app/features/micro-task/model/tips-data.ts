@@ -1,3 +1,4 @@
+
 export interface Tips {
   img : string,
   heading : string,
@@ -27,3 +28,17 @@ const tips : Tips[] = [
 ] 
 
 export default tips
+
+//sign up model
+
+export interface SignUpSocial {
+  socialIcon : string,
+  socialName : string
+}
+
+const signUpSocial : SignUpSocial[] = [
+  {
+    socialIcon : '',
+    socialName : ''
+  },
+]

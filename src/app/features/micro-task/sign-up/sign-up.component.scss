@@ -1,10 +1,160 @@
-div {
+.signup-container {
   margin: 0;
   padding: 0;
   width: 430px;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
-  // margin: 14% auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 14% auto 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+.logo {
+  width: 264px;
+  height: 264px;
+  top: 72px;
+  left: 48px;
+}
+
+.wlc-text {
+  width: 344px;
+  height: 58px;
+  top: 290px;
+  left: 8px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 29.26px;
+  text-align: center;
+  color: #363942;
+}
+
+.signup-sugest {
+  width: Hug (285px)px;
+  height: Hug (17px)px;
+  top: 392px;
+  left: 38px;
+  gap: 3px;
+  color: #363942;
+  margin-top: 25px;
+}
+
+.ss-log-sugest {
+  color: #3C82F5;
+}
+
+.signup-short-cut {
+  width: Hug (248px)px;
+  height: Hug (100px)px;
+  top: 469px;
+  left: 56px;
+  gap: 16px;
+  margin-top: 25px;
+}
+
+.signup-btn {
+  width: 248px;
+  height: 42px;
+  padding: 13px 53px 13px 53px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0px 4px 10px 0px #00000021;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.signup-btn:hover {
+  border: solid #cecece 1px;
+}
+
+.signup-btn img {
+  width: 16px;
+  height: 16px;
+}
+
+.signup-btn-title {
+  width: 120px;
+  height: 12px;
+  font-family: Montserrat;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 12.19px;
+  text-align: left;
+  padding-top: 4.5px;
+  color: #000000;
+}
+
+.other-social-links {
+  width: 174px;
+  height: 15px;
+  top: 595px;
+  left: 93px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 14.63px;
+  text-align: left;
+  color: #3C82F5;
+  margin-top: 25px;
+}
+
+.or-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.line {
+  width: 113px;
+  border: 1px solid #d3d4d8;
+  height: 0.1px;
+  margin-top: 2px;
+}
+
+.create-acc-btn {
+  border: none;
+  width: 328px;
+  height: 43px;
+  padding: 10px;
+  gap: 10px;
+  background-color: #3C82F5;
+  color: #FFFFFF;
+  border-radius: 21.5px;
+  margin-top: 30px;
+  cursor: pointer;
+  transition: background-color 0.13s ease-in-out;
+}
+
+.create-acc-btn:hover {
+  background-color: #669ef8;
+}
+
+.policy-terms-link {
+  width: 261px;
+  height: 28px;
+  top: 731px;
+  left: 49px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  color: #363942;
+  margin-top: 25px;
+}
+
+.policy-span {
+font-family: Montserrat;
+font-size: 14px;
+font-weight: 500;
+line-height: 14px;
+letter-spacing: 0.01em;
+color: #3C82F5;
+cursor: pointer;
 }
