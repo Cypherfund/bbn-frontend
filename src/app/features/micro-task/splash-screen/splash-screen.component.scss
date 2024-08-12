@@ -12,14 +12,16 @@ section {
   margin-bottom: -450px;
   animation: up 0.5s linear 0s 1 forwards;
   position: relative;
-  width: 250px;
+  width: 79px;
+  height: 80.94px;
 }
 
 .down {
   margin-top: -450;
   animation: down 0.5s linear 0s 1 forwards;
   position: relative;
-  width: 250px;
+  width: 79px;
+  height: 80.94px;
 }
 
 @keyframes up {
@@ -31,6 +33,8 @@ section {
   100% {
     top: -300px;
     right: 100px;
+    width: 265px;
+    height: 252px;
   }
 }
 
@@ -43,11 +47,13 @@ section {
   100% {
     top: 300px;
     right: -100px;
+    width: 285px;
+    height: 292px;
   }
 }
 
 .logo {
-  width: 300px;
+  width: 264px;
   position: relative;
   left: -10vw;
   animation: logo 0.5s linear 0s 1 forwards;
