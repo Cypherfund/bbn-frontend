@@ -1,4 +1,6 @@
 section {
+  margin: 0;
+  padding: 0;
   width: 430px;
   display: flex;
   flex-direction: column;
@@ -18,62 +20,112 @@ section {
 h1, 
 p {
   text-align: center;
- 
+}
+
+.tips-text-container {
+  width: Hug (282px)px;
+  height: Hug (83px)px;
+  top: 448px;
+  left: 37px;
+  gap: 10px;
+  color: #363942;
+  margin-top: 50px;
 }
 
 p {
-  padding: 0 80px;
-  font-size: 16px;
+  width: 282px;
+  height: 51px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17.07px;
+  text-align: center;
 }
 
 h1 {
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21.94px;
+  text-align: center;
+  width: Hug (173px)px;
+  height: Hug (22px)px;
 }
 
 .ind {
-  width: 40px;
-  background-color: rgb(184, 184, 184);
-  height: 10px;
-  border-radius: 3px;
-
+  background-color: #B0B0B0;
+  width: 22px;
+  height: 5px;
+  border-radius: 3px 0px 0px 0px;
 }
 
 .indicator {
   display: flex;
-  gap: 3px;
-  margin-top: 100px;
   justify-content: center;
   align-items: center;
+  width: Hug (48px)px;
+  height: Hug (5px)px;
+  gap: 6px;
 }
 
 button {
   border: none;
   background-color: unset;
-  color: blue;
-  margin-top: 40px;
-  font-size: 25px;
+  color: #3C82F5;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.5px;
+  text-align: center;
+  margin-top: 25px;
+  cursor: pointer;
 }
 
 .next-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  //display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  width: Hug (48px)px;
+  height: Hug (50px)px;
+  top: 662px;
+  left: 154px;
+  gap: 25px;
+  margin-top: 100px;
 }
 
 .tip-image {
+  width: 252.8px;
+  height: 252.8px;
+  top: 171px;
+  left: 54px;
   margin-top: 100px;
 }
 
 .skip-btn {
-  text-align: right;
-  width: 100%;
+  align-self: flex-end;
+  width: Hug (50px)px;
+  height: Hug (16px)px;
+  top: 65px;
+  left: 294px;
+  gap: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+}
 
+.skip-btn a img {
+  width: 5.73px;
+  height: 11.56px;
+  top: 2.22px;
+  left: 5.44px;
+  margin-left: 5px;
 }
 
 .skip-btn a {
   text-decoration: none;
-  margin-right: 30px;
-  font-size: 25px;
+  width: 26px;
+  height: 15px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.63px;
+  text-align: left;
+  color: #000000;
 }

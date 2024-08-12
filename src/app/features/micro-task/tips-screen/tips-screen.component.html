@@ -1,16 +1,19 @@
 <section>
-  <div class="skip-btn"><a routerLink="sign-up" (click)="navToSignUpPage()">Skip</a></div>
+  <div class="skip-btn"><a routerLink="sign-up" (click)="navToSignUpPage()">Skip <img src="assets/micro-task/spash/Vector.png" alt="next"></a></div>
+  
   <div class="tips-container">
     <img [src]="tips[ activeTipsIndex].img" alt="tip1" class="tip-image">
 
-    <h1>{{ tips[ activeTipsIndex].heading }}</h1>
+    <div class="tips-text-container">
+      <h1>{{ tips[ activeTipsIndex].heading }}</h1>
 
     <p>{{ tips[ activeTipsIndex].tip }}</p>
+    </div>
   </div>
   
   <div class="next-btn">
     <div class="indicator" >
-      <div class="ind" *ngFor="let tip of tips" [style]="tips.indexOf(tip) === activeTipsIndex ? 'background-color:blue':'width:20px; height:20px; border-radius:50%'"></div>
+      <div class="ind" *ngFor="let tip of tips" [style]="tips.indexOf(tip) === activeTipsIndex ? 'background-color:#3C82F5':'width:7px; height:5px; border-radius:3px'"></div>
     </div>
     <button type="button" (click)="moveToNextTips()">Next</button>
   </div>
