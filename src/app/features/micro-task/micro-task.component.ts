@@ -2,6 +2,8 @@ import { Component, AfterViewInit, ViewChild } from '@angular/core';
 import tips, { Tips } from './model/tips-data';
 import { Router } from '@angular/router';
 import { TipsScreenComponent } from './tips-screen/tips-screen.component';
+
+import {BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 @Component({
   selector: 'app-micro-task',
   templateUrl: './micro-task.component.html',
@@ -41,5 +43,4 @@ export class MicroTaskComponent  {
     }, 1000)
     
   }
-
 }

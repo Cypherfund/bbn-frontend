@@ -45,11 +45,6 @@ export class TipsScreenComponent implements OnInit{
   navToSignUpPage() {
     this.showSplashScrn.emit(false);
    }
-
-
-
-
-  //changing page
   
   
 }

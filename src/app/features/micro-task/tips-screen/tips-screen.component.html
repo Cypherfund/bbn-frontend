@@ -1,4 +1,4 @@
-<section>
+<section >
   <div class="skip-btn"><a routerLink="sign-up" (click)="navToSignUpPage()">Skip <img src="assets/micro-task/spash/Vector.png" alt="next"></a></div>
   
   <div class="tips-container">
@@ -13,7 +13,7 @@
   
   <div class="next-btn">
     <div class="indicator" >
-      <div class="ind" *ngFor="let tip of tips" [style]="tips.indexOf(tip) === activeTipsIndex ? 'background-color:#3C82F5':'width:7px; height:5px; border-radius:3px'"></div>
+      <div class="ind" *ngFor="let tip of tips" [style]="tips.indexOf(tip) === activeTipsIndex ? 'background-color:#3C82F5':'width:7px; height:5px; border-radius:3px'" ngClass="{ind-new-style}"></div>
     </div>
     <button type="button" (click)="moveToNextTips()">Next</button>
   </div>
