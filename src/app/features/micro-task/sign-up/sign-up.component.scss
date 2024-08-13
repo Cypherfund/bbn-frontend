@@ -1,12 +1,12 @@
 .signup-container {
   margin: 0;
   padding: 0;
-  width: 430px;
+  width: 320px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 50px auto 0 auto;
+  margin: 5px auto 0 auto;
 }
 
 a {
@@ -14,18 +14,18 @@ a {
 }
 
 .logo {
-  width: 264px;
-  height: 264px;
-  top: 72px;
+  width: 244px;
+  height: 150px;
+  //top: 72px;
   left: 48px;
 }
 
 .wlc-text {
-  width: 344px;
-  height: 58px;
-  top: 290px;
-  left: 8px;
-  font-size: 24px;
+  width: 270px;
+  height: 59px;
+  // top: 290px;
+  // left: 8px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 29.26px;
   text-align: center;
@@ -35,11 +35,12 @@ a {
 .signup-sugest {
   width: Hug (285px)px;
   height: Hug (17px)px;
-  top: 392px;
-  left: 38px;
+  // top: 392px;
+  // left: 38px;
   gap: 3px;
   color: #363942;
-  margin-top: 25px;
+  margin-top: 16px;
+  font-size: 15px;
 }
 
 .ss-log-sugest {
@@ -47,16 +48,16 @@ a {
 }
 
 .signup-short-cut {
-  width: Hug (248px)px;
+  width: Hug (180px)px;
   height: Hug (100px)px;
-  top: 469px;
-  left: 56px;
+  // top: 469px;
+  // left: 56px;
   gap: 16px;
-  margin-top: 25px;
+  margin-top: 10px;
 }
 
 .signup-btn {
-  width: 248px;
+  width: 180px;
   height: 42px;
   padding: 13px 53px 13px 53px;
   border-radius: 8px;
@@ -100,14 +101,14 @@ a {
   line-height: 14.63px;
   text-align: left;
   color: #3C82F5;
-  margin-top: 25px;
+  margin-top: 15px;
 }
 
 .or-line {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .line {
@@ -119,14 +120,14 @@ a {
 
 .create-acc-btn {
   border: none;
-  width: 328px;
+  width: 280px;
   height: 43px;
   padding: 10px;
   gap: 10px;
   background-color: #3C82F5;
   color: #FFFFFF;
   border-radius: 21.5px;
-  margin-top: 30px;
+  margin-top: 20px;
   cursor: pointer;
   transition: background-color 0.13s ease-in-out;
 }
