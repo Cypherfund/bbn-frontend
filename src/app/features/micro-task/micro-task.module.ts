@@ -8,6 +8,11 @@ import { TipsScreenComponent } from './tips-screen/tips-screen.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
@@ -22,7 +27,13 @@ import { SignupFormComponent } from './component/signup-form/signup-form.compone
   imports: [
     CommonModule,
     MicroTaskRoutingModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule
   ]
 })
 export class MicroTaskModule { }

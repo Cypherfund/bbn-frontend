@@ -1,1 +1,62 @@
-<p>signup-form works!</p>
+<main>
+  <section>
+    <div class="whts-email">
+      <h1>What's your EMAIL</h1>
+    </div>
+
+    <div class="form-container">
+      <mat-form-field>
+        <div class="form-title">
+          Enter Email address
+        </div>
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="pat@example.com"
+          [formControl]="email"
+          (blur)="updateErrorMessage()"
+          required
+        />
+        @if (email.invalid) {
+          <mat-error>{{errorMessage()}}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    
+    <div class="form-container">
+      <mat-form-field class="form-box-style">
+        <div class="form-title">
+          Password
+        </div>
+        <mat-label>Password</mat-label>
+        <input matInput [type]="hide() ? 'password' : 'text'" />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <div class="form-title">
+          Confirm Password
+        </div>
+        <mat-label>Confirm Password</mat-label>
+        <input matInput [type]="hide() ? 'password' : 'text'" />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="clickEvent($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </section>
+</main>
