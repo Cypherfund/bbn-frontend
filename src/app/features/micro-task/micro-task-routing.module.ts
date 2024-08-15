@@ -3,11 +3,11 @@ import { MicroTaskComponent } from './micro-task.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BuyLikesComponent } from '../task/pages/buy-likes/buy-likes.component';
 import { LikesComponent } from '../task/pages/buy-likes/likes/likes.component';
 import { BuyFollowersComponent } from '../task/pages/buy-followers/buy-followers.component';
 
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignupFormComponent } from './component/signup-form/signup-form.component';
 
 const routes: Routes = [
   {
@@ -19,8 +19,8 @@ const routes: Routes = [
         component: SignUpComponent
       },
       {
-        path: 'buy-likes',
-        component: BuyLikesComponent,
+        path: 'sign-up',
+        component: SignupFormComponent,
       },
       {
         path: 'promote',

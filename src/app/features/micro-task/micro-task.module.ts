@@ -7,6 +7,7 @@ import { MicroTaskComponent } from './micro-task.component';
 import { TipsScreenComponent } from './tips-screen/tips-screen.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignupFormComponent } from './component/signup-form/signup-form.component';
 
 
 
@@ -15,7 +16,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MicroTaskComponent,
     SplashScreenComponent,
     TipsScreenComponent,
-    SignUpComponent
+    SignUpComponent,
+    SignupFormComponent
   ],
   imports: [
     CommonModule,

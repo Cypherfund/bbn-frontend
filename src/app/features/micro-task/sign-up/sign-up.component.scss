@@ -133,6 +133,9 @@ a {
 }
 
 .create-acc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   width: 280px;
   height: 43px;
