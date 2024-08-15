@@ -91,17 +91,31 @@ a {
   color: #000000;
 }
 
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  width: 280px;
+}
+
+.drop-con {
+  width: 500px;
+  background-color: inherit;
+}
 .other-social-links {
-  width: 174px;
-  height: 15px;
-  top: 595px;
-  left: 93px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   font-size: 12px;
   font-weight: 600;
   line-height: 14.63px;
-  text-align: left;
   color: #3C82F5;
-  margin-top: 15px;
+}
+
+.signup-btn.dropdown {
+  width: 95%;
+  padding: 1px;
+  margin-left: 4px;
 }
 
 .or-line {

@@ -15,7 +15,7 @@ const routes: Routes = [
     component: MicroTaskComponent,
     children: [
       {
-        path: 'sign-up',
+        path: 'intro',
         component: SignUpComponent
       },
       {

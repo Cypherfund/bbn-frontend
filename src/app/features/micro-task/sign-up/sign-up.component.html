@@ -25,7 +25,26 @@
     </div>
   </div>
 
-  <a class="other-social-links" href="">More social media networks</a>
+
+
+  <mat-accordion class="dropdown-container">
+    <mat-expansion-panel class="drop-con" (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+      <mat-expansion-panel-header>
+        <!-- <mat-panel-title> Self aware panel </mat-panel-title> -->
+        <mat-panel-description class="other-social-links">
+           {{panelOpenState() ? 'More' : 'Less'}} social media networks
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="signup-btn dropdown" *ngFor="let socialUrl of socialLinks">
+        <a href="">
+          <img [src]="'assets/micro-task/social-icons/' + socialUrl.icon" [alt]="socialUrl.name">
+        </a>
+    
+        <p class="signup-btn-title">{{ socialUrl.name}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+  
 
   <div class="or-line">
     <div class="line"></div>

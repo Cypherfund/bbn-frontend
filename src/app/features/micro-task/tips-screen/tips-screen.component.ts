@@ -36,7 +36,7 @@ export class TipsScreenComponent implements OnInit{
     }
    if (this.nav) {
     this.showSplashScrn.emit(false);
-    this.router.navigate(['micro-task/sign-up'])
+    this.router.navigate(['/micro-task/intro'])
    }
 
    

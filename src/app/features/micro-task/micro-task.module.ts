@@ -5,6 +5,7 @@ import { MicroTaskRoutingModule } from './micro-task-routing.module';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { MicroTaskComponent } from './micro-task.component';
 import { TipsScreenComponent } from './tips-screen/tips-screen.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { SignUpComponent } from './sign-up/sign-up.component';
 
 
@@ -14,11 +15,12 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MicroTaskComponent,
     SplashScreenComponent,
     TipsScreenComponent,
-    SignUpComponent,
+    SignUpComponent
   ],
   imports: [
     CommonModule,
     MicroTaskRoutingModule,
+    MatExpansionModule
   ]
 })
 export class MicroTaskModule { }
