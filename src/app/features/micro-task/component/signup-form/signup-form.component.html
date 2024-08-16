@@ -1,14 +1,11 @@
 <main>
-  <section>
+  <section class="whole-form-window">
     <div class="whts-email">
-      <h1>What's your EMAIL</h1>
+      What's your EMAIL
     </div>
 
     <div class="form-container">
-      <mat-form-field>
-        <div class="form-title">
-          Enter Email address
-        </div>
+      <mat-form-field style="width: 290px !important;">
         <mat-label>Enter your email</mat-label>
         <input
           matInput
@@ -25,9 +22,6 @@
     
     <div class="form-container">
       <mat-form-field class="form-box-style">
-        <div class="form-title">
-          Password
-        </div>
         <mat-label>Password</mat-label>
         <input matInput [type]="hide() ? 'password' : 'text'" />
         <button
@@ -40,11 +34,8 @@
           <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
-    
+
       <mat-form-field>
-        <div class="form-title">
-          Confirm Password
-        </div>
         <mat-label>Confirm Password</mat-label>
         <input matInput [type]="hide() ? 'password' : 'text'" />
         <button
@@ -58,5 +49,7 @@
         </button>
       </mat-form-field>
     </div>
+
+    <button class="cont-btn">Continue</button>
   </section>
 </main>
