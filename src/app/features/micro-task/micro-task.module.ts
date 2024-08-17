@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthenticateComponent } from './component/authenticate/authenticate.component';
 
 
 
@@ -22,7 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     SplashScreenComponent,
     TipsScreenComponent,
     SignUpComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    AuthenticateComponent,
   ],
   imports: [
     CommonModule,

@@ -3,11 +3,11 @@ import { MicroTaskComponent } from './micro-task.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { LikesComponent } from '../task/pages/buy-likes/likes/likes.component';
 import { BuyFollowersComponent } from '../task/pages/buy-followers/buy-followers.component';
 
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
+import { AuthenticateComponent } from './component/authenticate/authenticate.component';
 
 const routes: Routes = [
   {
@@ -16,15 +16,18 @@ const routes: Routes = [
     children: [
       {
         path: 'intro',
-        component: SignUpComponent
+        component: SignUpComponent,
+        title: 'intro'
       },
       {
         path: 'sign-up',
         component: SignupFormComponent,
+        title: 'SignUp'
       },
       {
-        path: 'promote',
-        component: LikesComponent,
+        path: 'authenticator',
+        component: AuthenticateComponent,
+        title: 'authenticate'
       },
       {
         path: 'buy-followers',
