@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthenticateComponent } from './component/authenticate/authenticate.component';
+import { AuthenSuccessComponent } from './component/authen-success/authen-success.component';
 
 
 
@@ -25,6 +26,7 @@ import { AuthenticateComponent } from './component/authenticate/authenticate.com
     SignUpComponent,
     SignupFormComponent,
     AuthenticateComponent,
+    AuthenSuccessComponent,
   ],
   imports: [
     CommonModule,

@@ -8,6 +8,7 @@ import { BuyFollowersComponent } from '../task/pages/buy-followers/buy-followers
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { AuthenticateComponent } from './component/authenticate/authenticate.component';
+import { AuthenSuccessComponent } from './component/authen-success/authen-success.component';
 
 const routes: Routes = [
   {
@@ -30,8 +31,9 @@ const routes: Routes = [
         title: 'authenticate'
       },
       {
-        path: 'buy-followers',
-        component: BuyFollowersComponent,
+        path: 'success-auth',
+        component: AuthenSuccessComponent,
+        title: 'successful'
       },
       {
         path: 'buy-coins',

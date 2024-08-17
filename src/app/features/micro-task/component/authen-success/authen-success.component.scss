@@ -1,0 +1,30 @@
+main {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ver-suc {
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1F0027;
+  text-align: center;
+}
+
+img {
+  margin-top: 30px;
+}
