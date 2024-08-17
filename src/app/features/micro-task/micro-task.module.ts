@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthenticateComponent } from './component/authenticate/authenticate.component';
 import { AuthenSuccessComponent } from './component/authen-success/authen-success.component';
+import { WelcomeToMicrotaskComponent } from './component/welcome-to-microtask/welcome-to-microtask.component';
 
 
 
@@ -27,6 +28,7 @@ import { AuthenSuccessComponent } from './component/authen-success/authen-succes
     SignupFormComponent,
     AuthenticateComponent,
     AuthenSuccessComponent,
+    WelcomeToMicrotaskComponent,
   ],
   imports: [
     CommonModule,

@@ -3,12 +3,11 @@ import { MicroTaskComponent } from './micro-task.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BuyFollowersComponent } from '../task/pages/buy-followers/buy-followers.component';
-
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignupFormComponent } from './component/signup-form/signup-form.component';
 import { AuthenticateComponent } from './component/authenticate/authenticate.component';
 import { AuthenSuccessComponent } from './component/authen-success/authen-success.component';
+import { WelcomeToMicrotaskComponent } from './component/welcome-to-microtask/welcome-to-microtask.component';
 
 const routes: Routes = [
   {
@@ -36,8 +35,9 @@ const routes: Routes = [
         title: 'successful'
       },
       {
-        path: 'buy-coins',
-        component: BuyCoinsComponent,
+        path: 'welc-to-microtask',
+        component: WelcomeToMicrotaskComponent,
+        title: 'wlc-to-microtask'
       },
       // {
       //   path: '',
